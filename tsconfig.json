@@ -22,5 +22,5 @@
     "types": ["node"]
   },
   "include": ["src", "types"],
-  "typeRoots": ["env_types/global.d.ts"]
+  "typeRoots": ["types/env/environment.d.ts"]
 }
