@@ -1,5 +1,7 @@
+import 'vite/client'
+
 namespace NodeJS {
   interface ProcessEnv {
-    CLIENT_ID: string;
+    VITE_CLIENT_ID: string;
   }
 }
