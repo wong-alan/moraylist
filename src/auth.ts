@@ -1,5 +1,6 @@
 const authEndpoint = "https://accounts.spotify.com/authorize"
 const accessTokenEndpoint = "https://accounts.spotify.com/api/token";
+const callbackEndpoint = "http://localhost:5173/callback";
 const scopes = [
     "user-read-private",
     "user-read-email"
@@ -24,15 +25,18 @@ export const generateCodeChallenge = async(codeVerifier: string): Promise<string
         .replace(/=+$/, '');
 }
 
-export const generateAuthURL = (clientId: string, challenge: string): string => {
+export const generateAuthUrl = (clientId: string, challenge: string): string => {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://localhost:5173/callback");
+    params.append("redirect_uri", callbackEndpoint);
     params.append("scope", scopes.join(" "));
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
-    return `${authEndpoint}?${params.toString()}`;
+
+    const authUrl = new URL(authEndpoint);
+    authUrl.search = params.toString();
+    return authUrl.toString();
 }
 
 export const getAccessToken = async (clientId: string, code: string): Promise<string> => {
@@ -42,7 +46,7 @@ export const getAccessToken = async (clientId: string, code: string): Promise<st
     params.append("client_id", clientId);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:5173/callback");
+    params.append("redirect_uri", callbackEndpoint);
     params.append("code_verifier", verifier!);
 
     const result = await fetch(accessTokenEndpoint, {

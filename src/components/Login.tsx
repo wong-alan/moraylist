@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SpotifyButton from "./SpotifyButton";
 import { CircularProgress } from "@mui/material";
-import { generateAuthURL, generateCodeChallenge, generateCodeVerifier } from "../spotify";
+import { generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../auth";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 
@@ -23,7 +23,7 @@ const Login = () => {
         );
     }
 
-    const authURL = generateAuthURL(clientId, challenge);
+    const authURL = generateAuthUrl(clientId, challenge);
 
     return (
         <a href={authURL}>
