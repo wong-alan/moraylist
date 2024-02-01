@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SpotifyButton from "./SpotifyButton";
 import { CircularProgress } from "@mui/material";
-import { generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../auth";
+import { VERIFIER, generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../auth";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 
@@ -12,7 +12,7 @@ const Login = () => {
     useEffect(() => {
         generateCodeChallenge(verifier)
             .then(data => {
-                localStorage.setItem("verifier", verifier);
+                localStorage.setItem(VERIFIER, verifier);
                 setChallenge(data);
             })
     }, []);
