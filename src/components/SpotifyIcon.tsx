@@ -1,9 +1,9 @@
-import { SvgIcon } from "@mui/material";
+import { SvgIcon, SxProps, Theme } from "@mui/material";
 import SpotifyLogo  from "../assets/spotify.svg?react";
 
-const SpotifyIcon = () => {
+const SpotifyIcon = (sx?: SxProps<Theme>) => {
     return (
-        <SvgIcon component={SpotifyLogo} />
+        <SvgIcon component={SpotifyLogo} sx={sx}/>
     );
 }
 
