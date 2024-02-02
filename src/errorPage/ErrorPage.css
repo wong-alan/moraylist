@@ -1,0 +1,8 @@
+#error-page {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  #error-message {
+    width: fit-content;
+  }

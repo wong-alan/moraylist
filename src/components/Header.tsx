@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import SplotchifyIcon from "../components/SplotchifyIcon";
+import SplotchifyIcon from "./icons/SplotchifyIcon";
 import UserMenu from "../components/UserMenu";
 
 const Header = () => {
