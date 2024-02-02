@@ -1,123 +1,76 @@
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Logout from '@mui/icons-material/Logout';
 
 import SplotchifyIcon from "../components/SplotchifyIcon";
-import { useState } from "react";
+import UserMenu from "../components/UserMenu";
 
 const Header = () => {
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+    return (
+        <AppBar position="static" sx={{ bgcolor: "#191414" }}>
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                    {/* Large corner logo */}
+                    <SplotchifyIcon sx={{
+                        display: { xs: 'none', md: 'flex' }, mr: 1, width: 24, height: 24
+                    }} />
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="a"
+                        href="#app-bar-with-responsive-menu"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'none', md: 'flex' },
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            letterSpacing: '.1rem',
+                            color: 'inherit',
+                            textDecoration: 'none',
+                            paddingLeft: '15px'
+                        }}
+                    >
+                        Splotchify
+                    </Typography>
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+                    {/* Small box */}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    </Box>
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+                    {/* Small center logo */}
+                    <Typography
+                        variant="h5"
+                        noWrap
+                        component="a"
+                        href="/"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'flex', md: 'none' },
+                            flexGrow: 1,
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            letterSpacing: '.1rem',
+                            color: 'inherit',
+                            textDecoration: 'none',
+                        }}
+                    >
+                        Splotchify
+                    </Typography>
 
-  return (
-    <AppBar position="static" sx={{ bgcolor: "#191414" }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          {/* Full sized corner logo */}
-          <SplotchifyIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, width: 24, height: 24 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              color: 'inherit',
-              textDecoration: 'none',
-              paddingLeft: '15px'
-            }}
-          >
-            Splotchify
-          </Typography>
+                    {/* Large box; pushes user icon to right */}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    </Box>
 
-          {/* Small box */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-          </Box>
-
-          {/* Small center logo */}
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Splotchify
-          </Typography>
-
-          {/* Large box; pushes user icon to right */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          </Box>
-
-          {/* User icon */}
-          <Box sx={{ flexGrow: 0 }}>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar src="/splotchify.svg" />
-            </IconButton>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem onClick={handleCloseUserMenu} href='/profile'>
-                <ListItemIcon>
-                  <AccountCircle fontSize="small" />
-                </ListItemIcon>
-                Profile
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu} href='/logout'>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                Logout
-              </MenuItem>
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
+                    {/* User menu */}
+                    <Box sx={{ flexGrow: 0 }}>
+                        <UserMenu />
+                    </Box>
+                </Toolbar>
+            </Container>
+        </AppBar>
+    );
 }
 
 export default Header;
