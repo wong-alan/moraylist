@@ -1,14 +1,17 @@
 import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 import Header from "../components/Header";
+import { CODE } from "../utils";
 import "./ErrorPage.css";
 
 const ErrorPage = () => {
     const error = useRouteError();
     console.error(error);
 
+    const code = localStorage.getItem(CODE);
+
     return (
         <>
-            <Header />
+            <Header code={code} />
             <div id="error-page">
                 <div id="error-message">
                     <h1>Oops!</h1>

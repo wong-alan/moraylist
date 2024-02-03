@@ -6,8 +6,9 @@ import Container from '@mui/material/Container';
 
 import SplotchifyIcon from "./icons/SplotchifyIcon";
 import UserMenu from "../components/UserMenu";
+import Login from './login/Login';
 
-const Header = () => {
+const Header = ({code}: {code: string|null}) => {
     return (
         <AppBar position="static" sx={{ bgcolor: "#191414" }}>
             <Container maxWidth="xl">
@@ -65,7 +66,11 @@ const Header = () => {
 
                     {/* User menu */}
                     <Box sx={{ flexGrow: 0 }}>
-                        <UserMenu />
+                        {
+                            code && code != "undefined" ?
+                            <UserMenu /> :
+                            <Login />
+                        }
                     </Box>
                 </Toolbar>
             </Container>
