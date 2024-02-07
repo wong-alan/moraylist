@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SpotifyButton from "../SpotifyButton";
 import { CircularProgress } from "@mui/material";
-import { VERIFIER, generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../../auth";
+import { VERIFIER, generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../../spotify/auth";
 import './Login.css';
 
 const clientId = import.meta.env.VITE_CLIENT_ID;

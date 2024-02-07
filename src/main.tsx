@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import Profile from "./routes/profile";
 import Callback from "./routes/callback";
+import Logout from "./routes/logout";
 import ErrorPage from "./errorPage/ErrorPage";
 import './index.css'
 
@@ -12,7 +13,13 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <Root />,
-      errorElement: <ErrorPage />,
+      errorElement: (
+        <>
+          <Root />
+          <ErrorPage />
+        </>
+      ),
+      // <ErrorPage />,
       children: [
         {
           path: "profile",
@@ -21,6 +28,10 @@ const router = createBrowserRouter([
         {
           path: "callback",
           element: <Callback />
+        },
+        {
+          path: "logout",
+          element: <Logout />
         }
       ]
     },

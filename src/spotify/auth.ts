@@ -7,9 +7,9 @@ const scopes = [
 ];
 
 // LOCAL STORAGE
-const ACCESS_TOKEN = "access-token";
-const REFRESH_TOKEN = "refresh-token";
-const TOKEN_EXPIRY = "token-expiry";
+export const ACCESS_TOKEN = "access-token";
+export const REFRESH_TOKEN = "refresh-token";
+export const TOKEN_EXPIRY = "token-expiry";
 export const VERIFIER = "verifier"
 
 const MS_PER_MINUTE = 60_000;

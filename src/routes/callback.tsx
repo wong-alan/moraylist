@@ -1,15 +1,25 @@
 import { Navigate } from "react-router-dom";
-import { CODE, sleep } from "../utils";
-import { useEffect, useState } from "react";
+import { CODE } from "../utils";
+import { useContext, useEffect, useState } from "react";
+import { ACCESS_TOKEN, REFRESH_TOKEN, TOKEN_EXPIRY } from "../spotify/auth";
+import AppContext from "../AppContext";
 
 const Callback = () => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
+    const { setCode } = useContext(AppContext);
 
     // Save new code
     if (code) {
+        localStorage.removeItem(ACCESS_TOKEN);
+        localStorage.removeItem(REFRESH_TOKEN);
+        localStorage.removeItem(TOKEN_EXPIRY);
         localStorage.setItem(CODE, code);
-        console.log("Saved a new code!");
+
+        useEffect(() => {
+            setCode(code);
+        }, [])
+
         return (
             <Navigate to="/" />
         );
@@ -19,7 +29,7 @@ const Callback = () => {
     const REDIRECT_TIME = 5;
     const error = params.get("error");
     const [timeLeft, setTimeLeft] = useState<number>(REDIRECT_TIME);
-    console.log("No new code!");
+
     useEffect(() => {
         if (!timeLeft) {
             return;
