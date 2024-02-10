@@ -12,19 +12,16 @@ const Root = () => {
     const [profile, setProfile] = useState<UserProfile|null>(null);
 
     return (
-        <>
-            <AppContext.Provider value={{
-                    clientId: clientId,
-                    code: code,
-                    setCode: setCode,
-                    profile: profile
-                }}>
-                <Header
-                    userProfile = {profile}
-                    setUserProfile = {setProfile} />
-                <Outlet />
-            </AppContext.Provider>
-        </>
+        <AppContext.Provider value={{
+                clientId: clientId,
+                code: code,
+                setCode: setCode,
+                profile: profile,
+                setProfile: setProfile
+            }}>
+            <Header />
+            <Outlet />
+        </AppContext.Provider>
     );
 }
 

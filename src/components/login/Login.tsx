@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SpotifyButton from "../SpotifyButton";
 import { CircularProgress } from "@mui/material";
 import { VERIFIER, generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../../spotify/auth";
 import './Login.css';
-
-const clientId = import.meta.env.VITE_CLIENT_ID;
+import AppContext from "../../AppContext";
 
 const Login = () => {
+    const { clientId } = useContext(AppContext);
     const verifier = generateCodeVerifier(128);
     const [challenge, setChallenge] = useState<string | null>(null);
 
@@ -24,10 +24,10 @@ const Login = () => {
         );
     }
 
-    const authURL = generateAuthUrl(clientId, challenge);
+    const authUrl = generateAuthUrl(clientId, challenge);
 
     return (
-        <a href={authURL}>
+        <a href={authUrl}>
             <SpotifyButton />
         </a>
     );

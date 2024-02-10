@@ -53,11 +53,8 @@ const getLocalToken = (): string | null => {
     const expiry = localStorage.getItem(TOKEN_EXPIRY);
 
     if (expiry && localToken) {
-        console.log("Found a local token: " + localToken);
         const expiryDate = new Date(expiry);
         const currentDate = new Date(new Date().getTime() - 1 * MS_PER_MINUTE);
-        console.log("Expiry date: " + expiryDate);
-        console.log("Current date: " + currentDate);
         if (expiryDate > currentDate) {
             return localToken;
         }
@@ -86,7 +83,7 @@ const refreshAccessToken = async (clientId: string): Promise<string | null> => {
     const result = await fetch(accessTokenEndpoint, payload);
     const { access_token, expires_in, refresh_token } = await result.json();
     if (!result.ok) {
-        console.log("Unable to refresh token");
+        return null;
     }
 
     const expiryDate = new Date(new Date().getTime() + expires_in * MS_PER_SECOND).toString();
@@ -96,7 +93,7 @@ const refreshAccessToken = async (clientId: string): Promise<string | null> => {
     return access_token;
 }
 
-const getNewAccessToken = async (clientId: string, code: string): Promise<string> => {
+const getNewAccessToken = async (clientId: string, code: string): Promise<string | null> => {
     const verifier = localStorage.getItem(VERIFIER);
 
     const payload = {
@@ -112,33 +109,36 @@ const getNewAccessToken = async (clientId: string, code: string): Promise<string
     };
 
     const result = await fetch(accessTokenEndpoint, payload);
+    if (!result.ok) {
+        return null;
+    }
     const { access_token, expires_in, refresh_token } = await result.json();
 
     const expiryDate = new Date(new Date().getTime() + expires_in * MS_PER_SECOND).toString();
     localStorage.setItem(TOKEN_EXPIRY, expiryDate);
     localStorage.setItem(ACCESS_TOKEN, access_token);
     localStorage.setItem(REFRESH_TOKEN, refresh_token);
-    console.log("Set refresh token to: " + refresh_token);
-    console.log("Set access token to: " + access_token);
     return access_token;
 }
 
-export const getAccessToken = async (clientId: string, code: string): Promise<string> => {
+export const getAccessToken = async (clientId: string, code: string): Promise<string|null> => {
     // Check if there is a valid access token in local storage
     const localToken = getLocalToken();
     if (localToken) {
-        console.log("Using a local unexpired token");
         return localToken;
     }
 
     // Check if we have a refresh token to get a new access token
     const refreshedToken = await refreshAccessToken(clientId);
     if (refreshedToken) {
-        console.log("Using a refreshed token");
         return refreshedToken;
     }
 
     // Get a new access token
-    console.log("Getting a new token");
-    return await getNewAccessToken(clientId, code);
+    const newToken = await getNewAccessToken(clientId, code);
+    if (newToken) {
+        return newToken;
+    }
+
+    return null;
 }

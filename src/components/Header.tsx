@@ -7,15 +7,10 @@ import Container from '@mui/material/Container';
 import SplotchifyIcon from "./icons/SplotchifyIcon";
 import UserMenu from "../components/UserMenu";
 import Login from './login/Login';
-import { Dispatch, SetStateAction, useContext } from 'react';
+import { useContext } from 'react';
 import AppContext from '../AppContext';
 
-interface HeaderProps {
-    userProfile: UserProfile | null,
-    setUserProfile: Dispatch<SetStateAction<UserProfile | null>>
-}
-
-const Header = ({userProfile, setUserProfile}: HeaderProps) => {
+const Header = () => {
     const { code } = useContext(AppContext);
 
     return (
@@ -77,7 +72,7 @@ const Header = ({userProfile, setUserProfile}: HeaderProps) => {
                     <Box sx={{ flexGrow: 0 }}>
                         {
                             code && code != "undefined" ?
-                            <UserMenu userProfile={userProfile} setUserProfile={setUserProfile}/> :
+                            <UserMenu /> :
                             <Login />
                         }
                     </Box>

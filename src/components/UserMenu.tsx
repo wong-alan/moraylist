@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -13,13 +13,8 @@ import Logout from '@mui/icons-material/Logout';
 import { fetchProfile } from '../spotify/profile';
 import AppContext from '../AppContext';
 
-interface UserMenuProps {
-    userProfile: UserProfile | null,
-    setUserProfile: Dispatch<SetStateAction<UserProfile | null>>
-}
-
-const UserMenu = ({userProfile, setUserProfile}: UserMenuProps) => {
-    const { clientId, code } = useContext(AppContext);
+const UserMenu = () => {
+    const { clientId, code, profile, setProfile } = useContext(AppContext);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -31,15 +26,15 @@ const UserMenu = ({userProfile, setUserProfile}: UserMenuProps) => {
     };
 
     useEffect(() => {
-        if (userProfile) {
+        if (profile) {
             return;
         }
         // // User Menu is not shown if code is null (user is not logged in)
-        fetchProfile(clientId, code!).then(data => setUserProfile(data))
+        fetchProfile(clientId, code!).then(data => setProfile(data))
     }, []);
 
-    const profilePicUrl = userProfile?.images[0]?.url ?
-        userProfile?.images[0]?.url :
+    const profilePicUrl = profile?.images[0]?.url ?
+        profile.images[0].url :
         "/splotchify.svg";
 
     return (
