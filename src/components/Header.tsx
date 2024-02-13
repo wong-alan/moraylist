@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 
 import SplotchifyIcon from "./icons/SplotchifyIcon";
 import UserMenu from "../components/UserMenu";
-import Login from './login/Login';
+import Login from './Login';
 import { useContext } from 'react';
 import AppContext from '../AppContext';
 

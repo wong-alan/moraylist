@@ -1,6 +1,6 @@
 import './App.css';
 import Profile from './components/Profile';
-import Login from './components/login/Login';
+import Login from './components/Login';
 import { CODE } from './utils';
 
 const clientId = import.meta.env.VITE_CLIENT_ID;

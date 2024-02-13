@@ -18,8 +18,7 @@ const Profile = () => {
         <section id="profile"
             style={{
                 display: "flex",
-                justifyContent: "space-evenly",
-                height: "100%"
+                justifyContent: "space-evenly"
             }}>
             {profile ?
                 (<>

@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import SpotifyButton from "../SpotifyButton";
+import SpotifyButton from "./SpotifyButton/SpotifyButton";
 import { CircularProgress } from "@mui/material";
-import { VERIFIER, generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../../spotify/auth";
-import './Login.css';
-import AppContext from "../../AppContext";
+import { VERIFIER, generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../spotify/auth";
+import AppContext from "../AppContext";
 
 const Login = () => {
     const { clientId } = useContext(AppContext);

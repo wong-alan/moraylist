@@ -1,5 +1,6 @@
 import { Button, ThemeProvider, createTheme } from "@mui/material";
-import SpotifyIcon from "./icons/SpotifyIcon";
+import SpotifyIcon from "../icons/SpotifyIcon";
+import "./SpotifyButton.css"
 
 // Add 'Spotify' to palette
 declare module '@mui/material/styles' {

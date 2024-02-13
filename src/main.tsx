@@ -6,7 +6,7 @@ import Root from "./routes/root";
 import Profile from "./routes/profile";
 import Callback from "./routes/callback";
 import Logout from "./routes/logout";
-import ErrorPage from "./errorPage/ErrorPage";
+import ErrorPage from "./routes/errorPage/ErrorPage";
 import './index.css'
 
 const router = createBrowserRouter([
