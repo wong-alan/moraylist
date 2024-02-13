@@ -12,6 +12,7 @@ import Logout from '@mui/icons-material/Logout';
 
 import { fetchProfile } from '../spotify/profile';
 import AppContext from '../AppContext';
+import { SPLOTCHIFY_SVG } from "./icons/SplotchifyIcon";
 
 const UserMenu = () => {
     const { clientId, code, profile, setProfile } = useContext(AppContext);
@@ -35,7 +36,7 @@ const UserMenu = () => {
 
     const profilePicUrl = profile?.images[0]?.url ?
         profile.images[0].url :
-        "/splotchify.svg";
+        SPLOTCHIFY_SVG;
 
     return (
         <>
