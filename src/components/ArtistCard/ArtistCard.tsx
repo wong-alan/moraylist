@@ -8,7 +8,8 @@ import {
   InfoSubtitle,
   InfoTitle,
 } from "../../mui-treasury/info-basic";
-import SpotifyButton from "../SpotifyButton/SpotifyButton";
+import UnfollowButton from "../UnfollowButton/UnfollowButton";
+import OpenInAppButton from "../OpenInAppButton";
 
 const useStyles = (): CSSObject & Partial<InfoSlotStyles> => {
   return {
@@ -57,7 +58,7 @@ const StyledCard = styled(Card)({
     height: "64%",
     bottom: 0,
     zIndex: 1,
-    background: "linear-gradient(to top, #000, rgba(0,0,0,0))",
+    background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, 20%, rgba(0,0,0,0.6) 40%, 75%, rgba(0,0,0,0) 100%)",
   },
 });
 
@@ -72,7 +73,7 @@ const StyledCardMedia = styled(CardMedia)({
 });
 
 const Content = styled("div")(({ theme }) => ({
-  padding: "10px 10px", //theme.spacing(3, 2),
+  padding: "12px 15px",
   boxSizing: "border-box",
   position: "absolute",
   zIndex: 2,
@@ -108,17 +109,22 @@ export function ArtistCard({artist}: ArtistCardProps) {
               sx={{
                 overflow: "hidden",
                 whiteSpace: "nowrap",
-                textOverflow: "ellipsis"
+                textOverflow: "ellipsis",
+                margin: "0 0 0.1em 0"
               }}
             >
               {artist.name}
             </InfoTitle>
             <InfoSubtitle
               sx={{
-                marginTop: "0 !important"
+                marginTop: "0 !important",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between"
               }}
             >
-              <SpotifyButton />
+              <UnfollowButton />
+              <OpenInAppButton link={artist.uri}/>
             </InfoSubtitle>
           </Info>
         </Content>

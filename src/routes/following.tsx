@@ -41,8 +41,8 @@ const Following = () => {
                         </Typography>
                     </Grid>
                     {following && following.map((artist) => (
-                        <Grid item>
-                            <ArtistCard key={artist.id} artist={artist}/>
+                        <Grid item key={artist.id}>
+                            <ArtistCard artist={artist}/>
                         </Grid>
                     ))}
                 </Grid>

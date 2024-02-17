@@ -27,9 +27,8 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
   return (
     <Card
       sx={{
-        maxWidth: 475,
+        maxWidth: 495,
         borderRadius: "20px",
-        // boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
         boxShadow: 24,
         transition: "0.3s",
         margin: "24px",
@@ -97,7 +96,9 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
             Email: {profile.email} <br/>
             Explicit content: {profile.explicit_content.filter_enabled ? "Not Allowed" : "Allowed"} <br />
             Explicit content filter: {profile.explicit_content.filter_locked ? "Locked" : "Unlocked"} <br />
-            Spotify URI: <Link href={profile.external_urls.spotify}>{profile.uri}</Link> <br/>
+            Spotify URI: <Link href={profile.uri} target="_blank" rel="noopener">
+                {profile.uri} <OpenInNewOutlined sx={{fontSize: "1rem"}} />
+              </Link> <br/>
             {
               iconSrc != SPLOTCHIFY_SVG &&
                 <Link href={iconSrc} target="_blank" rel="noopener" sx={{fontSize: "17px"}}>

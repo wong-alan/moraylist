@@ -38,7 +38,25 @@ export const fetchFollowing = async (clientId: string, code: string, after?: str
         followingEndpoint = response.artists.next;
     } while (followingEndpoint);
 
-    console.log(followingArtists);
-
     return followingArtists;
+}
+
+export const unfollowArtist = async (clientId: string, code: string, artistId: string): Promise<boolean> => {
+    const accessToken = await getAccessToken(clientId, code);
+    if (!accessToken) {
+        return false;
+    }
+
+    let followingEndpoint: URL | string | null = new URL("https://api.spotify.com/v1/me/following");
+    followingEndpoint.search = new URLSearchParams({
+        type: "artist",
+        ids: artistId
+    }).toString();
+
+    const result = await fetch(followingEndpoint!, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${accessToken}` },
+    });
+
+    return result.status == 200;
 }
