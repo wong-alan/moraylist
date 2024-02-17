@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import AppContext from "../AppContext";
-import Header from "../components/Header";
+import Header from "../components/nav/Header";
 import { CODE } from '../utils';
 import './root.css';  // EMPTY
 

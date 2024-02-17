@@ -11,6 +11,7 @@ export type InfoSlotStyles = {
   root: CSSObject;
   title: CSSObject;
   subtitle: CSSObject;
+  caption: CSSObject;
   eyebrow: CSSObject;
 };
 

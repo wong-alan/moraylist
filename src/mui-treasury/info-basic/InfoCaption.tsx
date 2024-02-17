@@ -1,10 +1,11 @@
 import React, { ReactNode } from "react";
-import { styled, SxProps, Theme } from "@mui/material/styles";
+import { styled, Theme } from "@mui/material/styles";
+import { SxProps } from "@mui/system";
 import cx from "clsx";
 import { AppendUseStyles, useStylesCtx } from "./Info";
 import { infoClasses } from "./infoClasses";
 
-export type InfoEyebrowProps = {
+export type InfoCaptionProps = {
   /**
    * className append to the root element
    */
@@ -20,35 +21,34 @@ export type InfoEyebrowProps = {
   sx?: SxProps<Theme>;
 } & Omit<JSX.IntrinsicElements["div"], "ref">;
 
-const InfoEyebrowRoot = styled("div", {
+const InfoCaptionRoot = styled("div", {
   name: "JunInfo",
-  slot: "Eyebrow",
-  overridesResolver: (props, styles) => styles.eyebrow,
-})<{ ownerState: AppendUseStyles<InfoEyebrowProps> }>(
+  slot: "Caption",
+  overridesResolver: (props, styles) => styles.caption,
+})<{ ownerState: AppendUseStyles<InfoCaptionProps> }>(
   ({ theme, ownerState }) => ({
     color: theme.palette.text.secondary,
-    fontSize: "0.875rem",
-    marginBottom: "0.25rem",
-    lineHeight: "1.25rem",
-    textTransform: "uppercase",
-    ...ownerState.useStyles(theme).eyebrow,
+    fontSize: "0.75rem",
+    marginBlockStart: "0.5em",
+    marginBlockEnd: "0.75em",
+    ...ownerState.useStyles(theme).caption,
   })
 );
 
-export const InfoEyebrow = React.forwardRef<HTMLDivElement, InfoEyebrowProps>(
-  function InfoEyebrow(props, ref) {
+export const InfoCaption = React.forwardRef<HTMLDivElement, InfoCaptionProps>(
+  function InfoCaption(props, ref) {
     const { children, component, className, ...other } = props;
     const useStyles = useStylesCtx();
     return (
-      <InfoEyebrowRoot
+      <InfoCaptionRoot
         ref={ref}
         {...other}
         as={component}
-        className={cx(infoClasses.eyebrow, className)}
+        className={cx(infoClasses.caption, className)}
         ownerState={{ ...props, useStyles }}
       >
         {children}
-      </InfoEyebrowRoot>
+      </InfoCaptionRoot>
     );
   }
 );

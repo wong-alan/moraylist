@@ -24,7 +24,7 @@ declare module '@mui/material/Button' {
 const spotifyTheme = createTheme({
     palette: {
         spotify: {
-            main: '#1DB954'
+            main: '#1DAD50'
         }
     }
 });
@@ -33,10 +33,11 @@ const SpotifyButton = () => {
     return (
         <ThemeProvider theme={spotifyTheme}>
             <Button
-              color="spotify"
-              variant="contained"
-              startIcon={<SpotifyIcon />}
-              className="spotify-font"
+                color="spotify"
+                variant="contained"
+                startIcon={<SpotifyIcon />}
+                className="spotify-font"
+                sx={{ boxShadow: 5 }}
             >
                 Sign in with Spotify
             </Button>

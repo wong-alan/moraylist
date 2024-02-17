@@ -8,6 +8,8 @@ export interface InfoClasses {
   title: string;
   /** Styles applied to the subtitle element. */
   subtitle: string;
+  /** Styles applied to the caption element. */
+  caption: string;
   /** Styles applied to the eyebrow element. */
   eyebrow: string;
 }
@@ -22,5 +24,6 @@ export const infoClasses: InfoClasses = generateUtilityClasses("JunInfo", [
   "root",
   "title",
   "subtitle",
+  "caption",
   "eyebrow",
 ]);

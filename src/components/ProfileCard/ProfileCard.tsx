@@ -3,12 +3,12 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Info, InfoEyebrow, InfoSubtitle, InfoTitle } from "../info-basic";
-import { getInfoN03Styles } from "../info-n03";
+import { Info, InfoEyebrow, InfoSubtitle, InfoTitle } from "../../mui-treasury/info-basic";
+import { getInfoN03Styles } from "../../mui-treasury/info-n03";
 import { Link, Tooltip } from "@mui/material";
-import Emoji, { getFlagEmoji } from "../../components/icons/Emoji";
+import Emoji, { getFlagEmoji } from "../icons/Emoji";
 import { OpenInNewOutlined } from "@mui/icons-material";
-import { SPLOTCHIFY_SVG } from "../../components/icons/SplotchifyIcon";
+import { SPLOTCHIFY_SVG } from "../icons/SplotchifyIcon";
 
 interface ProfileCardProps {
   profile: UserProfile

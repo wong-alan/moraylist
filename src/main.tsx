@@ -1,12 +1,11 @@
-//import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import App from './App.tsx'
 import Root from "./routes/root";
+import ErrorPage from "./routes/errorPage/ErrorPage";
 import Profile from "./routes/profile";
 import Callback from "./routes/callback";
 import Logout from "./routes/logout";
-import ErrorPage from "./routes/errorPage/ErrorPage";
+import Following from "./routes/following";
 import './index.css'
 
 const router = createBrowserRouter([
@@ -19,19 +18,19 @@ const router = createBrowserRouter([
           <ErrorPage />
         </>
       ),
-      // <ErrorPage />,
       children: [
         {
           path: "profile",
           element: <Profile />
-        },
-        {
+        }, {
           path: "callback",
           element: <Callback />
-        },
-        {
+        }, {
           path: "logout",
           element: <Logout />
+        }, {
+          path: "following",
+          element: <Following />
         }
       ]
     },
@@ -39,7 +38,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     //<React.StrictMode>
-    // <App />
     <RouterProvider router={router} />
     //</React.StrictMode>,
 )

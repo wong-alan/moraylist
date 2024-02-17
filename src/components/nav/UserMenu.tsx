@@ -5,14 +5,14 @@ import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { Link } from '@mui/material';
+import Link from '@mui/material/Link';
 
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Logout from '@mui/icons-material/Logout';
 
-import { fetchProfile } from '../spotify/profile';
-import AppContext from '../AppContext';
-import { SPLOTCHIFY_SVG } from "./icons/SplotchifyIcon";
+import { fetchProfile } from '../../spotify/user';
+import AppContext from '../../AppContext';
+import { SPLOTCHIFY_SVG } from "../icons/SplotchifyIcon";
 
 const UserMenu = () => {
     const { clientId, code, profile, setProfile } = useContext(AppContext);
@@ -30,7 +30,7 @@ const UserMenu = () => {
         if (profile) {
             return;
         }
-        // // User Menu is not shown if code is null (user is not logged in)
+        // User Menu is not shown if code is null (user is not logged in)
         fetchProfile(clientId, code!).then(data => setProfile(data))
     }, []);
 
@@ -40,8 +40,17 @@ const UserMenu = () => {
 
     return (
         <>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={profilePicUrl} />
+            <IconButton
+                onClick={handleOpenUserMenu}
+                sx={{
+                    p: 0,
+                    "& :hover": {
+                        transform: "scale(1.04)",
+                        boxShadow: "0 0 3px 3px",
+                        transition: "all 70ms cubic-bezier(0.5, 0, 0.5, 1)"
+                    }
+            }}>
+                <Avatar src={profilePicUrl}/>
             </IconButton>
             <Menu
                 sx={{ mt: '45px' }}
