@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import { CSSObject, styled } from "@mui/material/styles";
@@ -8,6 +10,7 @@ import {
   InfoSubtitle,
   InfoTitle,
 } from "../../mui-treasury/info-basic";
+
 import UnfollowButton from "../UnfollowButton/UnfollowButton";
 import OpenInAppButton from "../OpenInAppButton";
 
@@ -89,9 +92,10 @@ const Content = styled("div")(({ theme }) => ({
 
 interface ArtistCardProps {
   artist: Artist
+  setUnfollow: Dispatch<SetStateAction<boolean>>
 }
 
-export function ArtistCard({artist}: ArtistCardProps) {
+export function ArtistCard({artist, setUnfollow}: ArtistCardProps) {
   return (
     <StyledCard sx={{ boxShadow: 24 }}>
       <StyledCardMedia
@@ -123,7 +127,7 @@ export function ArtistCard({artist}: ArtistCardProps) {
                 justifyContent: "space-between"
               }}
             >
-              <UnfollowButton />
+              <UnfollowButton artistId={artist.id} setUnfollow={setUnfollow} />
               <OpenInAppButton link={artist.uri}/>
             </InfoSubtitle>
           </Info>

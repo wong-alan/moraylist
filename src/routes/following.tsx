@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from "react";
 
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+import { Typography } from "@mui/material";
 
 import AppContext from "../AppContext";
 import { fetchFollowing } from "../spotify/user";
-import { ArtistCard } from "../components/ArtistCard";
-import { Typography } from "@mui/material";
+import ArtistCardContainer from "../components/ArtistCard/ArtistCardContainer";
 
 const Following = () => {
     const { clientId, code } = useContext(AppContext);
@@ -41,9 +41,7 @@ const Following = () => {
                         </Typography>
                     </Grid>
                     {following && following.map((artist) => (
-                        <Grid item key={artist.id}>
-                            <ArtistCard artist={artist}/>
-                        </Grid>
+                        <ArtistCardContainer key={artist.id} artist={artist} />
                     ))}
                 </Grid>
             </Container>
