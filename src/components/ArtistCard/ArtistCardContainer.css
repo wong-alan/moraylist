@@ -1,7 +1,4 @@
 @keyframes shrink {
-    0% {
-        transform: scale(1);
-    }
     70% {
         transform: scale(0);
     }
@@ -11,9 +8,6 @@
 }
 
 @keyframes narrow {
-    0% {
-        max-width: 300px;
-    }
     80% {
         max-width: 1px;
     }
