@@ -8,6 +8,8 @@ import AppContext from "../AppContext";
 import { fetchFollowing } from "../spotify/user";
 import ArtistCardContainer from "../components/ArtistCard/ArtistCardContainer";
 
+// TODO: Animate grid with GSAP Flip (?)
+
 const Following = () => {
     const { clientId, code } = useContext(AppContext);
     const [ following, setFollowing ] = useState<Artist[] | null>([]);

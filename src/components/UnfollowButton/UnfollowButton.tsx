@@ -10,8 +10,12 @@ const doUnfollow = async (
     artistId: string,
     setUnfollow: Dispatch<SetStateAction<boolean>>
 ) => {
-    //return await unfollowArtist(clientId, code, artistId);
-    setUnfollow(true);
+    const result = await unfollowArtist(clientId, code, artistId);
+    if (result) {
+        setUnfollow(true);
+    } else {
+        // Show alert snackbar
+    }
 }
 interface UnfollowButtonProps {
     artistId: string,

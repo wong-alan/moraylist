@@ -4,7 +4,8 @@ const callbackEndpoint = "http://localhost:5173/callback";
 const scopes = [
     "user-read-private",
     "user-read-email",
-    "user-follow-read"
+    "user-follow-read",
+    "user-follow-modify"
 ];
 
 // LOCAL STORAGE

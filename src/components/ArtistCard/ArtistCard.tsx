@@ -75,7 +75,7 @@ const StyledCardMedia = styled(CardMedia)({
   backgroundPosition: "top",
 });
 
-const Content = styled("div")(({ theme }) => ({
+const Content = styled("div")({
   padding: "12px 15px",
   boxSizing: "border-box",
   position: "absolute",
@@ -88,7 +88,7 @@ const Content = styled("div")(({ theme }) => ({
   width: "100%",
 
   color: "white"
-}));
+});
 
 interface ArtistCardProps {
   artist: Artist

@@ -54,9 +54,9 @@ export const unfollowArtist = async (clientId: string, code: string, artistId: s
     }).toString();
 
     const result = await fetch(followingEndpoint!, {
-        method: "GET",
+        method: "DELETE",
         headers: { Authorization: `Bearer ${accessToken}` },
     });
 
-    return result.status == 200;
+    return result.ok ;
 }
