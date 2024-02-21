@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import AppContext from "../AppContext";
+import AppContext from "../contexts/AppContext";
 import Header from "../components/nav/Header";
 import { CODE } from '../utils';
 import './root.css';  // EMPTY

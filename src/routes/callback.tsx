@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import { CODE } from "../utils";
 import { useContext, useEffect, useState } from "react";
 import { ACCESS_TOKEN, REFRESH_TOKEN, TOKEN_EXPIRY } from "../spotify/auth";
-import AppContext from "../AppContext";
+import AppContext from "../contexts/AppContext";
 
 const Callback = () => {
     const params = new URLSearchParams(window.location.search);

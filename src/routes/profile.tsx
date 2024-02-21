@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import AppContext from "../AppContext";
+import AppContext from "../contexts/AppContext";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ProfileCard } from "../components/ProfileCard";
 import { fetchProfile } from "../spotify/user";

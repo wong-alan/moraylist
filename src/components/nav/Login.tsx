@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import SpotifyButton from "../SpotifyButton/SpotifyButton";
 import { CircularProgress } from "@mui/material";
 import { VERIFIER, generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../../spotify/auth";
-import AppContext from "../../AppContext";
+import AppContext from "../../contexts/AppContext";
 import { useLocation } from "react-router-dom";
 
 const Login = () => {

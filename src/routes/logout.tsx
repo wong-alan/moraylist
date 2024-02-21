@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import AppContext from "../AppContext";
+import AppContext from "../contexts/AppContext";
 import { ACCESS_TOKEN, REFRESH_TOKEN, TOKEN_EXPIRY } from "../spotify/auth";
 import { CODE } from "../utils";
 

@@ -14,7 +14,10 @@ const ArtistCardContainer = ({artist}: ArtistCardContainerProps) => {
         <Grid item
             className={unfollowed ? "unfollow" : ""}
         >
-            <ArtistCard artist={artist} setUnfollow={setUnfollowed} />
+            <ArtistCard
+                artist={artist}
+                setUnfollow={setUnfollowed}
+            />
         </Grid>
     );
 }

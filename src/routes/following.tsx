@@ -4,50 +4,61 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import { Typography } from "@mui/material";
 
-import AppContext from "../AppContext";
+import AppContext from "../contexts/AppContext";
+import FollowPageContext from "../contexts/FollowPageContext";
 import { fetchFollowing } from "../spotify/user";
 import ArtistCardContainer from "../components/ArtistCard/ArtistCardContainer";
+import ErrorSnack from "../components/ErrorSnack";
 
 // TODO: Animate grid with GSAP Flip (?)
 
 const Following = () => {
     const { clientId, code } = useContext(AppContext);
-    const [ following, setFollowing ] = useState<Artist[] | null>([]);
+    const [ artists, setArtists ] = useState<Artist[] | null>([]);
+    const [ unfollowError, setUnfollowError ] = useState<boolean>(false);
 
     useEffect(() => {
-        fetchFollowing(clientId, code!).then(data => setFollowing(data))
+        fetchFollowing(clientId, code!).then(data => setArtists(data))
     }, []);
 
+    // TODO: AppContext(?) to make Snackbar reusable?
+
     return (
-        <section id="following"
-            style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                maxWidth: "100vw",
-                width: "100%"
-            }}>
-            <Container maxWidth="xl">
-                <Grid container
-                    justifyContent="center"
-                    alignItems="center"
-                >
-                    <Grid item xs={12}>
-                        <Typography
-                            variant="h4"
-                            sx={{
-                                fontFamily: "Metropolis",
-                                margin: "30px 0px 10px 40px"
-                            }}
-                        >
-                            Artists You Follow
-                        </Typography>
+        <FollowPageContext.Provider value={{ setUnfollowError: setUnfollowError }}>
+            <section id="following"
+                style={{
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    maxWidth: "100vw",
+                    width: "100%"
+                }}>
+                <Container maxWidth="xl">
+                    <Grid container
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <Grid item xs={12}>
+                            <Typography
+                                variant="h4"
+                                sx={{
+                                    fontFamily: "Metropolis",
+                                    margin: "30px 0px 10px 40px"
+                                }}
+                            >
+                                Artists You Follow
+                            </Typography>
+                        </Grid>
+                        {artists && artists.map((artist) => (
+                            <ArtistCardContainer
+                                key={artist.id}
+                                artist={artist}
+                            />
+                        ))}
                     </Grid>
-                    {following && following.map((artist) => (
-                        <ArtistCardContainer key={artist.id} artist={artist} />
-                    ))}
-                </Grid>
-            </Container>
-        </section>
+                </Container>
+                <ErrorSnack open={unfollowError} setOpen={setUnfollowError} />
+            </section>
+        </FollowPageContext.Provider>
     );
 }
 

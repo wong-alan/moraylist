@@ -14,7 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SplotchifyIcon from "../icons/SplotchifyIcon";
 import UserMenu from "./UserMenu";
 import Login from './Login';
-import AppContext from '../../AppContext';
+import AppContext from '../../contexts/AppContext';
 import pages from '../../pages';
 import { Link } from '@mui/material';
 

@@ -11,7 +11,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Logout from '@mui/icons-material/Logout';
 
 import { fetchProfile } from '../../spotify/user';
-import AppContext from '../../AppContext';
+import AppContext from '../../contexts/AppContext';
 import { SPLOTCHIFY_SVG } from "../icons/SplotchifyIcon";
 
 const UserMenu = () => {
