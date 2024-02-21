@@ -23,7 +23,7 @@ export type InfoEyebrowProps = {
 const InfoEyebrowRoot = styled("div", {
   name: "JunInfo",
   slot: "Eyebrow",
-  overridesResolver: (props, styles) => styles.eyebrow,
+  overridesResolver: (_props, styles) => styles.eyebrow,
 })<{ ownerState: AppendUseStyles<InfoEyebrowProps> }>(
   ({ theme, ownerState }) => ({
     color: theme.palette.text.secondary,

@@ -23,7 +23,7 @@ export type InfoTitleProps = {
 const InfoTitleRoot = styled("div", {
   name: "JunInfo",
   slot: "Head",
-  overridesResolver: (props, styles) => styles.title,
+  overridesResolver: (_props, styles) => styles.title,
 })<{ ownerState: AppendUseStyles<InfoTitleProps> }>(
   ({ theme, ownerState }) => ({
     letterSpacing: "0.0073529412em",

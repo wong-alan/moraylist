@@ -9,11 +9,7 @@ interface ErrorSnackProps {
 }
 
 const ErrorSnack = ({open, setOpen}: ErrorSnackProps) => {
-    // const handleClick = () => {
-    //     setOpen(true);
-    // };
-
-    const handleClose = (event: SyntheticEvent | Event, reason?: string) => {
+    const handleClose = (_event: SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
         }
@@ -22,13 +18,11 @@ const ErrorSnack = ({open, setOpen}: ErrorSnackProps) => {
 
     return (
         <div>
-            {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
             <Snackbar
                 anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 open={open}
                 autoHideDuration={3000}
                 onClose={handleClose}
-                // message="This Snackbar will be dismissed in 5 seconds."
             >
                 <Alert
                     onClose={handleClose}

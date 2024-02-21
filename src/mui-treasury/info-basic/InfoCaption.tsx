@@ -24,7 +24,7 @@ export type InfoCaptionProps = {
 const InfoCaptionRoot = styled("div", {
   name: "JunInfo",
   slot: "Caption",
-  overridesResolver: (props, styles) => styles.caption,
+  overridesResolver: (_props, styles) => styles.caption,
 })<{ ownerState: AppendUseStyles<InfoCaptionProps> }>(
   ({ theme, ownerState }) => ({
     color: theme.palette.text.secondary,

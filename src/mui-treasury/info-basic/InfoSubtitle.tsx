@@ -23,7 +23,7 @@ export type InfoParagraphProps = {
 const InfoParagraphRoot = styled("p", {
   name: "JunInfo",
   slot: "Body",
-  overridesResolver: (props, styles) => styles.subtitle,
+  overridesResolver: (_props, styles) => styles.subtitle,
 })<{ ownerState: AppendUseStyles<InfoParagraphProps> }>(
   ({ theme, ownerState }) => ({
     color: theme.palette.text.secondary,
