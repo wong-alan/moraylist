@@ -1,12 +1,15 @@
 import { getAccessToken } from "./auth";
 
+const userEndpoint = "https://api.spotify.com/v1/me"
+const followingEndpoint = userEndpoint + "/following";
+
 export const fetchProfile = async (clientId: string, code: string): Promise<UserProfile | null> => {
     const accessToken = await getAccessToken(clientId, code);
     if (!accessToken) {
         return null;
     }
 
-    const result = await fetch("https://api.spotify.com/v1/me", {
+    const result = await fetch(userEndpoint, {
         method: "GET",
         headers: { Authorization: `Bearer ${accessToken}` }
     });
@@ -20,8 +23,8 @@ export const fetchFollowing = async (clientId: string, code: string, after?: str
         return null;
     }
 
-    let followingEndpoint: URL | string | null = new URL("https://api.spotify.com/v1/me/following");
-    followingEndpoint.search = new URLSearchParams({
+    let followingUrl: URL | string | null = new URL(followingEndpoint);
+    followingUrl.search = new URLSearchParams({
         type: "artist",
         ...(after && {after: after}),
         limit: "50"
@@ -29,14 +32,14 @@ export const fetchFollowing = async (clientId: string, code: string, after?: str
     let followingArtists: Artist[] = [];
 
     do {
-        const result = await fetch(followingEndpoint!, {
+        const result = await fetch(followingUrl!, {
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         });
         const response: Artists = await result.json();
         followingArtists.push(...response.artists.items);
-        followingEndpoint = response.artists.next;
-    } while (followingEndpoint);
+        followingUrl = response.artists.next;
+    } while (followingUrl);
 
     return followingArtists;
 }
@@ -47,13 +50,13 @@ export const unfollowArtist = async (clientId: string, code: string, artistId: s
         return false;
     }
 
-    let followingEndpoint: URL | string | null = new URL("https://api.spotify.com/v1/me/following");
-    followingEndpoint.search = new URLSearchParams({
+    let followingUrl: URL | string | null = new URL(followingEndpoint);
+    followingUrl.search = new URLSearchParams({
         type: "artist",
         ids: artistId
     }).toString();
 
-    const result = await fetch(followingEndpoint!, {
+    const result = await fetch(followingUrl!, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${accessToken}` },
     });
