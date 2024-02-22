@@ -29,8 +29,8 @@ export const fetchFollowing = async (clientId: string, code: string, after?: str
         ...(after && {after: after}),
         limit: "50"
     }).toString();
-    let followingArtists: Artist[] = [];
 
+    let followingArtists: Artist[] = [];
     do {
         const result = await fetch(followingUrl!, {
             method: "GET",
@@ -50,7 +50,7 @@ export const unfollowArtist = async (clientId: string, code: string, artistId: s
         return false;
     }
 
-    let followingUrl: URL | string | null = new URL(followingEndpoint);
+    const followingUrl = new URL(followingEndpoint);
     followingUrl.search = new URLSearchParams({
         type: "artist",
         ids: artistId

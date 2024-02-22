@@ -27,11 +27,14 @@ const UserMenu = () => {
     };
 
     useEffect(() => {
+        console.log("No profile! Going to get a new one!");
         if (profile) {
+            console.log("Have a user profile!");
             return;
         }
-        // User Menu is not shown if code is null (user is not logged in)
-        fetchProfile(clientId, code!).then(data => setProfile(data))
+        fetchProfile(clientId, code!).then(data => {
+            console.log("Setting profile in usermenu.tsx")
+            setProfile(data)});
     }, []);
 
     const profilePicUrl = profile?.images[0]?.url ?

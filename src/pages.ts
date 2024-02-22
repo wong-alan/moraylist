@@ -4,7 +4,8 @@ interface page {
 }
 
 const pages: page[] = [
-    { name: "My Followed Artists", url: "/following"}
+    { name: "My Followed Artists", url: "/following"},
+    { name: "Shuffle Playlists", url: "/shuffle"}
 ];
 
 export default pages;
