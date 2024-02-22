@@ -90,7 +90,7 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
           <InfoEyebrow>
             {profile.product} <Emoji>{getFlagEmoji(profile.country)}</Emoji>
           </InfoEyebrow>
-          <InfoTitle sx={{marginBottom: "0.5em", color: "white"}}>{profile.display_name}</InfoTitle>
+          <InfoTitle sx={{marginBottom: "0.5em", color: "white"}}>{profile.display_name ? profile.display_name : "(no display name)"}</InfoTitle>
           <InfoSubtitle sx={{lineBreak: "anywhere", color: "white"}}>
             Followers: {profile.followers.total} <br/>
             Email: {profile.email} <br/>

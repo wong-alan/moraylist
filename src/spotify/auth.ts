@@ -5,7 +5,9 @@ const scopes = [
     "user-read-private",
     "user-read-email",
     "user-follow-read",
-    "user-follow-modify"
+    "user-follow-modify",
+    "playlist-read-private",
+    // "playlist-read-collaborative"
 ];
 
 // LOCAL STORAGE

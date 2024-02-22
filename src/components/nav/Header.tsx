@@ -16,7 +16,7 @@ import UserMenu from "./UserMenu";
 import Login from './Login';
 import AppContext from '../../contexts/AppContext';
 import pages from '../../pages';
-import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const { code } = useContext(AppContext);
@@ -123,7 +123,7 @@ const Header = () => {
                     {/* Large menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Link href={page.url} underline='none' key={page.name+"-lg"}>
+                            <Link to={page.url} key={page.name+"-lg"}>
                                 <Button
                                     onClick={handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
