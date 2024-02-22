@@ -17,3 +17,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a.nostyle {
+  text-decoration: inherit;
+  color: inherit;
+}
