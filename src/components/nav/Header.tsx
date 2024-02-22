@@ -1,4 +1,5 @@
-import { useContext, useState } from 'react';
+import { ElementType, useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,7 +17,7 @@ import UserMenu from "./UserMenu";
 import Login from './Login';
 import AppContext from '../../contexts/AppContext';
 import pages from '../../pages';
-import { Link } from 'react-router-dom';
+// import { Link } from '@mui/material';
 
 const Header = () => {
     const { code } = useContext(AppContext);
@@ -35,13 +36,15 @@ const Header = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* Large corner logo */}
-                    <Box sx={{ display: { xs: 'none', md: 'inline-block' }, height: "24px" }}>
-                        <SplotchifyIcon href="/"/>
-                    </Box>
+                    <Link to="/" className="nostyle">
+                        <Box sx={{ display: { xs: 'none', md: 'inline-block' }, height: "24px" }}>
+                            <SplotchifyIcon />
+                        </Box>
+                    </Link>
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
+                        component={Link as ElementType}
                         href="/"
                         sx={{
                             mr: 2,
@@ -88,7 +91,7 @@ const Header = () => {
                             }}
                         >
                         {pages.map((page) => (
-                            <Link href={page.url} underline='none' key={page.name+"-sm"}>
+                            <Link to={page.url} key={page.name+"-sm"} className="nostyle">
                                 <MenuItem onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">{page.name}</Typography>
                                 </MenuItem>
@@ -98,13 +101,15 @@ const Header = () => {
                     </Box>
 
                     {/* Small center logo */}
-                    <Box sx={{ display: { xs: 'inline-block', md: 'none' }, height: "24px" }}>
-                        <SplotchifyIcon href="/"/>
-                    </Box>
+                    <Link to="/" className="nostyle">
+                        <Box sx={{ display: { xs: 'inline-block', md: 'none' }, height: "24px" }}>
+                            <SplotchifyIcon />
+                        </Box>
+                    </Link>
                     <Typography
                         variant="h5"
                         noWrap
-                        component="a"
+                        component={Link as ElementType}
                         href="/"
                         sx={{
                             mr: 2,
@@ -123,7 +128,7 @@ const Header = () => {
                     {/* Large menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Link to={page.url} key={page.name+"-lg"}>
+                            <Link to={page.url} key={page.name+"-lg"} className="nostyle">
                                 <Button
                                     onClick={handleCloseNavMenu}
                                     sx={{ my: 2, color: 'white', display: 'block' }}

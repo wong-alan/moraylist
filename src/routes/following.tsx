@@ -13,7 +13,7 @@ import ErrorSnack from "../components/ErrorSnack";
 // TODO: Animate grid with GSAP Flip (?)
 
 const Following = () => {
-    const { clientId, code, profile } = useContext(AppContext);
+    const { clientId, code } = useContext(AppContext);
     const [ artists, setArtists ] = useState<Artist[] | null>([]);
     const [ unfollowError, setUnfollowError ] = useState<boolean>(false);
 

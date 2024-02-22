@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Link from '@mui/material/Link';
-
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Logout from '@mui/icons-material/Logout';
 
@@ -72,7 +71,7 @@ const UserMenu = () => {
                 onClose={handleCloseUserMenu}
             >
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Link href='/profile' color="inherit" underline="none">
+                    <Link to='/profile' className="nostyle">
                         <ListItemIcon>
                             <AccountCircle fontSize="small" />
                         </ListItemIcon>
@@ -80,7 +79,7 @@ const UserMenu = () => {
                     </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Link href='/logout' color="inherit" underline="none">
+                    <Link to='/logout' className="nostyle">
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>
