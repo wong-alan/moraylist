@@ -11,7 +11,8 @@ const ArtistCardContainer = ({artist}: ArtistCardContainerProps) => {
     const [unfollowed, setUnfollowed] = useState<boolean>(false);
 
     return (
-        <Grid item xs={6} sm={4} md={3} lg={12/5} xl={2}
+        <Grid item
+            xs={6} sm={4} md={3} lg={12/5} xl={2}
             className={unfollowed ? "unfollow" : ""}
         >
             <ArtistCard

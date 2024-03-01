@@ -25,10 +25,7 @@ const Following = () => {
         <FollowPageContext.Provider value={{ setUnfollowError: setUnfollowError }}>
             <section id="following">
                 <Container maxWidth="xl">
-                    <Grid container spacing={1}
-                        justifyContent="center"
-                        alignItems="center"
-                    >
+                    <Grid container spacing={1}>
                         <Grid item xs={12}>
                             <Typography
                                 variant="h4"
