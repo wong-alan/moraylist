@@ -13,6 +13,7 @@ import {
 
 import UnfollowButton from "../UnfollowButton/UnfollowButton";
 import OpenInAppButton from "../OpenInAppButton";
+import "./ArtistCard.css";
 
 const useStyles = (): CSSObject & Partial<InfoSlotStyles> => {
   return {
@@ -44,7 +45,6 @@ const useStyles = (): CSSObject & Partial<InfoSlotStyles> => {
 const StyledCard = styled(Card)({
   borderRadius: "1rem",
   position: "relative",
-  minWidth: 200,
   maxWidth: 300,
   aspectRatio: "1 / 1.2",
   margin: 10,
@@ -81,12 +81,10 @@ const Content = styled("div")({
   position: "absolute",
   zIndex: 2,
   bottom: 0,
-
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
   width: "100%",
-
   color: "white"
 });
 
@@ -95,18 +93,24 @@ interface ArtistCardProps {
   setUnfollow: Dispatch<SetStateAction<boolean>>
 }
 
-export function ArtistCard({artist, setUnfollow}: ArtistCardProps) {
+const ArtistCard = ({artist, setUnfollow}: ArtistCardProps) => {
   return (
     <StyledCard sx={{ boxShadow: 24 }}>
       <StyledCardMedia
         image={artist.images[0].url}
       />
-        <Content>
+        <Content className="artist-card-content">
           <Info
             useStyles={useStyles}
           >
-            <InfoEyebrow className="spotify-font"
-              sx={{ fontSize: "0.9em" }}>
+            <InfoEyebrow
+              className="spotify-font"
+              sx={{
+                fontSize: "0.9em",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+              }}>
               {artist.followers.total.toLocaleString()} Followers
             </InfoEyebrow>
             <InfoTitle
@@ -135,3 +139,5 @@ export function ArtistCard({artist, setUnfollow}: ArtistCardProps) {
     </StyledCard>
   );
 }
+
+export default ArtistCard;

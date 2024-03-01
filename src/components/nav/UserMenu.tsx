@@ -26,11 +26,11 @@ const UserMenu = () => {
     };
 
     useEffect(() => {
-        console.log("No profile! Going to get a new one!");
         if (profile) {
             console.log("Have a user profile!");
             return;
         }
+        console.log("No profile! Going to get a new one!");
         fetchProfile(clientId, code!).then(data => {
             console.log("Setting profile in usermenu.tsx")
             setProfile(data)});

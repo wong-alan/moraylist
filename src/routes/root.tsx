@@ -19,7 +19,7 @@ const Root = () => {
                 setProfile: setProfile
             }}>
             <Header />
-            <Outlet />
+            { profile && <Outlet /> }
         </AppContext.Provider>
     );
 }

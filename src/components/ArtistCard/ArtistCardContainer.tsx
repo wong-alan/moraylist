@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Grid from "@mui/material/Grid";
-import { ArtistCard } from "./ArtistCard";
+import ArtistCard from "./ArtistCard";
 import "./ArtistCardContainer.css";
 
 interface ArtistCardContainerProps {
@@ -11,7 +11,7 @@ const ArtistCardContainer = ({artist}: ArtistCardContainerProps) => {
     const [unfollowed, setUnfollowed] = useState<boolean>(false);
 
     return (
-        <Grid item
+        <Grid item xs={6} sm={4} md={3} lg={12/5} xl={2}
             className={unfollowed ? "unfollow" : ""}
         >
             <ArtistCard

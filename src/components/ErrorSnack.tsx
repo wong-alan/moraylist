@@ -4,11 +4,12 @@ import Alert from "@mui/material/Alert";
 
 
 interface ErrorSnackProps {
+    message: string,
     open: boolean,
     setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const ErrorSnack = ({open, setOpen}: ErrorSnackProps) => {
+const ErrorSnack = ({message, open, setOpen}: ErrorSnackProps) => {
     const handleClose = (_event: SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
@@ -30,7 +31,7 @@ const ErrorSnack = ({open, setOpen}: ErrorSnackProps) => {
                     variant="filled"
                     sx={{ width: '100%' }}
                 >
-                    Failed to unfollow. Try again.
+                    {message}
                 </Alert>
             </Snackbar>
         </div>
