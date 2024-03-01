@@ -19,6 +19,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
         borderRadius: "16px",
         transition: "0.3s",
         position: "relative",
+        width: "100%",
         maxWidth: 400,
         marginLeft: "auto",
         overflow: "initial",

@@ -18,16 +18,9 @@ const Shuffle = () => {
     }, []);
 
     return (
-        <section id="shuffle"
-            style={{
-                display: "flex",
-                justifyContent: "space-evenly"
-        }}>
+        <section id="shuffle">
             <Container maxWidth="xl">
-                <Grid container
-                    justifyContent="center"
-                    alignItems="center"
-                >
+                <Grid container spacing={1}>
                     <Grid item xs={12}>
                         <Typography
                             variant="h4"
@@ -42,11 +35,18 @@ const Shuffle = () => {
                     </Grid>
                     {playlists && playlists.length ?
                         (playlists.map((playlist) => (
-                            <Grid item key={playlist.name} xs={6} sm={4} md={6} lg={4}>
+                            <Grid
+                                item container
+                                justifyContent={"center"}
+                                key={playlist.name}
+                                xs={6} sm={4} md={6} lg={4}
+                            >
                                 <ShufflePlaylistCard playlist={playlist}/>
                             </Grid>
                         )))
-                        : <CircularProgress sx={{ margin: 20 }}/>
+                        : <Grid item container xs={12} justifyContent={"center"}>
+                            <CircularProgress sx={{ margin: 20 }}/>
+                        </Grid>
                     }
                 </Grid>
             </Container>
