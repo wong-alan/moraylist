@@ -1,0 +1,73 @@
+.playlist-card-button-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Add :root to override MUI specificity */
+/* xs sm */
+@media (max-width: 900px) {
+    :root {
+        .playlist-card-content {
+            width: 75%;
+        }
+
+        .playlist-card-eyebrow {
+            margin-bottom: 0px;
+            line-height: unset;
+        }
+
+        .playlist-card-subtitle {
+            display: none;
+        }
+    }
+}
+
+/* md lg xl */
+@media (min-width: 900px) {
+    :root {
+        .playlist-card {
+            flex-direction: row;
+            padding-top: 16px;
+            padding-right: 16px;
+            padding-bottom: 16px;
+            margin: 10px 10px 10px 36px
+        }
+
+        .playlist-card-media {
+            width: 45%;
+            aspect-ratio: 1/1;
+            margin-left: -24px;
+            margin-top: 0;
+            transform: translateX(-8px);
+        }
+
+        .playlist-card-info {
+            height: calc(100% - 30px);
+        }
+
+        .playlist-card-content {
+            width: 55%;
+            height: calc(100% - 36px);
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            padding: 16px 18px 15px 5px !important; /* Override :lastchild */
+        }
+
+        .playlist-card-eyebrow {
+            font-size: 12px;
+        }
+
+        .playlist-card-title {
+            font-size: 20px;
+        }
+
+        .playlist-card-subtitle {
+            display: block;
+            height: calc(100% - (23px + 34px + 10px));
+        }
+    }
+    .playlist-card-button-container {
+        display: block;
+    }
+}

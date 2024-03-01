@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 import AppContext from "../contexts/AppContext";
 import FollowPageContext from "../contexts/FollowPageContext";
@@ -21,19 +21,11 @@ const Following = () => {
         fetchFollowing(clientId, code!).then(data => setArtists(data))
     }, []);
 
-    // TODO: AppContext(?) to make Snackbar reusable?
-
     return (
         <FollowPageContext.Provider value={{ setUnfollowError: setUnfollowError }}>
-            <section id="following"
-                style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    maxWidth: "100vw",
-                    width: "100%"
-                }}>
+            <section id="following">
                 <Container maxWidth="xl">
-                    <Grid container
+                    <Grid container spacing={1}
                         justifyContent="center"
                         alignItems="center"
                     >
@@ -42,7 +34,8 @@ const Following = () => {
                                 variant="h4"
                                 sx={{
                                     fontFamily: "Metropolis",
-                                    margin: "30px 0px 10px 40px"
+                                    margin: "30px 0px 10px 10px",
+                                    width: "fit-content"
                                 }}
                             >
                                 Artists You Follow
@@ -56,7 +49,11 @@ const Following = () => {
                         ))}
                     </Grid>
                 </Container>
-                <ErrorSnack open={unfollowError} setOpen={setUnfollowError} />
+                <ErrorSnack
+                    message={"Failed to unfollow. Try again."}
+                    open={unfollowError}
+                    setOpen={setUnfollowError}
+                />
             </section>
         </FollowPageContext.Provider>
     );
