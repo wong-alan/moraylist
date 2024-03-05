@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Metropolis';
   src: local('Metropolis'), url(./fonts/Metropolis-SemiBold.woff2) format('woff2');
+  descent-override: 15%;
 }
 
 :root {

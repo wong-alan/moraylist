@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import SpotifyButton from "../SpotifyButton/SpotifyButton";
+import SpotifyButton from "../SpotifyButton";
 import { CircularProgress } from "@mui/material";
 import { VERIFIER, generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../../spotify/auth";
 import AppContext from "../../contexts/AppContext";

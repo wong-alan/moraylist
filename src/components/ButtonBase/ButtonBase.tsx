@@ -1,6 +1,5 @@
 import { Button, ThemeProvider, createTheme } from "@mui/material";
-import SpotifyIcon from "../icons/SpotifyIcon";
-import "./SpotifyButton.css"
+import "./ButtonBase.css"
 
 // Add 'Spotify' to palette
 declare module '@mui/material/styles' {
@@ -29,20 +28,34 @@ const spotifyTheme = createTheme({
     }
 });
 
-const SpotifyButton = () => {
+interface ButtonBaseProps {
+    buttonText: string,
+    buttonIcon?: React.ReactNode,
+    buttonSize?: "small" | "medium" | "large"
+    onClick?: React.MouseEventHandler<HTMLButtonElement>
+}
+
+const ButtonBase = ({
+    buttonText,
+    buttonIcon,
+    buttonSize,
+    onClick
+}: ButtonBaseProps) => {
     return (
         <ThemeProvider theme={spotifyTheme}>
             <Button
                 color="spotify"
                 variant="contained"
-                startIcon={<SpotifyIcon />}
+                size={buttonSize}
                 className="spotify-font"
                 sx={{ boxShadow: 5 }}
+                startIcon={buttonIcon}
+                onClick={onClick}
             >
-                Sign in with Spotify
+                {buttonText}
             </Button>
         </ThemeProvider>
     );
 }
 
-export default SpotifyButton;
+export default ButtonBase;

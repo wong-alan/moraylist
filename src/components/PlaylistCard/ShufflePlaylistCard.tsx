@@ -1,9 +1,9 @@
-import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Info, InfoEyebrow, InfoSubtitle, InfoTitle } from "../../mui-treasury/info-basic";
 import { decode } from "html-entities";
+import ShuffleButton from "../ShuffleButton";
 import "./ShufflePlaylistCard.css";
 
 interface ShufflePlaylistCardProps {
@@ -98,20 +98,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
           </InfoSubtitle>
         </Info>
         <div className="playlist-card-button-container">
-          <Button
-            size="small"
-            sx={{
-              backgroundImage: "linear-gradient(147deg, #fe8a39 0%, #fd3838 74%)",
-              boxShadow: "0px 4px 32px rgba(252, 56, 56, 0.4)",
-              borderRadius: 100,
-              paddingLeft: 3,
-              paddingRight: 3,
-              color: "#ffffff",
-              width: "150px"
-            }}
-          >
-            Shuffle
-          </Button>
+          <ShuffleButton playlistId={playlist.id} length={playlist.tracks.total} />
         </div>
       </CardContent>
     </Card>
