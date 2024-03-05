@@ -17,7 +17,6 @@ import UserMenu from "./UserMenu";
 import Login from './Login';
 import AppContext from '../../contexts/AppContext';
 import pages from '../../pages';
-// import { Link } from '@mui/material';
 
 const Header = () => {
     const { code } = useContext(AppContext);

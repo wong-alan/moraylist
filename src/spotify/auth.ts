@@ -7,7 +7,9 @@ const scopes = [
     "user-follow-read",
     "user-follow-modify",
     "playlist-read-private",
-    // "playlist-read-collaborative"
+    "playlist-read-collaborative",
+    "playlist-modify-public",
+    "playlist-modify-private",
 ];
 
 // LOCAL STORAGE
@@ -73,7 +75,7 @@ const refreshAccessToken = async (clientId: string): Promise<string | null> => {
         return null;
     }
 
-    const payload = {
+    const payload: RequestInit = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -100,7 +102,7 @@ const refreshAccessToken = async (clientId: string): Promise<string | null> => {
 const getNewAccessToken = async (clientId: string, code: string): Promise<string | null> => {
     const verifier = localStorage.getItem(VERIFIER);
 
-    const payload = {
+    const payload: RequestInit = {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({

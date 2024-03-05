@@ -11,7 +11,7 @@ import {
   InfoTitle,
 } from "../../mui-treasury/info-basic";
 
-import UnfollowButton from "../UnfollowButton/UnfollowButton";
+import UnfollowButton from "../UnfollowButton";
 import OpenInAppButton from "../OpenInAppButton";
 import "./ArtistCard.css";
 

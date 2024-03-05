@@ -1,4 +1,3 @@
-// import React from "react";
 import { Info, InfoEyebrow, InfoSubtitle, InfoTitle } from "../info-basic";
 import { getInfoN03Styles } from "./InfoN03.styles";
 
