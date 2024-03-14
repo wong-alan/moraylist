@@ -18,6 +18,7 @@ const Following = () => {
     const [ unfollowError, setUnfollowError ] = useState<boolean>(false);
 
     useEffect(() => {
+        // TODO: Paginate followed artists (?)
         fetchFollowing(clientId, code!).then(data => setArtists(data))
     }, []);
 
@@ -26,18 +27,37 @@ const Following = () => {
             <section id="following">
                 <Container maxWidth="xl">
                     <Grid container spacing={1}>
-                        <Grid item xs={12}>
+                        <Grid item xs={0.25} />
+                        <Grid item xs={11.5}>
                             <Typography
                                 variant="h4"
                                 sx={{
-                                    fontFamily: "Metropolis",
-                                    margin: "30px 0px 10px 10px",
+                                    fontFamily: "inherit",
+                                    fontWeight: 600,
+                                    margin: "30px 0px 0px 0px",
                                     width: "fit-content"
                                 }}
                             >
                                 Artists You Follow
                             </Typography>
                         </Grid>
+                        <Grid item xs={0.25} />
+                        <Grid item xs={0.25} />
+                        <Grid item xs={11.5}>
+                            <Typography
+                                variant="body1"
+                                sx={{
+                                    fontFamily: "inherit",
+                                    fontWeight: 500,
+                                    margin: "0px 0px 10px 0px",
+                                    width: "fit-content"
+                                }}
+                            >
+                                Rediscover your followed artists. <br />
+                                Not a stan anymore? Drop them like your ex. <br />
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={0.25} />
                         {artists && artists.map((artist) => (
                             <ArtistCardContainer
                                 key={artist.id}

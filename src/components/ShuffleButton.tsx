@@ -53,7 +53,7 @@ const ShuffleButton = ({playlistId, length}: ShuffleButtonProps) => {
             <LinearWithValueLabel label={label} progress={progress} />
             : <ButtonBase
                 buttonText='Shuffle'
-                buttonIcon = {<ShuffleIcon/>}
+                buttonIcon = {<ShuffleIcon />}
                 buttonSize = "small"
                 onClick = {async () => await doShuffle(clientId, code!, playlistId, length, setShuffling, setProgress, setLabel)}
             />

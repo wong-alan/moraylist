@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./routes/errorPage/ErrorPage";
+import Landing from "./routes/landing/landing";
 import Profile from "./routes/profile";
 import Callback from "./routes/callback";
 import Logout from "./routes/logout";
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         </>
       ),
       children: [
+        {
+          index: true,
+          element: <Landing />
+        },
         {
           path: "profile",
           element: <Profile />

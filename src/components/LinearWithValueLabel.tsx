@@ -24,7 +24,7 @@ const LinearProgressWithLabel = (
                     <Typography
                         variant="body2"
                         color="#FFFFFF"
-                        sx={{fontFamily: "Metropolis"}}
+                        sx={{fontFamily: "inherit"}}
                     >
                         {label}
                     </Typography>

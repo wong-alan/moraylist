@@ -1,17 +1,54 @@
 @font-face {
   font-family: 'Metropolis';
-  src: local('Metropolis'), url(./fonts/Metropolis-SemiBold.woff2) format('woff2');
+  src: url(./fonts/Metropolis-Regular.woff2) format('woff2');
   descent-override: 15%;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url(./fonts/Metropolis-Medium.woff2) format('woff2');
+  descent-override: 15%;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url(./fonts/Metropolis-SemiBold.woff2) format('woff2');
+  descent-override: 15%;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url(./fonts/Metropolis-Bold.woff2) format('woff2');
+  descent-override: 15%;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url(./fonts/Metropolis-ExtraBold.woff2) format('woff2');
+  descent-override: 15%;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url(./fonts/Metropolis-Black.woff2) format('woff2');
+  descent-override: 15%;
+  font-weight: 900;
 }
 
 :root {
+  --bgcolor: #121212;
   font-family: Metropolis, "Noto Color Emoji", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 500;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--bgcolor);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,7 +56,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a.nostyle {
+.metro-font {
+  font-family: Metropolis, "Noto Color Emoji", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+:root .nav-link {
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.64);
+}
+
+a.link-style {
   text-decoration: inherit;
   color: inherit;
 }

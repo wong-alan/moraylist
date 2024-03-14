@@ -1,5 +1,5 @@
 import { ElementType, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -31,7 +31,7 @@ const Header = () => {
     };
 
     return (
-        <AppBar position="static" sx={{ bgcolor: "#191414" }}>
+        <AppBar position="static" sx={{ bgcolor: "#282828" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* Large corner logo */}
@@ -48,9 +48,8 @@ const Header = () => {
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'Metropolis',
-                            fontWeight: 700,
-                            letterSpacing: '.1rem',
+                            fontFamily: 'inherit',
+                            fontWeight: 600,
                             color: 'inherit',
                             textDecoration: 'none',
                             paddingLeft: '15px'
@@ -90,17 +89,17 @@ const Header = () => {
                             }}
                         >
                         {pages.map((page) => (
-                            <Link to={page.url} key={page.name+"-sm"} className="nostyle">
-                                <MenuItem onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page.name}</Typography>
-                                </MenuItem>
-                            </Link>
+                            <MenuItem key={page.name+"-sm"} onClick={handleCloseNavMenu}>
+                                <Link to={page.url} className="metro-font link-style nav-link">
+                                    {page.name}
+                                </Link>
+                            </MenuItem>
                         ))}
                         </Menu>
                     </Box>
 
                     {/* Small center logo */}
-                    <Link to="/" className="nostyle">
+                    <Link to="/" className="link-style">
                         <Box sx={{ display: { xs: 'inline-block', md: 'none' }, height: "24px" }}>
                             <SplotchifyIcon />
                         </Box>
@@ -114,8 +113,8 @@ const Header = () => {
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            fontWeight: 700,
-                            letterSpacing: '.15rem',
+                            fontFamily: 'inherit',
+                            fontWeight: 600,
                             color: 'inherit',
                             textDecoration: 'none',
                             paddingLeft: '15px'
@@ -127,10 +126,16 @@ const Header = () => {
                     {/* Large menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
-                            <Link to={page.url} key={page.name+"-lg"} className="nostyle">
+                            <Link to={page.url} key={page.name+"-lg"} className="link-style">
                                 <Button
                                     onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                    sx={{
+                                        my: 2,
+                                        color: 'white',
+                                        display: 'block',
+                                        fontFamily: 'inherit',
+                                        fontWeight: "600"
+                                    }}
                                 >
                                     {page.name}
                                 </Button>
@@ -141,6 +146,7 @@ const Header = () => {
                     {/* User menu */}
                     <Box sx={{ flexGrow: 0 }}>
                         {
+                            useLocation().pathname == "/logout" ? <></> :
                             code && code != "undefined" ?
                             <UserMenu /> :
                             <Login />

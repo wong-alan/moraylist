@@ -11,14 +11,14 @@ export const getInfoN03Styles = (
       textTransform: "uppercase",
       color: "#9e9e9e",
       marginBottom: "0.35em",
-      fontWeight: "bold",
+      fontWeight: "600",
       letterSpacing: "2px",
       fontSize: 16,
       display: "inline-block",
     },
     title: {
       fontSize: 24,
-      fontWeight: 900,
+      fontWeight: 700,
       marginBottom: "0.72em",
     },
     subtitle: {

@@ -23,9 +23,7 @@ const Profile = () => {
                 justifyContent: "space-evenly"
         }}>
             {profile ?
-                (<>
-                    <ProfileCard profile={profile} />
-                </>)
+                <ProfileCard profile={profile} />
                 : <CircularProgress sx={{ margin: 20 }}/>
             }
         </section>

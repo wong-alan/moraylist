@@ -14,6 +14,7 @@ const Shuffle = () => {
     const [ playlists, setPlaylists ] = useState<Playlist[] | null>([]);
 
     useEffect(() => {
+        // TODO: Paginate playlists (?)
         fetchUserPlaylists(clientId, code!, profile!.id).then(data => setPlaylists(data));
     }, []);
 
@@ -21,18 +22,38 @@ const Shuffle = () => {
         <section id="shuffle">
             <Container maxWidth="xl">
                 <Grid container spacing={1}>
-                    <Grid item xs={12}>
+                    <Grid item xs={0.25} />
+                    <Grid item xs={11.5}>
                         <Typography
                             variant="h4"
                             sx={{
-                                fontFamily: "Metropolis",
-                                margin: "30px 0px 10px 10px",
+                                fontFamily: "inherit",
+                                fontWeight: 600,
+                                margin: "30px 0px 0px 0px",
                                 width: "fit-content"
                             }}
                         >
                             Shuffle Playlists
                         </Typography>
                     </Grid>
+                    <Grid item xs={0.25} />
+                    <Grid item xs={0.25} />
+                    <Grid item xs={11.5}>
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                fontFamily: "inherit",
+                                fontWeight: 500,
+                                margin: "0px 0px 10px 0px",
+                                width: "fit-content"
+                            }}
+                        >
+                            Tired of Spotify "shuffle" playing the same songs over and over? <br />
+                            Your job is to fill playlists with good songs. Leave the order to us. <br />
+                            Truly randomize your playlist and hear the songs you've been missing. <br />
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={0.25} />
                     {playlists && playlists.length ?
                         (playlists.map((playlist) => (
                             <Grid

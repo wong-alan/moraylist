@@ -23,7 +23,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
         maxWidth: 400,
         marginLeft: "auto",
         overflow: "initial",
-        background: "#171717",
+        background: "#242424",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -62,6 +62,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
                 textTransform: "uppercase",
                 letterSpacing: "1px",
                 fontSize: "10px",
+                fontWeight: 600,
                 marginBottom: "0.2em",
                 display: "inline-block",
                 color: "#9E9E9E"
@@ -80,13 +81,14 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
               subtitle: {
                 marginBottom: "5px",
                 fontSize: "0.8rem",
+                fontWeight: 600,
                 letterSpacing: "0.00938em",
                 color: "#BABABA",
                 display: "block",
                 height: "calc(100% - (20px + 30px + 30px + 5px))",
                 overflowY: "auto",
                 scrollbarWidth: "thin",
-                scrollbarColor: "#ABABAB #171717",
+                scrollbarColor: "#ABABAB #242424",
               },
             };
           }}

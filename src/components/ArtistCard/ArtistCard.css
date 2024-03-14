@@ -1,3 +1,11 @@
+.artist-card-media {
+    transition: transform 100ms cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.artist-card:hover .artist-card-media {
+    transform: scale(1.035);
+}
+
 @media (max-width: 600px) {
     :root .artist-card-content {
         padding: 6px 8px;

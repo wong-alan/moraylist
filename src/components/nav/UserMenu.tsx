@@ -71,7 +71,7 @@ const UserMenu = () => {
                 onClose={handleCloseUserMenu}
             >
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Link to='/profile' className="nostyle">
+                    <Link to='/profile' className="metro-font link-style nav-link">
                         <ListItemIcon>
                             <AccountCircle fontSize="small" />
                         </ListItemIcon>
@@ -79,7 +79,7 @@ const UserMenu = () => {
                     </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Link to='/logout' className="nostyle">
+                    <Link to='/logout' className="metro-font link-style nav-link">
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>
