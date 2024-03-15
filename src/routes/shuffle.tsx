@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import CircularProgress from "@mui/material/CircularProgress";
 
 import AppContext from "../contexts/AppContext";
 import { fetchUserPlaylists } from "../spotify/playlist";
@@ -11,11 +10,17 @@ import ShufflePlaylistCard from "../components/PlaylistCard/ShufflePlaylistCard"
 
 const Shuffle = () => {
     const { clientId, code, profile } = useContext(AppContext);
-    const [ playlists, setPlaylists ] = useState<Playlist[] | null>([]);
+    const [ playlists, setPlaylists ] = useState<(Playlist|undefined)[]>([...Array(16)]);
 
     useEffect(() => {
         // TODO: Paginate playlists (?)
-        fetchUserPlaylists(clientId, code!, profile!.id).then(data => setPlaylists(data));
+        fetchUserPlaylists(clientId, code!, profile!.id).then(data => {
+            if (data) {
+                setPlaylists(data);
+            } else {
+                // TODO: Set error
+            }
+        });
     }, []);
 
     return (
@@ -54,21 +59,15 @@ const Shuffle = () => {
                         </Typography>
                     </Grid>
                     <Grid item xs={0.25} />
-                    {playlists && playlists.length ?
-                        (playlists.map((playlist) => (
-                            <Grid
-                                item container
-                                justifyContent={"center"}
-                                key={playlist.name}
-                                xs={6} sm={4} md={6} lg={4}
-                            >
-                                <ShufflePlaylistCard playlist={playlist}/>
-                            </Grid>
-                        )))
-                        : <Grid item container xs={12} justifyContent={"center"}>
-                            <CircularProgress sx={{ margin: 20 }}/>
+                    {playlists.map((playlist, index) => (
+                        <Grid item container
+                            key={`artist-${index}`}
+                            justifyContent={"center"}
+                            xs={6} sm={4} md={6} lg={4}
+                        >
+                            <ShufflePlaylistCard playlist={playlist}/>
                         </Grid>
-                    }
+                    ))}
                 </Grid>
             </Container>
             {/* <ErrorSnack open={unfollowError} setOpen={setUnfollowError} /> */}

@@ -1,49 +1,90 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import Skeleton from "@mui/material/Skeleton";
 import { Info, InfoEyebrow, InfoSubtitle, InfoTitle } from "../../mui-treasury/info-basic";
 import { decode } from "html-entities";
 import ShuffleButton from "../ShuffleButton";
+import { BASE_SKELETON_SX, Repeat } from "../../utils";
 import "./ShufflePlaylistCard.css";
 
 interface ShufflePlaylistCardProps {
-  playlist: Playlist
+  playlist: Playlist|undefined
 }
 
 const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
+  if (!playlist)
+    return (
+      <Card raised className="playlist-card">
+        <Skeleton variant="rounded" animation="wave"
+          className="playlist-card-media"
+          sx={(theme) => ({
+            ...BASE_SKELETON_SX,
+            paddingTop: "54%",
+            [theme.breakpoints.up("md")]: {
+              paddingTop: "40%"
+            }
+          })}
+        />
+        <CardContent
+          className="playlist-card-content"
+          sx={{
+            width: "55%",
+            padding: "5px 10px 0px 10px !important", // Override :lastchild
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between"
+        }}>
+          <Info>
+            <Skeleton variant="text" animation="wave"
+              sx={{
+                ...BASE_SKELETON_SX,
+                width: "100px",
+                marginTop: "-3px",
+              }}
+            />
+            <Skeleton variant="text" animation="wave"
+              sx={(theme) => ({
+                ...BASE_SKELETON_SX,
+                height: "35px",
+                marginTop: "-5px",
+                [theme.breakpoints.up("md")]: {
+                  height: "38px",
+                }
+              })}
+            />
+            <Repeat count={2}>
+              <Skeleton variant="text" animation="wave"
+                sx={(theme) => ({
+                  ...BASE_SKELETON_SX,
+                  display: "none",
+                  [theme.breakpoints.up("md")]: {
+                    display: "block",
+                    marginTop: "-5px"
+                  }
+                })}
+              />
+            </Repeat>
+          </Info>
+          <div className="playlist-card-button-container">
+            <Skeleton variant="rounded" animation="wave"
+              sx={{
+                  ...BASE_SKELETON_SX,
+                  width: "85px",
+                  height: "28px",
+              }}
+            />
+          </div>
+        </CardContent>
+      </Card>
+    );
+
   return (
-    <Card raised
-      className="playlist-card"
-      sx={(_theme) => ({
-        margin: "36px 7px 15px 7px",
-        borderRadius: "16px",
-        transition: "0.3s",
-        position: "relative",
-        width: "100%",
-        maxWidth: 400,
-        marginLeft: "auto",
-        overflow: "initial",
-        background: "#242424",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        aspectRatio: "2.4/1",
-        paddingBottom: "10px",
-      })}
-    >
+    <Card raised className="playlist-card">
       <CardMedia
         component="img"
-        src={playlist.images[0].url}
         className="playlist-card-media"
-        sx={(_theme) => ({
-          width: "88%",
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginTop: "-36px",
-          borderRadius: "16px",
-          position: "relative",
-          aspectRatio: "1.45/1",
-        })}
+        src={playlist.images[0].url}
       />
       <CardContent
         className="playlist-card-content"

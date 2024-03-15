@@ -80,7 +80,7 @@ const Content = styled("div")({
 });
 
 interface ArtistCardProps {
-    artist: Artist|null
+    artist: Artist|undefined
     setUnfollow: Dispatch<SetStateAction<boolean>>
 }
 

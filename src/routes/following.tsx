@@ -14,7 +14,7 @@ import ErrorSnack from "../components/ErrorSnack";
 
 const Following = () => {
     const { clientId, code } = useContext(AppContext);
-    const [ artists, setArtists ] = useState<(Artist|null)[]>(new Array(25).fill(null));
+    const [ artists, setArtists ] = useState<(Artist|undefined)[]>([...Array(25)]);
     const [ unfollowError, setUnfollowError ] = useState<boolean>(false);
 
     useEffect(() => {
@@ -64,14 +64,12 @@ const Following = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={0.25} />
-
                         {artists.map((artist, index) => (
                             <ArtistCardContainer
                                 key={`artist-${index}`}
                                 artist={artist}
                             />
                         ))}
-
                     </Grid>
                 </Container>
                 <ErrorSnack
