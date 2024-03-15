@@ -4,7 +4,7 @@ import ArtistCard from "./ArtistCard";
 import "./ArtistCardContainer.css";
 
 interface ArtistCardContainerProps {
-    artist: Artist
+    artist: Artist|null
 }
 
 const ArtistCardContainer = ({artist}: ArtistCardContainerProps) => {

@@ -14,12 +14,18 @@ import ErrorSnack from "../components/ErrorSnack";
 
 const Following = () => {
     const { clientId, code } = useContext(AppContext);
-    const [ artists, setArtists ] = useState<Artist[] | null>([]);
+    const [ artists, setArtists ] = useState<(Artist|null)[]>(new Array(25).fill(null));
     const [ unfollowError, setUnfollowError ] = useState<boolean>(false);
 
     useEffect(() => {
         // TODO: Paginate followed artists (?)
-        fetchFollowing(clientId, code!).then(data => setArtists(data))
+        fetchFollowing(clientId, code!).then(data => {
+            if (data) {
+                setArtists(data)
+            } else {
+                setUnfollowError(true); // TODO: Set generic error with load error message
+            }
+        })
     }, []);
 
     return (
@@ -58,12 +64,14 @@ const Following = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={0.25} />
-                        {artists && artists.map((artist) => (
+
+                        {artists.map((artist, index) => (
                             <ArtistCardContainer
-                                key={artist.id}
+                                key={`artist-${index}`}
                                 artist={artist}
                             />
                         ))}
+
                     </Grid>
                 </Container>
                 <ErrorSnack

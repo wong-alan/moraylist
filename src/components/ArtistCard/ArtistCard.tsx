@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
+import Skeleton from "@mui/material/Skeleton";
 import { CSSObject, styled } from "@mui/material/styles";
 import {
     Info,
@@ -13,6 +14,7 @@ import {
 
 import UnfollowButton from "../UnfollowButton";
 import OpenInAppButton from "../OpenInAppButton";
+import { BASE_SKELETON_SX } from "../../utils";
 import "./ArtistCard.css";
 
 const useStyles = (): CSSObject & Partial<InfoSlotStyles> => {
@@ -51,17 +53,7 @@ const StyledCard = styled(Card)({
     transition: "all 500ms cubic-bezier(0.5, 0, 0.5, 1)",
     "@media only screen and (max-width: 600px)": {
         margin: 5
-    },
-    "&:after": {
-        content: '""',
-        display: "block",
-        position: "absolute",
-        width: "100%",
-        height: "64%",
-        bottom: 0,
-        zIndex: 1,
-        background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, 20%, rgba(0,0,0,0.6) 40%, 75%, rgba(0,0,0,0) 100%)",
-    },
+    }
 });
 
 const StyledCardMedia = styled(CardMedia)({
@@ -88,11 +80,41 @@ const Content = styled("div")({
 });
 
 interface ArtistCardProps {
-    artist: Artist
+    artist: Artist|null
     setUnfollow: Dispatch<SetStateAction<boolean>>
 }
 
 const ArtistCard = ({artist, setUnfollow}: ArtistCardProps) => {
+    if (!artist) {
+        return (
+            <StyledCard>
+                <StyledCardMedia sx={{bgcolor: "#242424"}}/>
+                    <Content className="artist-card-content">
+                        <Skeleton variant="text" animation="wave"
+                            sx={{
+                                ...BASE_SKELETON_SX,
+                                width: "75%",
+                            }}
+                            />
+                        <Skeleton variant="text" animation="wave"
+                            sx={{
+                                ...BASE_SKELETON_SX,
+                                width: "90%",
+                            }}
+                        />
+                        <Skeleton variant="rounded" animation="wave"
+                            sx={{
+                                ...BASE_SKELETON_SX,
+                                width: "85px",
+                                height: "25px",
+                                margin: "5px 0px 10px 0px",
+                            }}
+                        />
+                    </Content>
+            </StyledCard>
+        );
+    }
+
     return (
         <StyledCard
             className="artist-card"
@@ -102,42 +124,42 @@ const ArtistCard = ({artist, setUnfollow}: ArtistCardProps) => {
                 className="artist-card-media"
                 image={artist.images[0].url}
             />
-                <Content className="artist-card-content">
-                    <Info
-                        useStyles={useStyles}
+            <Content className="artist-card-content">
+                <Info
+                    useStyles={useStyles}
+                >
+                    <InfoEyebrow
+                        sx={{
+                            fontSize: "0.9em",
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                        }}>
+                        {artist.followers.total.toLocaleString()} Followers
+                    </InfoEyebrow>
+                    <InfoTitle
+                        sx={{
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                            margin: "0 0 0.1em 0"
+                        }}
                     >
-                        <InfoEyebrow
-                            sx={{
-                                fontSize: "0.9em",
-                                overflow: "hidden",
-                                whiteSpace: "nowrap",
-                                textOverflow: "ellipsis",
-                            }}>
-                            {artist.followers.total.toLocaleString()} Followers
-                        </InfoEyebrow>
-                        <InfoTitle
-                            sx={{
-                                overflow: "hidden",
-                                whiteSpace: "nowrap",
-                                textOverflow: "ellipsis",
-                                margin: "0 0 0.1em 0"
-                            }}
-                        >
-                            {artist.name}
-                        </InfoTitle>
-                        <InfoSubtitle
-                            sx={{
-                                marginTop: "0 !important",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between"
-                            }}
-                        >
-                            <UnfollowButton artistId={artist.id} setUnfollow={setUnfollow} />
-                            <OpenInAppButton link={artist.uri}/>
-                        </InfoSubtitle>
-                    </Info>
-                </Content>
+                        {artist.name}
+                    </InfoTitle>
+                    <InfoSubtitle
+                        sx={{
+                            marginTop: "0 !important",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between"
+                        }}
+                    >
+                        <UnfollowButton artistId={artist.id} setUnfollow={setUnfollow} />
+                        <OpenInAppButton link={artist.uri}/>
+                    </InfoSubtitle>
+                </Info>
+            </Content>
         </StyledCard>
     );
 }
