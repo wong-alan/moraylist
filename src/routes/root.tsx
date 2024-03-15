@@ -9,7 +9,9 @@ const clientId = import.meta.env.VITE_CLIENT_ID;
 const Root = () => {
     const [code, setCode] = useState<string | null>(localStorage.getItem(CODE));
     const [profile, setProfile] = useState<UserProfile | null>(null);
-    const loginCallback = useLocation().pathname == "/callback";
+
+    const loggedOutAllowed = ["/", "/callback"];
+    const alwaysShow = loggedOutAllowed.includes(useLocation().pathname);
 
     return (
         <AppContext.Provider value={{
@@ -20,7 +22,7 @@ const Root = () => {
                 setProfile: setProfile
             }}>
             <Header />
-            { (profile || loginCallback) && <Outlet /> }
+            { (profile || alwaysShow) && <Outlet /> }
         </AppContext.Provider>
     );
 }
