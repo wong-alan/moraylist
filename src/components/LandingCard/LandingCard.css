@@ -3,9 +3,10 @@
 }
 
 @media (max-width: 600px) {
-    .landing-card {
+    :root .landing-card {
         font-size: 15px;
         font-weight: 500;
+        min-width: 180px;
     }
 
     :root .landing-card-media {

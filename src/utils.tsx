@@ -1,11 +1,11 @@
 import { Fragment } from "react";
-import { SxProps, Theme } from "@mui/material";
+import { Theme } from "@mui/material";
 import { SystemStyleObject } from "@mui/system";
 
 // LOCAL STORAGE
 export const CODE = "code";
 
-export const DEFAULT_TOOLTIP_SX: SxProps<Theme> = {
+export const DEFAULT_TOOLTIP_SX: SystemStyleObject = {
     fontSize: 13,
     fontFamily: "inherit",
     fontWeight: 500

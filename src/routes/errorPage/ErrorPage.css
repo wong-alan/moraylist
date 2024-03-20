@@ -1,6 +1,7 @@
 #error-page {
     display: flex;
     justify-content: space-evenly;
+    padding-top: 10vh;
   }
 
   #error-message {

@@ -13,41 +13,40 @@ import './index.css'
 
 const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Root />,
-      errorElement: (
-        <>
-          <Root />
-          <ErrorPage />
-        </>
-      ),
-      children: [
-        {
-          index: true,
-          element: <Landing />
-        },
-        {
-          path: "profile",
-          element: <Profile />
-        }, {
-          path: "callback",
-          element: <Callback />
-        }, {
-          path: "logout",
-          element: <Logout />
-        }, {
-          path: "following",
-          element: <Following />
-        }, {
-          path: "shuffle",
-          element: <Shuffle />
-        },
-      ]
+        path: "/",
+        element: <Root />,
+        errorElement: (
+            <>
+                <Root />
+                <ErrorPage />
+            </>
+        ),
+        children: [
+            {
+                index: true,
+                element: <Landing />
+            }, {
+                path: "profile",
+                element: <Profile />
+            }, {
+                path: "callback",
+                element: <Callback />
+            }, {
+                path: "logout",
+                element: <Logout />
+            }, {
+                path: "following",
+                element: <Following />
+            }, {
+                path: "shuffle",
+                element: <Shuffle />
+            },
+        ]
     },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
     </React.StrictMode>
 )

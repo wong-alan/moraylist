@@ -18,9 +18,12 @@ import Login from './Login';
 import AppContext from '../../contexts/AppContext';
 import pages from '../../pages';
 
+const noLoginOrProfile = ["/logout", "/callback"];
+
 const Header = () => {
     const { code } = useContext(AppContext);
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
       setAnchorElNav(event.currentTarget);
@@ -99,29 +102,39 @@ const Header = () => {
                     </Box>
 
                     {/* Small center logo */}
-                    <Link to="/" className="link-style">
-                        <Box sx={{ display: { xs: 'inline-block', md: 'none' }, height: "24px" }}>
-                            <SplotchifyIcon />
-                        </Box>
-                    </Link>
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component={Link as ElementType}
-                        href="/"
+                    <Box
                         sx={{
-                            mr: 2,
                             display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'inherit',
-                            fontWeight: 600,
-                            color: 'inherit',
-                            textDecoration: 'none',
-                            paddingLeft: '15px'
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
                         }}
                     >
-                        Splotchify
-                    </Typography>
+                        <Link to="/" className="link-style">
+                            <Box sx={{ display: 'inline-block', height: "24px" }}>
+                                <SplotchifyIcon />
+                            </Box>
+                        </Link>
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            component={Link as ElementType}
+                            href="/"
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'flex', md: 'none' },
+                                flexGrow: 1,
+                                fontFamily: 'inherit',
+                                fontWeight: 600,
+                                color: 'inherit',
+                                textDecoration: 'none',
+                                paddingLeft: '15px'
+                            }}
+                        >
+                            Splotchify
+                        </Typography>
+                    </Box>
 
                     {/* Large menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -146,10 +159,10 @@ const Header = () => {
                     {/* User menu */}
                     <Box sx={{ flexGrow: 0 }}>
                         {
-                            useLocation().pathname == "/logout" ? <></> :
+                            noLoginOrProfile.includes(useLocation().pathname) ? <></> :
                             code && code != "undefined" ?
                             <UserMenu /> :
-                            <Login />
+                            <Login size="lg" />
                         }
                     </Box>
                 </Toolbar>

@@ -1,12 +1,17 @@
+import { useContext } from "react";
 import Container from "@mui/material/Container";
-import { Grid, Tooltip, Typography } from "@mui/material";
-import LandingCard, { LandingCardProps } from "../../components/LandingCard/LandingCard";
+import Grid from "@mui/material/Grid";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
 import QueueMusicRoundedIcon from '@mui/icons-material/QueueMusicRounded';
 import RecordVoiceOverRoundedIcon from '@mui/icons-material/RecordVoiceOverRounded';
 import HistoryRoundedIcon from '@mui/icons-material/HistoryRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import DirectionsRunRoundedIcon from '@mui/icons-material/DirectionsRunRounded';
 import NightlifeRoundedIcon from '@mui/icons-material/NightlifeRounded';
+import LandingCard, { LandingCardProps } from "../../components/LandingCard/LandingCard";
+import Login from "../../components/nav/Login";
+import AppContext from "../../contexts/AppContext";
 import { DEFAULT_TOOLTIP_SX } from "../../utils";
 import "./landing.css";
 
@@ -43,6 +48,8 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
 ]
 
 const Landing = () => {
+    const { code } = useContext(AppContext);
+
     return (<>
         <div className="landing-gradient" />
         <section id="landing">
@@ -108,6 +115,13 @@ const Landing = () => {
                         )}
                     </Grid>
                     <Grid item xs={2} />
+                    {!code &&
+                        <Grid item container xs={12} justifyContent={"center"}
+                            sx={{paddingTop: "5vh"}}
+                        >
+                            <Login size="sm" />
+                        </Grid>
+                    }
                 </Grid>
             </Container>
         </section>

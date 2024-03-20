@@ -4,13 +4,13 @@ import AppContext from "../contexts/AppContext";
 import Header from "../components/nav/Header";
 import { CODE } from '../utils';
 
-const clientId = import.meta.env.VITE_CLIENT_ID;
+const clientId: string = import.meta.env.VITE_CLIENT_ID;
+const loggedOutAllowed = ["/", "/callback", "/logout"];
 
 const Root = () => {
     const [code, setCode] = useState<string | null>(localStorage.getItem(CODE));
     const [profile, setProfile] = useState<UserProfile | null>(null);
 
-    const loggedOutAllowed = ["/", "/callback"];
     const alwaysShow = loggedOutAllowed.includes(useLocation().pathname);
 
     return (
@@ -22,7 +22,7 @@ const Root = () => {
                 setProfile: setProfile
             }}>
             <Header />
-            { (profile || alwaysShow) && <Outlet /> }
+            { (code || alwaysShow) && <Outlet /> }
         </AppContext.Provider>
     );
 }

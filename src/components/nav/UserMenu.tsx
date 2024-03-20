@@ -18,22 +18,18 @@ const UserMenu = () => {
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-      setAnchorElUser(event.currentTarget);
+        setAnchorElUser(event.currentTarget);
     };
 
     const handleCloseUserMenu = () => {
-      setAnchorElUser(null);
+        setAnchorElUser(null);
     };
 
     useEffect(() => {
         if (profile) {
-            console.log("Have a user profile!");
             return;
         }
-        console.log("No profile! Going to get a new one!");
-        fetchProfile(clientId, code!).then(data => {
-            console.log("Setting profile in usermenu.tsx")
-            setProfile(data)});
+        fetchProfile(clientId, code!).then(data => setProfile(data));
     }, []);
 
     const profilePicUrl = profile?.images[0]?.url ?

@@ -31,7 +31,7 @@ export const generateCodeVerifier = (length: number): string => {
     return text;
 }
 
-export const generateCodeChallenge = async(codeVerifier: string): Promise<string> => {
+export const generateCodeChallenge = async (codeVerifier: string): Promise<string> => {
     const data = new TextEncoder().encode(codeVerifier);
     const digest = await window.crypto.subtle.digest('SHA-256', data);
     return btoa(String.fromCharCode.apply(null, [...new Uint8Array(digest)]))

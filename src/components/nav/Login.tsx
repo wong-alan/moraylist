@@ -1,41 +1,55 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Skeleton from "@mui/material/Skeleton";
 import SpotifyButton from "../SpotifyButton";
-import { CircularProgress } from "@mui/material";
-import { VERIFIER, generateAuthUrl, generateCodeChallenge, generateCodeVerifier } from "../../spotify/auth";
 import AppContext from "../../contexts/AppContext";
-import { useLocation } from "react-router-dom";
+import { VERIFIER,
+    generateAuthUrl,
+    generateCodeChallenge,
+    generateCodeVerifier
+} from "../../spotify/auth";
+import { BASE_SKELETON_SX } from "../../utils";
+import "./Login.css";
 
-const Login = () => {
-    // Login component was overwriting verifier on callback
-    // causing failed API calls
-    if (useLocation().pathname == "/callback") {
-        return;
-    }
+interface LoginProps {
+    size: "sm"|"lg"
+}
 
+const Login = ({size}: LoginProps) => {
     const { clientId } = useContext(AppContext);
-    const verifier = generateCodeVerifier(128);
-    const [challenge, setChallenge] = useState<string | null>(null);
+    const [challenge, setChallenge] = useState<string>('');
+    const [verifier, setVerifier] = useState<string>('');
 
     useEffect(() => {
+        const verifier = generateCodeVerifier(128);
         generateCodeChallenge(verifier)
             .then(data => {
-                localStorage.setItem(VERIFIER, verifier);
+                setVerifier(verifier);
                 setChallenge(data);
             })
     }, []);
 
-    if (!challenge) {
+    if (!challenge || !verifier) {
         return (
-            <CircularProgress id="login"/>
+            <Skeleton
+                className={`login-skeleton login-${size}`}
+                variant="rounded"
+                animation="wave"
+                sx={{
+                    ...BASE_SKELETON_SX,
+                }}
+            >
+                <SpotifyButton />
+            </Skeleton>
         );
     }
 
     const authUrl = generateAuthUrl(clientId, challenge);
 
     return (
-        <a href={authUrl}>
+        <Link to={authUrl} className={`login-${size}`} onClick={() => localStorage.setItem(VERIFIER, verifier)}>
             <SpotifyButton />
-        </a>
+        </Link>
     );
 }
 
