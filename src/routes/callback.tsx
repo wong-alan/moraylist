@@ -1,7 +1,7 @@
-import { Navigate } from "react-router-dom";
-import { CODE } from "../utils";
 import { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN, TOKEN_EXPIRY } from "../spotify/auth";
+import { CODE } from "../utils";
 import AppContext from "../contexts/AppContext";
 
 const Callback = () => {

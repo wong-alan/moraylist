@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Theme } from "@mui/material";
+import { Theme } from "@mui/material/styles";
 import { SystemStyleObject } from "@mui/system";
 
 // LOCAL STORAGE

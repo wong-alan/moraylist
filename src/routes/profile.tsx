@@ -1,9 +1,7 @@
 import { useContext, useEffect } from "react";
 
-import CircularProgress from "@mui/material/CircularProgress";
-
 import AppContext from "../contexts/AppContext";
-import { ProfileCard } from "../components/ProfileCard";
+import ProfileCard from "../components/ProfileCard";
 import { fetchProfile } from "../spotify/user";
 
 const Profile = () => {
@@ -20,12 +18,10 @@ const Profile = () => {
         <section id="profile"
             style={{
                 display: "flex",
-                justifyContent: "space-evenly"
+                justifyContent: "space-evenly",
+                paddingTop: "7vh"
         }}>
-            {profile ?
-                <ProfileCard profile={profile} />
-                : <CircularProgress sx={{ margin: 20 }}/>
-            }
+            <ProfileCard profile={profile} />
         </section>
     );
 }

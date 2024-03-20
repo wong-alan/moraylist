@@ -18,12 +18,12 @@ const Root = () => {
 
     return (
         <AppContext.Provider value={{
-                clientId: clientId,
-                code: code,
-                setCode: setCode,
-                profile: profile,
-                setProfile: setProfile
-            }}>
+            clientId: clientId,
+            code: code,
+            setCode: setCode,
+            profile: profile,
+            setProfile: setProfile
+        }}>
             <Header />
             { (code || alwaysShow) && <Outlet /> }
         </AppContext.Provider>
