@@ -56,16 +56,6 @@ const StyledCard = styled(Card)({
     }
 });
 
-const StyledCardMedia = styled(CardMedia)({
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    top: 0,
-    left: 0,
-    zIndex: 0,
-    backgroundPosition: "top",
-});
-
 const Content = styled("div")({
     padding: "12px 15px",
     boxSizing: "border-box",
@@ -88,7 +78,11 @@ const ArtistCard = ({artist, setUnfollow}: ArtistCardProps) => {
     if (!artist) {
         return (
             <StyledCard>
-                <StyledCardMedia sx={{bgcolor: "#242424"}}/>
+                <CardMedia
+                    className="artist-card-media"
+                    component={"div"}
+                    sx={{bgcolor: "#242424"}}
+                />
                     <Content className="artist-card-content">
                         <Skeleton variant="text" animation="wave"
                             sx={{
@@ -120,7 +114,7 @@ const ArtistCard = ({artist, setUnfollow}: ArtistCardProps) => {
             className="artist-card"
             sx={{ boxShadow: 24 }}
         >
-            <StyledCardMedia
+            <CardMedia
                 className="artist-card-media"
                 image={artist.images[0].url}
             />

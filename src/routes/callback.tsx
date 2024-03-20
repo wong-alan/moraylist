@@ -21,7 +21,7 @@ const Callback = () => {
         }, [])
 
         return (
-            <Navigate to="/" />
+            <Navigate to="/" replace />
         );
     }
 

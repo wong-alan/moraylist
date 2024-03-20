@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import Root from "./routes/root";
 import ErrorPage from "./routes/errorPage/ErrorPage";
 import Landing from "./routes/landing/landing";
@@ -10,6 +10,18 @@ import Logout from "./routes/logout";
 import Following from "./routes/following";
 import Shuffle from "./routes/shuffle";
 import './index.css'
+
+const titleMap: Record<string, string> = {
+    "/": "A Spotify Toolbox",
+    "/profile": "Your Profile",
+    "/following": "Your Followed Artists",
+    "/shuffle": "Shuffle Playlists",
+};
+
+export const usePageTitle = () => {
+    const location = useLocation().pathname;
+    document.title = `${titleMap[location] ?? 'A Spotify Toolbox'} | Splotchify`
+}
 
 const router = createBrowserRouter([
     {
