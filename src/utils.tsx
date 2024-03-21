@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import { Theme } from "@mui/material/styles";
 import { SystemStyleObject } from "@mui/system";
 
 // LOCAL STORAGE
@@ -11,7 +10,7 @@ export const DEFAULT_TOOLTIP_SX: SystemStyleObject = {
     fontWeight: 500
 };
 
-export const BASE_SKELETON_SX: SystemStyleObject<Theme> = {
+export const BASE_SKELETON_SX: SystemStyleObject = {
     bgcolor: "#363636",
     '&::after': {
         background: "linear-gradient(to right, transparent, rgba(72,72,72,1), transparent)",

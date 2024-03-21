@@ -18,7 +18,6 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard = ({profile}: ProfileCardProps) => {
-
     if (!profile) {
         return (
             <Card

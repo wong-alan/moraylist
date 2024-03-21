@@ -1,5 +1,10 @@
-.spotify-font {
-    font-family: "Metropolis" !important;
-    text-transform: none !important;
-    color: white !important;
+button.button-base {
+    font-family: "Metropolis";
+    text-transform: none;
+    color: white;
+    background-color: #1DAD50;
+}
+
+button.button-base:hover {
+    background-color: #1ED760;
 }
