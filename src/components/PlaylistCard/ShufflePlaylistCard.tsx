@@ -84,7 +84,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
             <CardMedia
                 component="img"
                 className="playlist-card-media"
-                src={playlist.images[0].url}
+                src={playlist.images[1]?.url ?? playlist.images[0].url}
             />
             <CardContent
                 className="playlist-card-content"

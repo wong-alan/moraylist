@@ -61,7 +61,7 @@ const Shuffle = () => {
                     <Grid item xs={0.25} />
                     {playlists.map((playlist, index) => (
                         <Grid item container
-                            key={`artist-${index}`}
+                            key={`playlist-${index}`}
                             justifyContent={"center"}
                             xs={6} sm={4} md={6} lg={4}
                         >
