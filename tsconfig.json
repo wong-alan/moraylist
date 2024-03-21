@@ -22,7 +22,7 @@
 
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src", "types/*"],
+  "include": ["src", "types"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "typeRoots": ["types/globals.d.ts"]
 }
