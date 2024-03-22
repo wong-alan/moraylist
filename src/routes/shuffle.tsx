@@ -14,6 +14,9 @@ const Shuffle = () => {
 
     useEffect(() => {
         // TODO: Paginate playlists (?)
+        if (!profile) {
+            return;
+        }
         fetchUserPlaylists(clientId, code!, profile!.id).then(data => {
             if (data) {
                 setPlaylists(data);
@@ -21,7 +24,7 @@ const Shuffle = () => {
                 // TODO: Set error
             }
         });
-    }, []);
+    }, [profile]);
 
     return (
         <section id="shuffle">
