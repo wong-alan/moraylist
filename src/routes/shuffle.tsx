@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
-import AppContext from "../contexts/AppContext";
+import { useAppContext } from "../contexts/AppContext";
 import { fetchUserPlaylists } from "../spotify/playlist";
 import ShufflePlaylistCard from "../components/PlaylistCard/ShufflePlaylistCard";
 
 const Shuffle = () => {
-    const { clientId, code, profile } = useContext(AppContext);
+    const { clientId, code, profile } = useAppContext();
     const [ playlists, setPlaylists ] = useState<(Playlist|undefined)[]>([...Array(16)]);
 
     useEffect(() => {

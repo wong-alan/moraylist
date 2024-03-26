@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import AppContext from "../contexts/AppContext";
+import { useAppContext } from "../contexts/AppContext";
 
 const Logout = () => {
-    const { setCode, setProfile } = useContext(AppContext);
+    const { setCode, setProfile } = useAppContext();
 
     useEffect(() => {
         localStorage.clear()

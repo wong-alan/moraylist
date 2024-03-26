@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import IconButton from '@mui/material/IconButton';
@@ -10,11 +10,11 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Logout from '@mui/icons-material/Logout';
 
 import { fetchProfile } from '../../spotify/user';
-import AppContext from '../../contexts/AppContext';
+import { useAppContext } from '../../contexts/AppContext';
 import { SPLOTCHIFY_SVG } from "../icons/SplotchifyIcon";
 
 const UserMenu = () => {
-    const { clientId, code, profile, setProfile } = useContext(AppContext);
+    const { clientId, code, profile, setProfile } = useAppContext();
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {

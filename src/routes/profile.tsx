@@ -1,11 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
-import AppContext from "../contexts/AppContext";
+import { useAppContext } from "../contexts/AppContext";
 import ProfileCard from "../components/ProfileCard";
 import { fetchProfile } from "../spotify/user";
 
 const Profile = () => {
-    const { clientId, code, profile, setProfile } = useContext(AppContext);
+    const { clientId, code, profile, setProfile } = useAppContext();
 
     useEffect(() => {
         if (profile) {

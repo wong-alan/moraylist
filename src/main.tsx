@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
+import AppContextProvider from './contexts/AppContext';
 import Root from "./routes/root";
 import ErrorPage from "./routes/errorPage/ErrorPage";
 import Landing from "./routes/landing/landing";
@@ -26,7 +27,9 @@ export const usePageTitle = () => {
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Root />,
+        element: (
+            <Root />
+        ),
         errorElement: (
             <>
                 <Root />
@@ -59,6 +62,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <AppContextProvider>
+            <RouterProvider router={router} />
+        </AppContextProvider>
     </React.StrictMode>
 )

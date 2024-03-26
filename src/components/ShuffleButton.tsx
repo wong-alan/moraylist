@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useContext, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
-import AppContext from '../contexts/AppContext';
+import { useAppContext } from '../contexts/AppContext';
 import LinearWithValueLabel from "./LinearWithValueLabel";
 import ButtonBase from "./ButtonBase/ButtonBase";
 import { reorderPlaylist } from '../spotify/playlist';
@@ -43,7 +43,7 @@ interface ShuffleButtonProps {
 }
 
 const ShuffleButton = ({playlistId, length}: ShuffleButtonProps) => {
-    const { clientId, code } = useContext(AppContext);
+    const { clientId, code } = useAppContext();
     const [shuffling, setShuffling] = useState<boolean>(false);
     const [progress, setProgress] = useState<number>(0);
     const [label, setLabel] = useState<string>("");

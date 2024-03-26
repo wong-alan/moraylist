@@ -1,4 +1,4 @@
-import { ElementType, useContext, useState } from 'react';
+import { ElementType, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
@@ -15,13 +15,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SplotchifyIcon from "../icons/SplotchifyIcon";
 import UserMenu from "./UserMenu";
 import Login from './Login';
-import AppContext from '../../contexts/AppContext';
+import { useAppContext } from '../../contexts/AppContext';
 import pages from '../../pages';
 
 const noLoginOrProfile = ["/logout", "/callback"];
 
 const Header = () => {
-    const { code } = useContext(AppContext);
+    const { code } = useAppContext();
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
 

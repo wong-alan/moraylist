@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
-import AppContext from "../contexts/AppContext";
+import { useAppContext } from "../contexts/AppContext";
 import FollowPageContext from "../contexts/FollowPageContext";
 import { fetchFollowing } from "../spotify/user";
 import ArtistCardContainer from "../components/ArtistCard/ArtistCardContainer";
@@ -13,12 +13,12 @@ import ErrorSnack from "../components/ErrorSnack";
 // TODO: Animate grid with GSAP Flip (?)
 
 const Following = () => {
-    const { clientId, code } = useContext(AppContext);
+    const { clientId, code } = useAppContext();
     const [ artists, setArtists ] = useState<(Artist|undefined)[]>([...Array(25)]);
     const [ unfollowError, setUnfollowError ] = useState<boolean>(false);
 
     useEffect(() => {
-        // TODO: Paginate followed artists (?)
+        // TODO: Paginate followed artists (?) Infinite scroll (?)
         fetchFollowing(clientId, code!).then(data => {
             if (data) {
                 setArtists(data)

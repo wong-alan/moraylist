@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useContext } from "react";
 import Button from "@mui/material/Button";
 
-import AppContext from "../contexts/AppContext";
+import { useAppContext } from "../contexts/AppContext";
 import UnfollowPageContext from "../contexts/FollowPageContext";
 import { unfollowArtist } from "../spotify/user";
 import "./ButtonBase/ButtonBase.css"
@@ -26,7 +26,7 @@ interface UnfollowButtonProps {
 }
 
 const UnfollowButton = ({ artistId, setUnfollow }: UnfollowButtonProps) => {
-    const { clientId, code } = useContext(AppContext);
+    const { clientId, code } = useAppContext();
     const { setUnfollowError } = useContext(UnfollowPageContext);
 
     return (

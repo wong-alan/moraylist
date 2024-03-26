@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
 import SpotifyButton from "../SpotifyButton";
-import AppContext from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/AppContext";
 import { VERIFIER,
     generateAuthUrl,
     generateCodeChallenge,
@@ -16,7 +16,7 @@ interface LoginProps {
 }
 
 const Login = ({size}: LoginProps) => {
-    const { clientId } = useContext(AppContext);
+    const { clientId } = useAppContext();
     const [challenge, setChallenge] = useState<string>('');
     const [verifier, setVerifier] = useState<string>('');
 

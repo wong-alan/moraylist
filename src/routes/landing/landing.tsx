@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
@@ -11,7 +10,7 @@ import DirectionsRunRoundedIcon from '@mui/icons-material/DirectionsRunRounded';
 import NightlifeRoundedIcon from '@mui/icons-material/NightlifeRounded';
 import LandingCard, { LandingCardProps } from "../../components/LandingCard/LandingCard";
 import Login from "../../components/nav/Login";
-import AppContext from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/AppContext";
 import { DEFAULT_TOOLTIP_SX } from "../../utils";
 import "./landing.css";
 
@@ -48,7 +47,7 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
 ]
 
 const Landing = () => {
-    const { code } = useContext(AppContext);
+    const { code } = useAppContext();
 
     return (<>
         <div className="landing-gradient" />
