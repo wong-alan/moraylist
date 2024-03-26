@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction, useContext } from "react";
+import { Dispatch, SetStateAction } from "react";
 import Button from "@mui/material/Button";
 
 import { useAppContext } from "../contexts/AppContext";
-import UnfollowPageContext from "../contexts/FollowPageContext";
+import { useFollowPageContext } from "../contexts/FollowPageContext";
 import { unfollowArtist } from "../spotify/user";
 import "./ButtonBase/ButtonBase.css"
 
@@ -11,13 +11,15 @@ const doUnfollow = async (
     code: string,
     artistId: string,
     setUnfollow: Dispatch<SetStateAction<boolean>>,
-    setUnfollowError: Dispatch<SetStateAction<boolean>>
+    setOpenError: Dispatch<SetStateAction<boolean>>,
+    setErrorMessage: Dispatch<SetStateAction<string>>
 ) => {
     const result = await unfollowArtist(clientId, code, artistId);
     if (result) {
         setUnfollow(true);
     } else {
-        setUnfollowError(true);
+        setErrorMessage("Failed to unfollow artist. Try again.");
+        setOpenError(true);
     }
 }
 interface UnfollowButtonProps {
@@ -27,7 +29,7 @@ interface UnfollowButtonProps {
 
 const UnfollowButton = ({ artistId, setUnfollow }: UnfollowButtonProps) => {
     const { clientId, code } = useAppContext();
-    const { setUnfollowError } = useContext(UnfollowPageContext);
+    const { setOpenError, setErrorMessage } = useFollowPageContext();
 
     return (
             <Button
@@ -36,7 +38,7 @@ const UnfollowButton = ({ artistId, setUnfollow }: UnfollowButtonProps) => {
                 size="small"
                 sx={{ boxShadow: 5, bgcolor: "#2b2322", letterSpacing: "0.05em" }}
                 onClick={async () =>
-                    await doUnfollow(clientId, code!, artistId, setUnfollow, setUnfollowError)}
+                    await doUnfollow(clientId, code!, artistId, setUnfollow, setOpenError, setErrorMessage)}
             >
                 Unfollow
             </Button>

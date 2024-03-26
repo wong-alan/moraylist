@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import AppContextProvider from './contexts/AppContext';
+import FollowPageContextProvider from './contexts/FollowPageContext';
 import Root from "./routes/root";
 import ErrorPage from "./routes/errorPage/ErrorPage";
 import Landing from "./routes/landing/landing";
@@ -51,7 +52,11 @@ const router = createBrowserRouter([
                 element: <Logout />
             }, {
                 path: "following",
-                element: <Following />
+                element: (
+                    <FollowPageContextProvider>
+                        <Following />
+                    </FollowPageContextProvider>
+                )
             }, {
                 path: "shuffle",
                 element: <Shuffle />

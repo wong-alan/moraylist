@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext, useContext, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
 import { CODE } from "../utils";
 
 interface IAppContext {
@@ -21,16 +21,13 @@ const AppContextProvider = ({children}: AppContextProviderProps) => {
     const [code, setCode] = useState<string | null>(localStorage.getItem(CODE));
     const [profile, setProfile] = useState<UserProfile | null>(null);
 
-    const value: IAppContext = useMemo(
-        () => ({
-            clientId,
-            code,
-            setCode,
-            profile,
-            setProfile
-        }),
-        [code, profile]
-    );
+    const value: IAppContext = {
+        clientId,
+        code,
+        setCode,
+        profile,
+        setProfile
+    };
 
     return (
         <AppContext.Provider value={value}>
