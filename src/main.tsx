@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
+import Protected from "./components/Protected";
 import AppContextProvider from './contexts/AppContext';
 import FollowPageContextProvider from './contexts/FollowPageContext';
 import Root from "./routes/root";
+import ProtectedRoot from "./routes/ProtectedRoot";
 import ErrorPage from "./routes/errorPage/ErrorPage";
 import Landing from "./routes/landing/landing";
 import Profile from "./routes/profile";
@@ -26,43 +28,43 @@ export const usePageTitle = () => {
 }
 
 const router = createBrowserRouter([
+    // Public
     {
-        path: "/",
-        element: (
-            <Root />
-        ),
-        errorElement: (
-            <>
-                <Root />
-                <ErrorPage />
-            </>
-        ),
-        children: [
-            {
-                index: true,
-                element: <Landing />
-            }, {
-                path: "profile",
-                element: <Profile />
-            }, {
-                path: "callback",
-                element: <Callback />
-            }, {
-                path: "logout",
-                element: <Logout />
-            }, {
-                path: "following",
-                element: (
-                    <FollowPageContextProvider>
-                        <Following />
-                    </FollowPageContextProvider>
-                )
-            }, {
-                path: "shuffle",
-                element: <Shuffle />
-            },
-        ]
+        element: <Root />,
+        errorElement: <><Root /><ErrorPage /></>,
+        children: [{
+            path: "/",
+            element: <Landing />
+        }, {
+            path: "callback",
+            element: <Callback />
+        }, {
+            path: "logout",
+            element: <Logout />
+        },{
+            path: "*",
+            element: <p>404: Nothing here!</p>
+            // TODO: Put a real component here
+        }]
     },
+    // Protected
+    {
+        element: <ProtectedRoot />,
+        errorElement: <><Root /><ErrorPage /></>,
+        children: [{
+            path: "profile",
+            element: <Profile />
+        }, {
+            path: "following",
+            element:
+                <FollowPageContextProvider>
+                    <Following />
+                </FollowPageContextProvider>
+        }, {
+            path: "shuffle",
+            element: <Shuffle />
+        }]
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
