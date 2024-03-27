@@ -12,7 +12,7 @@ import LandingCard, { LandingCardProps } from "../../components/LandingCard/Land
 import Login from "../../components/nav/Login";
 import { useAppContext } from "../../contexts/AppContext";
 import { DEFAULT_TOOLTIP_SX } from "../../utils";
-import "./landing.css";
+import "./Landing.css";
 
 const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
     {

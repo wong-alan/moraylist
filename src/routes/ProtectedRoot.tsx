@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import Root from "./root";
+import Root from "./Root";
 import { useAppContext } from "../contexts/AppContext";
 
 const ProtectedRoot = () => {

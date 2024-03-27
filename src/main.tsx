@@ -1,18 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
-import Protected from "./components/Protected";
 import AppContextProvider from './contexts/AppContext';
 import FollowPageContextProvider from './contexts/FollowPageContext';
-import Root from "./routes/root";
+import Root from "./routes/Root";
 import ProtectedRoot from "./routes/ProtectedRoot";
-import ErrorPage from "./routes/errorPage/ErrorPage";
-import Landing from "./routes/landing/landing";
-import Profile from "./routes/profile";
-import Callback from "./routes/callback";
-import Logout from "./routes/logout";
-import Following from "./routes/following";
-import Shuffle from "./routes/shuffle";
+import ErrorPage from "./routes/ErrorPage/ErrorPage";
+import Landing from "./routes/Landing/Landing";
+import Profile from "./routes/Profile";
+import Callback from "./routes/Callback";
+import Logout from "./routes/Logout";
+import Following from "./routes/Following";
+import Shuffle from "./routes/Shuffle";
 import './index.css'
 
 const titleMap: Record<string, string> = {
