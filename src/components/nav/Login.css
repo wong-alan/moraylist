@@ -14,7 +14,7 @@
     display: none;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 900px) {
     .login-sm {
         display: none;
     }

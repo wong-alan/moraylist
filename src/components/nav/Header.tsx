@@ -62,44 +62,46 @@ const Header = () => {
                     </Typography>
 
                     {/* Small menu */}
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                        {pages.map((page) => (
-                            <MenuItem key={page.name+"-sm"} onClick={handleCloseNavMenu}>
-                                <Link to={page.url} className="metro-font link-style nav-link">
-                                    {page.name}
-                                </Link>
-                            </MenuItem>
-                        ))}
-                        </Menu>
-                    </Box>
+                    { code &&
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleOpenNavMenu}
+                                color="inherit"
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorElNav}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                open={Boolean(anchorElNav)}
+                                onClose={handleCloseNavMenu}
+                                sx={{
+                                    display: { xs: 'block', md: 'none' },
+                                }}
+                            >
+                            {pages.map((page) => (
+                                <MenuItem key={page.name+"-sm"} onClick={handleCloseNavMenu}>
+                                    <Link to={page.url} className="metro-font link-style nav-link">
+                                        {page.name}
+                                    </Link>
+                                </MenuItem>
+                            ))}
+                            </Menu>
+                        </Box>
+                    }
 
                     {/* Small center logo */}
                     <Box
@@ -138,29 +140,31 @@ const Header = () => {
 
                     {/* Large menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Link to={page.url} key={page.name+"-lg"} className="link-style">
-                                <Button
-                                    onClick={handleCloseNavMenu}
-                                    sx={{
-                                        my: 2,
-                                        color: 'white',
-                                        display: 'block',
-                                        fontFamily: 'inherit',
-                                        fontWeight: "600"
-                                    }}
-                                >
-                                    {page.name}
-                                </Button>
-                            </Link>
-                        ))}
+                        { code &&
+                            pages.map((page) => (
+                                <Link to={page.url} key={page.name+"-lg"} className="link-style">
+                                    <Button
+                                        onClick={handleCloseNavMenu}
+                                        sx={{
+                                            my: 2,
+                                            color: 'white',
+                                            display: 'block',
+                                            fontFamily: 'inherit',
+                                            fontWeight: "600"
+                                        }}
+                                    >
+                                        {page.name}
+                                    </Button>
+                                </Link>
+                            ))
+                        }
                     </Box>
 
                     {/* User menu */}
                     <Box sx={{ flexGrow: 0 }}>
                         {
                             noLoginOrProfile.includes(useLocation().pathname) ? <></> :
-                            code && code != "undefined" ?
+                            code ?
                             <UserMenu /> :
                             <Login size="lg" />
                         }
