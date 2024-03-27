@@ -40,10 +40,6 @@ const router = createBrowserRouter([
         }, {
             path: "logout",
             element: <Logout />
-        },{
-            path: "*",
-            element: <p>404: Nothing here!</p>
-            // TODO: Put a real component here
         }]
     },
     // Protected

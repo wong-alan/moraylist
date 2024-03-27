@@ -6,7 +6,7 @@ const Logout = () => {
     const { setCode, setProfile } = useAppContext();
 
     useEffect(() => {
-        localStorage.clear()
+        localStorage.clear();
         setCode(null);
         setProfile(null);
     }, []);

@@ -1,55 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { ACCESS_TOKEN, REFRESH_TOKEN, TOKEN_EXPIRY } from "../spotify/auth";
+import ErrorPage from "./ErrorPage/ErrorPage";
 import { CODE } from "../utils";
 import { useAppContext } from "../contexts/AppContext";
 
 const Callback = () => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
-    const { setCode } = useAppContext();
 
-    // Save new code
-    if (code) {
-        localStorage.removeItem(ACCESS_TOKEN);
-        localStorage.removeItem(REFRESH_TOKEN);
-        localStorage.removeItem(TOKEN_EXPIRY);
-        localStorage.setItem(CODE, code);
-
-        useEffect(() => {
-            setCode(code);
-        }, [])
-
+    // No auth code
+    if (!code) {
+        const error = params.get("error");
         return (
-            <Navigate to="/" replace />
+            <ErrorPage>
+                <p>Authentication with Spotify failed.</p>
+                <p><i>{error}</i></p>
+            </ErrorPage>
         );
     }
 
-    // No auth code
-    const REDIRECT_TIME = 5;
-    const error = params.get("error");
-    const [timeLeft, setTimeLeft] = useState<number>(REDIRECT_TIME);
+    // Save new code
+    const { setCode } = useAppContext();
+    localStorage.clear();
+    localStorage.setItem(CODE, code);
 
     useEffect(() => {
-        if (!timeLeft) {
-            return;
-        }
-        const intervalId = setInterval(() => {
-            setTimeLeft(timeLeft - 1)
-        }, 1000);
-
-        return () => clearInterval(intervalId);
-    }, [timeLeft]);
+        setCode(code);
+    }, [])
 
     return (
-        <div id="error-page">
-            <div id="error-message">
-                <h1>Oops!</h1>
-                { error && <p>Authentication with Spotify failed</p> }
-                <p>Taking you back in ... {timeLeft}</p>
-                { timeLeft == 0 && <Navigate to="/" /> }
-            </div>
-        </div>
+        <Navigate to="/" replace />
     );
 }
 
