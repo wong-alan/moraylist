@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+# Splotchify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web app with [Spotify Web API](https://developer.spotify.com/documentation/web-api) integration to manage your music.
+A learning project.
 
-Currently, two official plugins are available:
+Visit us at [www.splotchify.com](www.splotchify.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Current supported functions
+- Shuffle your playlists
+- Manage your followed artists
 
-## Expanding the ESLint configuration
+### Planned future functions
+- View recently played
+- View your top genres
+- Analyze playlist tempo
+- Analyze playlist danceability
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+___
+### React + TypeScript + Vite
 
-- Configure the top-level `parserOptions` property like this:
+Start up a local instance with `npm run dev`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Build the project with `npm run build`
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Some base components provided by [MUI](https://github.com/mui/material-ui) and [MUI Treasury](https://github.com/siriwatknp/mui-treasury).
