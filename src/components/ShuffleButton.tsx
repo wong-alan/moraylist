@@ -30,7 +30,7 @@ const doShuffle = async (
         if (to === from) { continue; }
         snapshot_id = await reorderPlaylist(clientId, code, playlistId, from, to, snapshot_id);
 
-        await sleep(150);
+        await sleep(100);
     }
     setLabel(length + "/" + length);
     await sleep(5000);

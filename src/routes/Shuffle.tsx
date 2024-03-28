@@ -5,11 +5,14 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
 import { useAppContext } from "../contexts/AppContext";
+import { useShufflePageContext } from "../contexts/ShufflePageContext";
 import { fetchUserPlaylists } from "../spotify/playlist";
 import ShufflePlaylistCard from "../components/PlaylistCard/ShufflePlaylistCard";
+import ErrorSnack from "../components/ErrorSnack";
 
 const Shuffle = () => {
     const { clientId, code, profile } = useAppContext();
+    const { openError, setOpenError, errorMessage, setErrorMessage } = useShufflePageContext();
     const [ playlists, setPlaylists ] = useState<(Playlist|undefined)[]>([...Array(16)]);
 
     useEffect(() => {
@@ -21,7 +24,8 @@ const Shuffle = () => {
             if (data) {
                 setPlaylists(data);
             } else {
-                // TODO: Set error
+                setErrorMessage("Eror loading playlists. Try again.");
+                setOpenError(true);
             }
         });
     }, [profile]);
@@ -73,7 +77,11 @@ const Shuffle = () => {
                     ))}
                 </Grid>
             </Container>
-            {/* <ErrorSnack open={unfollowError} setOpen={setUnfollowError} /> */}
+            <ErrorSnack
+                message={errorMessage}
+                open={openError}
+                setOpen={setOpenError}
+            />
         </section>
     );
 }

@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import ErrorPage from "./ErrorPage/ErrorPage";
+import {
+    ACCESS_TOKEN,
+    REFRESH_TOKEN,
+    TOKEN_EXPIRY
+} from "../spotify/auth";
 import { CODE } from "../utils";
 import { useAppContext } from "../contexts/AppContext";
 
@@ -14,14 +19,16 @@ const Callback = () => {
         return (
             <ErrorPage>
                 <p>Authentication with Spotify failed.</p>
-                <p><i>{error}</i></p>
+                {error && <p><i>{error}</i></p> }
             </ErrorPage>
         );
     }
 
     // Save new code
     const { setCode } = useAppContext();
-    localStorage.clear();
+    localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(REFRESH_TOKEN);
+    localStorage.removeItem(TOKEN_EXPIRY);
     localStorage.setItem(CODE, code);
 
     useEffect(() => {

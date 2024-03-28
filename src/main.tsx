@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import AppContextProvider from './contexts/AppContext';
 import FollowPageContextProvider from './contexts/FollowPageContext';
+import ShufflePageContextProvider from './contexts/ShufflePageContext';
 import Root from "./routes/Root";
 import ProtectedRoot from "./routes/ProtectedRoot";
 import ErrorPage from "./routes/ErrorPage/ErrorPage";
@@ -57,7 +58,10 @@ const router = createBrowserRouter([
                 </FollowPageContextProvider>
         }, {
             path: "shuffle",
-            element: <Shuffle />
+            element:
+                <ShufflePageContextProvider>
+                    <Shuffle />
+                </ShufflePageContextProvider>
         }]
     }
 ]);

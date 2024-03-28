@@ -18,23 +18,21 @@ const ErrorSnack = ({message, open, setOpen}: ErrorSnackProps) => {
     };
 
     return (
-        <div>
-            <Snackbar
-                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                open={open}
-                autoHideDuration={3000}
+        <Snackbar
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            open={open}
+            autoHideDuration={3000}
+            onClose={handleClose}
+        >
+            <Alert
                 onClose={handleClose}
+                severity="error"
+                variant="filled"
+                sx={{ width: '100%' }}
             >
-                <Alert
-                    onClose={handleClose}
-                    severity="error"
-                    variant="filled"
-                    sx={{ width: '100%' }}
-                >
-                    {message}
-                </Alert>
-            </Snackbar>
-        </div>
+                {message}
+            </Alert>
+        </Snackbar>
     );
 }
 
