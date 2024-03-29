@@ -38,7 +38,7 @@ const Header = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* Large corner logo */}
-                    <Link to="/" className="nostyle">
+                    <Link to="/" className="nostyle" aria-label="Splotchify Home">
                         <Box sx={{ display: { xs: 'none', md: 'inline-block' }, height: "24px" }}>
                             <SplotchifyIcon />
                         </Box>
@@ -113,7 +113,7 @@ const Header = () => {
                             transform: "translate(-50%, -50%)",
                         }}
                     >
-                        <Link to="/" className="link-style">
+                        <Link to="/" className="link-style" aria-label="Splotchify Home">
                             <Box sx={{ display: 'inline-block', height: "24px" }}>
                                 <SplotchifyIcon />
                             </Box>
