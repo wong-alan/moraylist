@@ -36,7 +36,11 @@ const UnfollowButton = ({ artistId, setUnfollow }: UnfollowButtonProps) => {
                 color="error"
                 variant="contained"
                 size="small"
-                sx={{ boxShadow: 5, bgcolor: "#2b2322", letterSpacing: "0.05em" }}
+                sx={{
+                    boxShadow: 5,
+                    bgcolor: "#2b2322",
+                    letterSpacing: "0.05em"
+                }}
                 onClick={async () =>
                     await doUnfollow(clientId, code!, artistId, setUnfollow, setOpenError, setErrorMessage)}
             >

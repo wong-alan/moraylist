@@ -8,8 +8,17 @@ interface OpenInAppProps {
 
 const OpenInAppButton = ({link}: OpenInAppProps) => {
     return (
-        <Link to={link} target="_blank" rel="noopener">
-            <IconButton sx={{ boxShadow: 5 }}>
+        <Link to={link}
+            aria-label="Open in Spotify"
+            target="_blank"
+            rel="noopener"
+        >
+            <IconButton
+                aria-label="Open in Spotify"
+                role="link"
+                tabIndex={-1}
+                sx={{ boxShadow: 5 }}
+            >
                 <OpenInNewIcon sx={{ color: "white" }} />
             </IconButton>
         </Link>

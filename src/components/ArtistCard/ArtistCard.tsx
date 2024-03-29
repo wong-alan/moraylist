@@ -116,6 +116,8 @@ const ArtistCard = ({artist, setUnfollow}: ArtistCardProps) => {
         >
             <CardMedia
                 className="artist-card-media"
+                component="img"
+                alt={artist.name}
                 image={artist.images[1]?.url ?? artist.images[0].url}
             />
             <Content className="artist-card-content">
