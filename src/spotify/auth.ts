@@ -1,6 +1,9 @@
 const authEndpoint = "https://accounts.spotify.com/authorize"
 const accessTokenEndpoint = "https://accounts.spotify.com/api/token";
-const callbackEndpoint = "http://localhost:5173/callback";
+const callbackEndpoint = import.meta.env.VITE_ENVIRONMENT === "online" ?
+    "https://www.splotchify.com/callback" :
+    "http://localhost:5173/callback";
+
 const scopes = [
     "user-read-private",
     "user-read-email",
