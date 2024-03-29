@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import Tooltip from "@mui/material/Tooltip";
 import Skeleton from "@mui/material/Skeleton";
 import OpenInNewOutlined from "@mui/icons-material/OpenInNewOutlined";
@@ -176,13 +176,13 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
                         Email: {profile.email} <br/>
                         Explicit content: {profile.explicit_content.filter_enabled ? "Not Allowed" : "Allowed"} <br />
                         Explicit content filter: {profile.explicit_content.filter_locked ? "Locked" : "Unlocked"} <br />
-                        Spotify URI:
-                            <Link href={profile.uri} target="_blank" rel="noopener">
+                        Spotify URI:&nbsp;
+                            <Link to={profile.uri} className="light-link" target="_blank" rel="noopener">
                                 {profile.uri} <OpenInNewOutlined sx={{fontSize: "1rem"}} />
                             </Link> <br/>
                         {
                             iconSrc != SPLOTCHIFY_SVG &&
-                                <Link href={iconSrc} target="_blank" rel="noopener" sx={{fontSize: "17px"}}>
+                                <Link to={iconSrc} className="light-link" target="_blank" rel="noopener">
                                     Profile Image <OpenInNewOutlined sx={{fontSize: "1rem"}} />
                                 </Link>
                         }

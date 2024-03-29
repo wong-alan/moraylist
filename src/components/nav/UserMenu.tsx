@@ -40,6 +40,7 @@ const UserMenu = () => {
         <>
             <IconButton
                 onClick={handleOpenUserMenu}
+                aria-label="Open User Menu"
                 sx={{
                     p: 0,
                     "& :hover": {
@@ -48,7 +49,10 @@ const UserMenu = () => {
                         transition: "all 70ms cubic-bezier(0.5, 0, 0.5, 1)"
                     }
             }}>
-                <Avatar src={profilePicUrl}/>
+                <Avatar
+                    alt="Profile picture"
+                    src={profilePicUrl}
+                />
             </IconButton>
             <Menu
                 sx={{ mt: '45px' }}

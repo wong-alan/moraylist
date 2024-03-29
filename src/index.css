@@ -75,3 +75,7 @@ a.link-style {
   text-decoration: inherit;
   color: inherit;
 }
+
+a.light-link {
+  color: #64afff;
+}
