@@ -59,12 +59,15 @@ const Landing = () => {
                     >
                         <Typography
                             variant="h3"
-                            sx={{
+                            sx={(theme) => ({
                                 fontFamily: "inherit",
                                 fontWeight: 700,
                                 marginTop: "15vh",
-                                letterSpacing: "0.05em"
-                            }}
+                                letterSpacing: "0.05em",
+                                [theme.breakpoints.down("sm")]: {
+                                    marginTop: "12vh"
+                                }
+                            })}
                         >
                             Your music, managed.
                         </Typography>
@@ -74,11 +77,14 @@ const Landing = () => {
                     >
                         <Typography
                             variant="h6"
-                            sx={{
+                            sx={(theme) => ({
                                 fontFamily: "inherit",
                                 marginTop: "3vh",
-                                marginBottom: "5vh"
-                            }}
+                                marginBottom: "5vh",
+                                [theme.breakpoints.down("sm")]: {
+                                    marginBottom: "2vh"
+                                }
+                            })}
                         >
                             Organize your playlists, artists, and tracks, in one spot.
                         </Typography>
@@ -116,7 +122,7 @@ const Landing = () => {
                     <Grid item xs={2} />
                     {!code &&
                         <Grid item container xs={12} justifyContent={"center"}
-                            sx={{paddingTop: "5vh"}}
+                            sx={{marginTop: "5vh"}}
                         >
                             <Login size="sm" />
                         </Grid>
