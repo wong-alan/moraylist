@@ -3,8 +3,8 @@
     border-radius: 16px;
     transition: 0.3s;
     position: relative;
-    width: 100%;
-    max-width: 400;
+    width: calc(100% - 7px);
+    max-width: 400px;
     margin-left: auto;
     overflow: initial;
     background: #242424;
@@ -35,6 +35,23 @@
 }
 
 /* Add :root to override MUI specificity */
+/* xs */
+@media (max-width: 600px) {
+    :root {
+        .playlist-card {
+            padding-bottom: 7px;
+        }
+
+        .playlist-card-content {
+            width: 85%;
+        }
+
+        .playlist-card-title {
+            font-size: 15px;
+        }
+    }
+}
+
 /* xs sm */
 @media (max-width: 900px) {
     :root {

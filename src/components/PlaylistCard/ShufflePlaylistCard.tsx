@@ -13,7 +13,7 @@ interface ShufflePlaylistCardProps {
 }
 
 const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
-    if (!playlist)
+    if (!playlist) {
         return (
             <Card raised className="playlist-card">
                 <Skeleton variant="rounded" animation="wave"
@@ -78,6 +78,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
                 </CardContent>
             </Card>
         );
+    }
 
     return (
         <Card raised className="playlist-card">

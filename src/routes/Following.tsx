@@ -37,12 +37,7 @@ const Following = () => {
                     <Grid item xs={11.5}>
                         <Typography
                             variant="h4"
-                            sx={{
-                                fontFamily: "inherit",
-                                fontWeight: 600,
-                                margin: "30px 0px 0px 0px",
-                                width: "fit-content"
-                            }}
+                            className="title"
                         >
                             Artists You Follow
                         </Typography>
@@ -52,12 +47,7 @@ const Following = () => {
                     <Grid item xs={11.5}>
                         <Typography
                             variant="body1"
-                            sx={{
-                                fontFamily: "inherit",
-                                fontWeight: 500,
-                                margin: "0px 0px 10px 0px",
-                                width: "fit-content"
-                            }}
+                            className="subtitle"
                         >
                             Rediscover your followed artists. <br />
                             Not a stan anymore? Drop them like your ex. <br />

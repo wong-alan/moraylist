@@ -38,12 +38,7 @@ const Shuffle = () => {
                     <Grid item xs={11.5}>
                         <Typography
                             variant="h4"
-                            sx={{
-                                fontFamily: "inherit",
-                                fontWeight: 600,
-                                margin: "30px 0px 0px 0px",
-                                width: "fit-content"
-                            }}
+                            className="title"
                         >
                             Shuffle Playlists
                         </Typography>
@@ -53,12 +48,7 @@ const Shuffle = () => {
                     <Grid item xs={11.5}>
                         <Typography
                             variant="body1"
-                            sx={{
-                                fontFamily: "inherit",
-                                fontWeight: 500,
-                                margin: "0px 0px 10px 0px",
-                                width: "fit-content"
-                            }}
+                            className="subtitle"
                         >
                             Tired of Spotify "shuffle" playing the same songs over and over? <br />
                             Your job is to fill playlists with good songs. Leave the order to us. <br />

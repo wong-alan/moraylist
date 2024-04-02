@@ -79,3 +79,31 @@ a.link-style {
 a.light-link {
   color: #64afff;
 }
+
+:root .title {
+  font-family: inherit;
+  font-weight: 600;
+  margin: 30px 0px 0px 0px;
+  width: fit-content;
+}
+
+:root .subtitle {
+  font-family: inherit;
+  font-weight: 500;
+  margin: 0px 0px 10px 0px;
+  width: fit-content;
+}
+
+@media (max-width: 600px) {
+  :root {
+    .title {
+      font-size: 2rem;
+      line-height: 0.75;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      line-height: 1.25;
+    }
+  }
+}
