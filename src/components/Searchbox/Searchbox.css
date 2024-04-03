@@ -1,0 +1,24 @@
+div.searchbox {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border: #363636 solid 1px;
+    box-shadow: 0 0 10px 5px #121212;
+    font-weight: 600;
+}
+
+.searchbox input {
+    padding: 8px 0px 6px 0px;
+}
+
+.searchbox::before {
+    display: none;
+}
+
+.searchbox::after {
+    display: none;
+}

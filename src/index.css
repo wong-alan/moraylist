@@ -1,109 +1,115 @@
 @font-face {
-  font-family: 'Metropolis';
-  src: url(./fonts/Metropolis-Regular.woff2) format('woff2');
-  descent-override: 15%;
-  font-weight: 400;
-  font-display: swap;
+    font-family: 'Metropolis';
+    src: url(./fonts/Metropolis-Regular.woff2) format('woff2');
+    descent-override: 15%;
+    font-weight: 400;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Metropolis';
-  src: url(./fonts/Metropolis-Medium.woff2) format('woff2');
-  descent-override: 15%;
-  font-weight: 500;
-  font-display: swap;
+    font-family: 'Metropolis';
+    src: url(./fonts/Metropolis-Medium.woff2) format('woff2');
+    descent-override: 15%;
+    font-weight: 500;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Metropolis';
-  src: url(./fonts/Metropolis-SemiBold.woff2) format('woff2');
-  descent-override: 15%;
-  font-weight: 600;
-  font-display: swap;
+    font-family: 'Metropolis';
+    src: url(./fonts/Metropolis-SemiBold.woff2) format('woff2');
+    descent-override: 15%;
+    font-weight: 600;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Metropolis';
-  src: url(./fonts/Metropolis-Bold.woff2) format('woff2');
-  descent-override: 15%;
-  font-weight: 700;
-  font-display: swap;
+    font-family: 'Metropolis';
+    src: url(./fonts/Metropolis-Bold.woff2) format('woff2');
+    descent-override: 15%;
+    font-weight: 700;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Metropolis';
-  src: url(./fonts/Metropolis-ExtraBold.woff2) format('woff2');
-  descent-override: 15%;
-  font-weight: 800;
-  font-display: swap;
+    font-family: 'Metropolis';
+    src: url(./fonts/Metropolis-ExtraBold.woff2) format('woff2');
+    descent-override: 15%;
+    font-weight: 800;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Metropolis';
-  src: url(./fonts/Metropolis-Black.woff2) format('woff2');
-  descent-override: 15%;
-  font-weight: 900;
-  font-display: swap;
+    font-family: 'Metropolis';
+    src: url(./fonts/Metropolis-Black.woff2) format('woff2');
+    descent-override: 15%;
+    font-weight: 900;
+    font-display: swap;
 }
 
 :root {
-  --bgcolor: #121212;
-  font-family: Metropolis, "Noto Color Emoji", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 500;
+    --bgcolor: #121212;
+    font-family: Metropolis, "Noto Color Emoji", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 500;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: var(--bgcolor);
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: var(--bgcolor);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .metro-font {
-  font-family: Metropolis, "Noto Color Emoji", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Metropolis, "Noto Color Emoji", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
 }
 
 :root .nav-link {
-  font-weight: 700;
-  color: rgba(0, 0, 0, 0.64);
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.64);
 }
 
 a.link-style {
-  text-decoration: inherit;
-  color: inherit;
+    text-decoration: inherit;
+    color: inherit;
 }
 
 a.light-link {
-  color: #64afff;
+    color: #64afff;
 }
 
 :root .title {
-  font-family: inherit;
-  font-weight: 600;
-  margin: 30px 0px 0px 0px;
-  width: fit-content;
+    font-family: inherit;
+    font-weight: 600;
+    margin: 30px 0px 0px 0px;
+    width: fit-content;
 }
 
 :root .subtitle {
-  font-family: inherit;
-  font-weight: 500;
-  margin: 0px 0px 10px 0px;
-  width: fit-content;
+    font-family: inherit;
+    font-weight: 500;
+    margin: 0px 0px 10px 0px;
+    width: fit-content;
 }
 
 @media (max-width: 600px) {
-  :root {
-    .title {
-      font-size: 2rem;
-      line-height: 0.75;
-    }
+    :root {
+        .title {
+            font-size: 2rem;
+        }
 
-    .subtitle {
-      font-size: 0.95rem;
-      line-height: 1.25;
+        .subtitle {
+            font-size: 0.95rem;
+            line-height: 1.25;
+        }
     }
-  }
+}
+
+:root input::placeholder {
+    height: 16px;
+    font-weight: 600;
+    color: #000000;
+    opacity: 0.70;;
 }
