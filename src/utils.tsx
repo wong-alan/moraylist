@@ -25,6 +25,12 @@ export const toPascalCase = (s: string | null | undefined) => {
     return s ? s.replace(/(\w)(\w*)/g, (_, p, q) => p.toUpperCase() + q.toLowerCase()) : s;
 }
 
+export const normalize = (s: string|undefined): string|undefined => {
+    return s?.normalize("NFKD")
+        .replace(/\p{Diacritic}/gu, "")
+        .toLocaleLowerCase();
+}
+
 interface RepeatProps {
     count: number
     children: JSX.Element

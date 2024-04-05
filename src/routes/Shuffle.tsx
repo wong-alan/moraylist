@@ -10,6 +10,7 @@ import { fetchUserPlaylists } from "../spotify/playlist";
 import ShufflePlaylistCard from "../components/PlaylistCard/ShufflePlaylistCard";
 import Searchbox from "../components/Searchbox/Searchbox";
 import ErrorSnack from "../components/ErrorSnack";
+import { normalize } from "../utils";
 
 const Shuffle = () => {
     const { clientId, code, profile } = useAppContext();
@@ -34,15 +35,13 @@ const Shuffle = () => {
 
     const visiblePlaylists = useMemo(
         () => {
-            if (filterText === "") {
+            const normalizedFilter = normalize(filterText)!.trim();
+            if (normalizedFilter === "") {
                 return playlists;
             }
-            console.log(`Filtering on ${filterText}`);
             return playlists.filter((playlist) =>
-                playlist?.name.toLocaleLowerCase()
-                    .includes(filterText.toLocaleLowerCase()) ||
-                playlist?.description?.toLocaleLowerCase()
-                    .includes(filterText.toLocaleLowerCase())
+                normalize(playlist?.name)?.includes(normalizedFilter) ||
+                normalize(playlist?.description)?.includes(normalizedFilter)
             );
         },
         [playlists, filterText]
@@ -75,7 +74,7 @@ const Shuffle = () => {
                     </Grid>
                     <Grid item xs={0.25} />
                     <Grid item xs={0.25} />
-                    <Grid item xs={11.5} sx={{position: "sticky", zIndex: 1, top: "30px"}}>
+                    <Grid item xs={11.5} sx={{position: "sticky", zIndex: 10, top: "30px"}}>
                         <Searchbox
                             label="Filter playlists by name"
                             placeholder="Filter playlists by name"

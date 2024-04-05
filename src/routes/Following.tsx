@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
@@ -8,14 +8,18 @@ import { useAppContext } from "../contexts/AppContext";
 import { useFollowPageContext } from "../contexts/FollowPageContext";
 import { fetchFollowing } from "../spotify/user";
 import ArtistCardContainer from "../components/ArtistCard/ArtistCardContainer";
+import Searchbox from "../components/Searchbox/Searchbox";
 import ErrorSnack from "../components/ErrorSnack";
+import { normalize } from "../utils";
 
 // TODO: Animate grid with GSAP Flip (?)
+// Animate with CSS transitions (?)
 
 const Following = () => {
     const { clientId, code } = useAppContext();
     const { openError, setOpenError, errorMessage, setErrorMessage } = useFollowPageContext();
     const [ artists, setArtists ] = useState<(Artist|undefined)[]>([...Array(25)]);
+    const [ filterText, setFilterText ] = useState<string>("");
 
     useEffect(() => {
         // TODO: Paginate followed artists (?) Infinite scroll (?)
@@ -28,6 +32,18 @@ const Following = () => {
             }
         })
     }, []);
+
+    const visibleArtists = useMemo(
+        () => {
+            const normalizedFilter = normalize(filterText)!.trim();
+            if (normalizedFilter === "") {
+                return artists;
+            }
+            return artists.filter((artist) =>
+                normalize(artist?.name)?.includes(normalizedFilter))
+        },
+        [artists, filterText]
+    );
 
     return (
         <section id="following">
@@ -54,7 +70,17 @@ const Following = () => {
                         </Typography>
                     </Grid>
                     <Grid item xs={0.25} />
-                    {artists.map((artist, index) => (
+                    <Grid item xs={0.25} />
+                    <Grid item xs={11.5} sx={{position: "sticky", zIndex: 10, top: "30px"}}>
+                        <Searchbox
+                            label="Filter artists by name"
+                            placeholder="Filter artists by name"
+                            text={filterText}
+                            setText={setFilterText}
+                        />
+                    </Grid>
+                    <Grid item xs={0.25} />
+                    {visibleArtists.map((artist, index) => (
                         <ArtistCardContainer
                             key={`artist-${index}`}
                             artist={artist}

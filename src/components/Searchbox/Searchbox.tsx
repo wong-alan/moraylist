@@ -55,7 +55,12 @@ const Searchbox = ({
                 </InputAdornment>
             }
             endAdornment={text && clearButton()}
-            slotProps={{ input: { className: "metro-font" } }}
+            slotProps={{
+                input: {
+                    className: "metro-font",
+                    maxLength: 200
+                }
+            }}
             value={text}
             onChange={handleChange}
         />
