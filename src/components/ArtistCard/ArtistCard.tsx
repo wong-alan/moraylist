@@ -43,18 +43,17 @@ const useStyles = (): CSSObject & Partial<InfoSlotStyles> => {
     };
 };
 
-const StyledCard = styled(Card)({
+const StyledCard = styled(Card)(({theme}) => ({
     borderRadius: "1rem",
     position: "relative",
     maxWidth: 300,
     aspectRatio: "1 / 1.2",
-    margin: 10,
+    margin: "0.5vw",
     overflow: "hidden",
-    transition: "all 500ms cubic-bezier(0.5, 0, 0.5, 1)",
-    "@media only screen and (max-width: 600px)": {
-        margin: 5
+    [theme.breakpoints.up("xl")]: {
+        margin: "8px"
     }
-});
+}));
 
 const Content = styled("div")({
     padding: "12px 15px",

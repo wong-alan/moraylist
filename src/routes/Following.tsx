@@ -9,6 +9,7 @@ import { useFollowPageContext } from "../contexts/FollowPageContext";
 import { fetchFollowing } from "../spotify/user";
 import ArtistCardContainer from "../components/ArtistCard/ArtistCardContainer";
 import Searchbox from "../components/Searchbox/Searchbox";
+import NoResults from "../components/NoResults";
 import ErrorSnack from "../components/ErrorSnack";
 import { normalize } from "../utils";
 
@@ -48,7 +49,7 @@ const Following = () => {
     return (
         <section id="following">
             <Container maxWidth="xl">
-                <Grid container spacing={1}>
+                <Grid container>
                     <Grid item xs={0.25} />
                     <Grid item xs={11.5}>
                         <Typography
@@ -80,12 +81,18 @@ const Following = () => {
                         />
                     </Grid>
                     <Grid item xs={0.25} />
-                    {visibleArtists.map((artist, index) => (
-                        <ArtistCardContainer
-                            key={`artist-${index}`}
-                            artist={artist}
-                        />
-                    ))}
+                    { visibleArtists.length ?
+                        <Grid container item spacing={1}>
+                            { visibleArtists.map((artist, index) => (
+                                <ArtistCardContainer
+                                    key={`artist-${index}`}
+                                    artist={artist}
+                                />)) }
+                        </Grid>
+                        : <Grid item xs={12}>
+                            <NoResults input={filterText} />
+                        </Grid>
+                    }
                 </Grid>
             </Container>
             <ErrorSnack
