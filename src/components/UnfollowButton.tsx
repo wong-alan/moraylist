@@ -9,13 +9,13 @@ const doUnfollow = async (
     clientId: string,
     code: string,
     artistId: string,
-    setUnfollow: Dispatch<SetStateAction<boolean>>,
+    onUnfollow: () => void,
     setOpenError: Dispatch<SetStateAction<boolean>>,
     setErrorMessage: Dispatch<SetStateAction<string>>
 ) => {
     const result = await unfollowArtist(clientId, code, artistId);
     if (result) {
-        setUnfollow(true);
+        onUnfollow();
     } else {
         setErrorMessage("Failed to unfollow artist. Try again.");
         setOpenError(true);
@@ -23,10 +23,10 @@ const doUnfollow = async (
 }
 interface UnfollowButtonProps {
     artistId: string,
-    setUnfollow: Dispatch<SetStateAction<boolean>>
+    onUnfollow: () => void
 }
 
-const UnfollowButton = ({ artistId, setUnfollow }: UnfollowButtonProps) => {
+const UnfollowButton = ({ artistId, onUnfollow }: UnfollowButtonProps) => {
     const { clientId, code } = useAppContext();
     const { setOpenError, setErrorMessage } = useFollowPageContext();
 
@@ -41,7 +41,7 @@ const UnfollowButton = ({ artistId, setUnfollow }: UnfollowButtonProps) => {
                     letterSpacing: "0.05em"
                 }}
                 onClick={async () =>
-                    await doUnfollow(clientId, code!, artistId, setUnfollow, setOpenError, setErrorMessage)}
+                    await doUnfollow(clientId, code!, artistId, onUnfollow, setOpenError, setErrorMessage)}
             >
                 Unfollow
             </Button>

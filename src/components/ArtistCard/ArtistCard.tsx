@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import CardMedia from "@mui/material/CardMedia";
 import {
     Info,
@@ -12,11 +11,11 @@ import OpenInAppButton from "../OpenInAppButton";
 import "./ArtistCard.css";
 
 interface ArtistCardProps {
-    artist: Artist
-    setUnfollow: Dispatch<SetStateAction<boolean>>
+    artist: Artist,
+    onUnfollow: () => void
 }
 
-const ArtistCard = ({artist, setUnfollow}: ArtistCardProps) => {
+const ArtistCard = ({artist, onUnfollow}: ArtistCardProps) => {
     return (
         <StyledCard
             className="artist-card"
@@ -59,7 +58,7 @@ const ArtistCard = ({artist, setUnfollow}: ArtistCardProps) => {
                             justifyContent: "space-between"
                         }}
                     >
-                        <UnfollowButton artistId={artist.id} setUnfollow={setUnfollow} />
+                        <UnfollowButton artistId={artist.id} onUnfollow={onUnfollow} />
                         <OpenInAppButton link={artist.uri}/>
                     </InfoSubtitle>
                 </Info>

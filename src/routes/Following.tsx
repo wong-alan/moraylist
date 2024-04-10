@@ -85,7 +85,8 @@ const Following = () => {
                                 <ArtistCardContainer
                                     key={`artist-${index}`}
                                     artist={artist}
-                                />)) }
+                                /> ))
+                            }
                         </Grid>
                         : <Grid item xs={12}>
                             <NoResults input={filterText} />

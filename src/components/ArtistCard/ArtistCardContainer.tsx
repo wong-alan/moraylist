@@ -1,25 +1,30 @@
-import { useState } from "react";
+import { useRef } from "react";
 import Grid from "@mui/material/Grid";
 import ArtistCard from "./ArtistCard";
 import ArtistCardSkeleton from "./ArtistCardSkeleton";
 import "./ArtistCardContainer.css";
+
+const onUnfollow = (
+    cardRef: React.RefObject<HTMLDivElement>,
+) => () => {
+    cardRef.current?.classList.add("unfollow");
+}
 
 interface ArtistCardContainerProps {
     artist: Artist|undefined
 }
 
 const ArtistCardContainer = ({artist}: ArtistCardContainerProps) => {
-    const [unfollowed, setUnfollowed] = useState<boolean>(false);
-
+    const containerRef = useRef<HTMLDivElement>(null);
     return (
         <Grid item
             xs={6} sm={4} md={3} lg={12/5} xl={2}
-            className={unfollowed ? "unfollow" : ""}
+            ref={containerRef}
         >
             { artist ?
                 <ArtistCard
                     artist={artist}
-                    setUnfollow={setUnfollowed}
+                    onUnfollow={onUnfollow(containerRef)}
                 />
                 : <ArtistCardSkeleton />
             }
