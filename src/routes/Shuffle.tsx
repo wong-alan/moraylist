@@ -8,6 +8,7 @@ import { useAppContext } from "../contexts/AppContext";
 import { useShufflePageContext } from "../contexts/ShufflePageContext";
 import { fetchUserPlaylists } from "../spotify/playlist";
 import ShufflePlaylistCard from "../components/PlaylistCard/ShufflePlaylistCard";
+import ShufflePlaylistCardSkeleton from "../components/PlaylistCard/ShufflePlaylistCardSkeleton";
 import Searchbox from "../components/Searchbox/Searchbox";
 import NoResults from "../components/NoResults";
 import ErrorSnack from "../components/ErrorSnack";
@@ -91,7 +92,10 @@ const Shuffle = () => {
                                 justifyContent={"center"}
                                 xs={6} sm={4} md={6} lg={4}
                             >
-                                <ShufflePlaylistCard playlist={playlist}/>
+                                { playlist ?
+                                    <ShufflePlaylistCard playlist={playlist}/>
+                                    : <ShufflePlaylistCardSkeleton />
+                                }
                             </Grid>
                         ))
                         : <Grid item xs={12}>
