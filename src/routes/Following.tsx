@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-
 import { useAppContext } from "../contexts/AppContext";
 import { useFollowPageContext } from "../contexts/FollowPageContext";
 import { fetchFollowing } from "../spotify/user";

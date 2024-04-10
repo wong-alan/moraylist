@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 import Button from "@mui/material/Button";
-
 import { useAppContext } from "../contexts/AppContext";
 import { useFollowPageContext } from "../contexts/FollowPageContext";
 import { unfollowArtist } from "../spotify/user";
