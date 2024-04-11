@@ -5,14 +5,13 @@ import Typography from "@mui/material/Typography";
 import { useAppContext } from "../contexts/AppContext";
 import { useFollowPageContext } from "../contexts/FollowPageContext";
 import { fetchFollowing } from "../spotify/user";
-import ArtistCardContainer from "../components/ArtistCard/ArtistCardContainer";
+import FollowedArtistGrid from "../components/following/FollowedArtistGrid";
 import Searchbox from "../components/Searchbox/Searchbox";
 import NoResults from "../components/NoResults";
 import ErrorSnack from "../components/ErrorSnack";
 import { normalize } from "../utils";
 
-// TODO: Animate grid with GSAP Flip (?)
-// Animate with CSS transitions (?)
+// TODO: Animate filter with GSAP Flip
 
 const Following = () => {
     const { clientId, code } = useAppContext();
@@ -80,17 +79,10 @@ const Following = () => {
                     </Grid>
                     <Grid item xs={0.25} />
                     { visibleArtists.length ?
-                        <Grid container item spacing={1}>
-                            { visibleArtists.map((artist, index) => (
-                                <ArtistCardContainer
-                                    key={`artist-${index}`}
-                                    artist={artist}
-                                /> ))
-                            }
-                        </Grid>
-                        : <Grid item xs={12}>
-                            <NoResults input={filterText} />
-                        </Grid>
+                        <FollowedArtistGrid artists={visibleArtists}/>
+                    : <Grid item xs={12}>
+                        <NoResults input={filterText} />
+                    </Grid>
                     }
                 </Grid>
             </Container>

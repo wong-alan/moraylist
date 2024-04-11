@@ -11,7 +11,10 @@ export default defineConfig({
                 manualChunks: (id) => {
                     if (id.includes("node_modules")) {
                         if (id.includes("@mui")) {
-                            return "vendor_mui";
+                            return "mui";
+                        }
+                        if (id.includes("gsap")) {
+                            return "gsap"
                         }
                         return "vendor";
                     }
