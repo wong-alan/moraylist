@@ -1,8 +1,3 @@
-.artist-card-container.unfollow {
-    display: none;
-    transform-origin: 16% center;
-}
-
 .artist-card::after {
     content: "";
     display: block;

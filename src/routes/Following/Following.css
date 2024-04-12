@@ -1,0 +1,23 @@
+.artist-card-container {
+    transform-origin: 16% center;
+}
+
+.filtered {
+    display: none;
+}
+
+.unfollowed {
+    display: none;
+}
+
+.no-result {
+    display: none;
+}
+
+.no-result.show {
+    display: block;
+}
+
+.no-result.flipping {
+    display: block;
+}

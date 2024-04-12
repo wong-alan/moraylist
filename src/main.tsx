@@ -11,7 +11,7 @@ import Landing from "./routes/Landing/Landing";
 import Profile from "./routes/Profile";
 import Callback from "./routes/Callback";
 import Logout from "./routes/Logout";
-import Following from "./routes/Following";
+import Following from "./routes/Following/Following";
 import Shuffle from "./routes/Shuffle";
 import './index.css'
 

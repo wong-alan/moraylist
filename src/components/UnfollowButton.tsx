@@ -13,14 +13,13 @@ const doUnfollow = async (
     setOpenError: Dispatch<SetStateAction<boolean>>,
     setErrorMessage: Dispatch<SetStateAction<string>>
 ) => {
-    // const result = await unfollowArtist(clientId, code, artistId);
-    // if (result) {
-        console.log(onUnfollow);
+    const result = await unfollowArtist(clientId, code, artistId);
+    if (result) {
         onUnfollow();
-    // } else {
-    //     setErrorMessage("Failed to unfollow artist. Try again.");
-    //     setOpenError(true);
-    // }
+    } else {
+        setErrorMessage("Failed to unfollow artist. Try again.");
+        setOpenError(true);
+    }
 }
 interface UnfollowButtonProps {
     artistId: string,
