@@ -1,23 +1,44 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { gsap, Flip } from "../gsap";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useAppContext } from "../contexts/AppContext";
 import { useFollowPageContext } from "../contexts/FollowPageContext";
 import { fetchFollowing } from "../spotify/user";
-import FollowedArtistGrid from "../components/following/FollowedArtistGrid";
+import ArtistCard from "../components/ArtistCard/ArtistCard";
 import Searchbox from "../components/Searchbox/Searchbox";
 import NoResults from "../components/NoResults";
 import ErrorSnack from "../components/ErrorSnack";
 import { normalize } from "../utils";
 
 // TODO: Animate filter with GSAP Flip
+const animateUnfollow = (
+    allCardRefs: React.RefObject<(HTMLDivElement|null)[]>,
+    removedCard: HTMLDivElement|null
+) => () => {
+    if (!removedCard) {
+        return;
+    }
+    const state = Flip.getState(allCardRefs.current);
+    console.log(`Removing ${removedCard.id}`);
+    removedCard.classList.add("unfollow");
+
+    Flip.from(state, {
+        duration: 0.7,
+        absolute: true,
+        ease: "back.inOut(1.1)",
+        onLeave: elements => gsap.to(elements, {opacity: 0, scale: 0, duration: 0.7})
+    });
+}
 
 const Following = () => {
     const { clientId, code } = useAppContext();
     const { openError, setOpenError, errorMessage, setErrorMessage } = useFollowPageContext();
     const [ artists, setArtists ] = useState<(Artist|undefined)[]>([...Array(25)]);
     const [ filterText, setFilterText ] = useState<string>("");
+
+    const cardRefs = useRef<(HTMLDivElement|null)[]>([]);
 
     useEffect(() => {
         // TODO: Paginate followed artists (?) Infinite scroll (?)
@@ -79,7 +100,24 @@ const Following = () => {
                     </Grid>
                     <Grid item xs={0.25} />
                     { visibleArtists.length ?
-                        <FollowedArtistGrid artists={visibleArtists}/>
+                        <Grid container item spacing={1}>
+                            { visibleArtists.length && visibleArtists.map((artist, index) => {
+                                return (
+                                    <Grid item
+                                        xs={6} sm={4} md={3} lg={12/5} xl={2}
+                                        key={`artist-${index}`}
+                                        className="artist-card-container"
+                                        id={artist?.name}
+                                        ref={(cardRef) => (cardRefs.current[index] = cardRef)}
+                                    >
+                                        <ArtistCard
+                                            artist={artist}
+                                            onUnfollow={animateUnfollow(cardRefs, cardRefs.current[index])}
+                                        />
+                                    </Grid>
+                                );})
+                            }
+                        </Grid>
                     : <Grid item xs={12}>
                         <NoResults input={filterText} />
                     </Grid>

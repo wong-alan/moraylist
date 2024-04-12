@@ -9,13 +9,17 @@ import { StyledCard, Content, useStyles } from "./ArtistCardStyles";
 import UnfollowButton from "../UnfollowButton";
 import OpenInAppButton from "../OpenInAppButton";
 import "./ArtistCard.css";
+import ArtistCardSkeleton from "./ArtistCardSkeleton";
 
 interface ArtistCardProps {
-    artist: Artist,
+    artist: Artist | undefined,
     onUnfollow: () => void
 }
 
 const ArtistCard = ({artist, onUnfollow}: ArtistCardProps) => {
+    if (!artist) {
+        return <ArtistCardSkeleton />
+    }
     return (
         <StyledCard
             className="artist-card"
