@@ -7,7 +7,7 @@ const ProtectedRoot = () => {
 
     // User is not authenticated
     if (!code) {
-        return <Navigate to="/" />
+        return <Navigate to="/" replace />
     }
 
     return <Root />

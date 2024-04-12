@@ -23,3 +23,5 @@ Start up a local instance with `npm run dev`
 Build the project with `npm run build`
 
 Some base components provided by [MUI](https://github.com/mui/material-ui) and [MUI Treasury](https://github.com/siriwatknp/mui-treasury).
+
+Animated with [GSAP](https://gsap.com/docs) + [Flip](https://gsap.com/docs/Plugins/Flip/).
