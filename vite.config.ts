@@ -5,23 +5,6 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    build: {
-        rollupOptions: {
-            output: {
-                manualChunks: (id) => {
-                    if (id.includes("node_modules")) {
-                        if (id.includes("@mui")) {
-                            return "vendor_mui";
-                        }
-                        if (id.includes("gsap")) {
-                            return "vendor_gsap"
-                        }
-                        return "vendor";
-                    }
-                }
-            },
-        },
-    },
     plugins: [
         react(),
         svgr(),

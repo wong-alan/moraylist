@@ -4,6 +4,7 @@
     "id": "/",
     "start_url": ".",
     "display": "standalone",
+    "orientation": "portrait",
     "theme_color": "#121212",
     "background_color": "#121212",
     "description": "A Spotify toolbox.",

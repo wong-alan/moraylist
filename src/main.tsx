@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import AppContextProvider from './contexts/AppContext';
@@ -6,14 +6,15 @@ import FollowPageContextProvider from './contexts/FollowPageContext';
 import ShufflePageContextProvider from './contexts/ShufflePageContext';
 import Root from "./routes/Root";
 import ProtectedRoot from "./routes/ProtectedRoot";
-import ErrorPage from "./routes/ErrorPage/ErrorPage";
-import Landing from "./routes/Landing/Landing";
-import Profile from "./routes/Profile";
-import Callback from "./routes/Callback";
-import Logout from "./routes/Logout";
-import Following from "./routes/Following/Following";
-import Shuffle from "./routes/Shuffle";
 import './index.css'
+
+const ErrorPage = lazy(() => import("./routes/ErrorPage/ErrorPage"));
+const Landing = lazy(() => import("./routes/Landing/Landing"));
+const Profile = lazy(() => import("./routes/Profile"));
+const Callback = lazy(() => import("./routes/Callback"));
+const Logout = lazy(() => import("./routes/Logout"));
+const Following = lazy(() => import("./routes/Following/Following"));
+const Shuffle = lazy(() => import("./routes/Shuffle"));
 
 const titleMap: Record<string, string> = {
     "/": "A Spotify Toolbox",
@@ -30,8 +31,15 @@ export const usePageTitle = () => {
 const router = createBrowserRouter([
     // Public
     {
-        element: <Root />,
-        errorElement: <><Root /><ErrorPage /></>,
+        element:
+            <Suspense>
+                <Root />
+            </Suspense>,
+        errorElement:
+            <Suspense>
+                <Root />
+                <ErrorPage />
+            </Suspense>,
         children: [{
             path: "/",
             element: <Landing />
@@ -45,8 +53,15 @@ const router = createBrowserRouter([
     },
     // Protected
     {
-        element: <ProtectedRoot />,
-        errorElement: <><Root /><ErrorPage /></>,
+        element:
+            <Suspense>
+                <ProtectedRoot />
+            </Suspense>,
+        errorElement:
+            <Suspense>
+                <Root />
+                <ErrorPage />
+            </Suspense>,
         children: [{
             path: "profile",
             element: <Profile />

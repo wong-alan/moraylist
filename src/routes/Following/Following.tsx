@@ -43,7 +43,6 @@ const Following = () => {
         let flipNoRes = false;
 
         const cardState = Flip.getState(cardRefs.current, {simple: true});
-        console.log(cardState);
         const noResState = Flip.getState(noResultRef.current, {simple: true});
 
         const normalizedFilter = normalize(filterText)!.trim();
