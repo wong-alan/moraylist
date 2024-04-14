@@ -55,6 +55,7 @@ const ShuffleButton = ({playlistId, length}: ShuffleButtonProps) => {
                 buttonText='Shuffle'
                 buttonIcon = {<ShuffleIcon />}
                 buttonSize = "small"
+                sx = {{ fontSize: "0.85rem" }}
                 onClick = {async () => await doShuffle(clientId, code!, playlistId, length, setShuffling, setProgress, setLabel)}
             />
     }</>);
