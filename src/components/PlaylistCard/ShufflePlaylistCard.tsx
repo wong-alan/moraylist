@@ -4,13 +4,18 @@ import CardMedia from "@mui/material/CardMedia";
 import { Info, InfoEyebrow, InfoSubtitle, InfoTitle } from "../../mui-treasury/info-basic";
 import { decode } from "html-entities";
 import ShuffleButton from "../ShuffleButton";
+import ShufflePlaylistCardSkeleton from "./ShufflePlaylistCardSkeleton";
 import "./ShufflePlaylistCard.css";
 
 interface ShufflePlaylistCardProps {
-    playlist: Playlist
+    playlist: Playlist | undefined
 }
 
 const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
+    if (!playlist) {
+        return <ShufflePlaylistCardSkeleton />
+    }
+
     return (
         <Card raised className="playlist-card">
             <CardMedia
@@ -69,7 +74,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
                 >
                     <InfoEyebrow className="playlist-card-eyebrow">{playlist.tracks.total.toLocaleString()} tracks</InfoEyebrow>
                     <InfoTitle className="playlist-card-title">{playlist.name}</InfoTitle>
-                    <InfoSubtitle className="playlist-card-subtitle">
+                    <InfoSubtitle className="playlist-card-subtitle description">
                         {decode(playlist.description)}
                     </InfoSubtitle>
                 </Info>

@@ -1,24 +1,28 @@
-import { useEffect, useMemo, useState } from "react";
-
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { gsap, Flip } from "../gsap";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-
 import { useAppContext } from "../contexts/AppContext";
 import { useShufflePageContext } from "../contexts/ShufflePageContext";
 import { fetchUserPlaylists } from "../spotify/playlist";
 import ShufflePlaylistCard from "../components/PlaylistCard/ShufflePlaylistCard";
-import ShufflePlaylistCardSkeleton from "../components/PlaylistCard/ShufflePlaylistCardSkeleton";
 import Searchbox from "../components/Searchbox/Searchbox";
 import NoResults from "../components/NoResults";
 import ErrorSnack from "../components/ErrorSnack";
 import { normalize } from "../utils";
+import "./filter.css";
 
 const Shuffle = () => {
     const { clientId, code, profile } = useAppContext();
     const { openError, setOpenError, errorMessage, setErrorMessage } = useShufflePageContext();
     const [ playlists, setPlaylists ] = useState<(Playlist|undefined)[]>([...Array(16)]);
     const [ filterText, setFilterText ] = useState<string>("");
+    const [ playlistMap, setPlaylistMap ] = useState<Map<string, Playlist>>();
+
+    const playlistRefs = useRef<(HTMLDivElement|null)[]>([]);
+    const noResultRef = useRef<HTMLDivElement>(null);
+    const firstRender = useRef<boolean>(true);
 
     useEffect(() => {
         // TODO: Paginate playlists (?)
@@ -27,6 +31,7 @@ const Shuffle = () => {
         }
         fetchUserPlaylists(clientId, code!, profile!.id).then(data => {
             if (data) {
+                setPlaylistMap(new Map(data.map((playlist) => [playlist.name, playlist])));
                 setPlaylists(data);
             } else {
                 setErrorMessage("Eror loading playlists. Try again.");
@@ -35,19 +40,93 @@ const Shuffle = () => {
         });
     }, [profile]);
 
-    const visiblePlaylists = useMemo(
-        () => {
-            const normalizedFilter = normalize(filterText)!.trim();
-            if (normalizedFilter === "") {
-                return playlists;
+    useLayoutEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false;
+            return;
+        }
+        // Proxy for if playlists have been fetched
+        if (!playlistMap) {
+            return;
+        }
+        let flipNoRes = false;
+
+        const cardState = Flip.getState(playlistRefs.current, {simple: true});
+        const noResState = Flip.getState(noResultRef.current, {simple: true});
+
+        const normalizedFilter = normalize(filterText)!.trim();
+
+        // Handle filtering cards from search box
+        playlistRefs.current.forEach((playlist) => {
+            const playlistInfo = playlistMap.get(playlist!.id);
+            if (!playlistInfo) {
+                return;
             }
-            return playlists.filter((playlist) =>
-                normalize(playlist?.name)?.includes(normalizedFilter) ||
-                normalize(playlist?.description)?.includes(normalizedFilter)
-            );
-        },
-        [playlists, filterText]
-    );
+            if (normalize(playlistInfo.name)?.includes(normalizedFilter) ||
+                normalize(playlistInfo.description)?.includes(normalizedFilter)
+            ) {
+                playlist!.classList.remove("filtered");
+            } else {
+                playlist!.classList.add("filtered");
+            }
+        });
+
+        // Handle showing "no result" text
+        if (playlistRefs.current.every((playlist) =>
+            playlist!.classList.contains("filtered"))
+        ) {
+            if (!noResultRef.current!.classList.contains("show")) {
+                noResultRef.current!.classList.add("show");
+                flipNoRes = true;
+            }
+        } else {
+            if (noResultRef.current!.classList.contains("show")) {
+                noResultRef.current!.classList.remove("show");
+                flipNoRes = true;
+            }
+        }
+
+        Flip.from(cardState, {
+            duration: 0.4,
+            absolute: true,
+            ease: "power2.inOut",
+            simple: true,
+            onEnter: elements => gsap.fromTo(
+                elements,
+                {
+                  opacity: 0,
+                  scale: 0
+                }, {
+                  opacity: 1,
+                  scale: 1,
+                  delay: 0.2,
+                  duration: 0.3
+                }
+            ),
+            onLeave: elements => gsap.to(elements, {opacity: 0, scale: 0, duration: 0.3})
+        });
+
+        if (flipNoRes) {
+            Flip.from(noResState, {
+                // Absolute position when leaving so "no result" element doesn't
+                // get pushed by the re-entering cards
+                absolute: !noResultRef.current!.classList.contains("show"),
+                toggleClass: "flipping",
+                simple: true,
+                onEnter: elements => {
+                    return gsap.fromTo(elements,
+                    {
+                        opacity: 0
+                    }, {
+                        opacity: 1,
+                        delay: 0.15,
+                        duration: 0.2
+                    })
+                },
+                onLeave: elements => gsap.to(elements, {opacity: 0, duration: 0.15})
+            });
+        }
+    }, [filterText]);
 
     return (
         <section id="shuffle">
@@ -85,23 +164,26 @@ const Shuffle = () => {
                         />
                     </Grid>
                     <Grid item xs={0.25} />
-                    { visiblePlaylists.length ?
-                        visiblePlaylists.map((playlist, index) => (
-                            <Grid item container
-                                key={`playlist-${index}`}
-                                justifyContent={"center"}
-                                xs={6} sm={4} md={6} lg={4}
-                            >
-                                { playlist ?
-                                    <ShufflePlaylistCard playlist={playlist}/>
-                                    : <ShufflePlaylistCardSkeleton />
-                                }
-                            </Grid>
-                        ))
-                        : <Grid item xs={12}>
-                            <NoResults input={filterText} />
+                    { playlists.map((playlist, index) => (
+                        <Grid item container
+                            xs={6} sm={4} md={6} lg={4}
+                            key={`playlist-${index}`}
+                            className="playlist-card-container"
+                            id={playlist?.name}
+                            ref={(playlistRef) => (playlistRefs.current[index] = playlistRef)}
+                            justifyContent={"center"}
+                            width={"auto"} // GSAP will record "width: 100%" and animate weird without this
+                        >
+                            <ShufflePlaylistCard playlist={playlist}/>
                         </Grid>
+                        ))
                     }
+                    <Grid item xs={12}
+                        className="no-result"
+                        ref={noResultRef}
+                    >
+                        <NoResults input={filterText} />
+                    </Grid>
                 </Grid>
             </Container>
             <ErrorSnack

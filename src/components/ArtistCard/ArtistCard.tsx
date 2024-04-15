@@ -8,8 +8,8 @@ import {
 import { StyledCard, Content, useStyles } from "./ArtistCardStyles";
 import UnfollowButton from "../UnfollowButton";
 import OpenInAppButton from "../OpenInAppButton";
-import "./ArtistCard.css";
 import ArtistCardSkeleton from "./ArtistCardSkeleton";
+import "./ArtistCard.css";
 
 interface ArtistCardProps {
     artist: Artist | undefined,

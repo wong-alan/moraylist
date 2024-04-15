@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppContextProvider from './contexts/AppContext';
 import Root from "./routes/Root";
 import ProtectedRoot from "./routes/ProtectedRoot";
@@ -14,20 +14,8 @@ const Landing = lazy(() => import("./routes/Landing/Landing"));
 const Profile = lazy(() => import("./routes/Profile"));
 const Callback = lazy(() => import("./routes/Callback"));
 const Logout = lazy(() => import("./routes/Logout"));
-const Following = lazy(() => import("./routes/Following/Following"));
+const Following = lazy(() => import("./routes/Following"));
 const Shuffle = lazy(() => import("./routes/Shuffle"));
-
-const titleMap: Record<string, string> = {
-    "/": "A Spotify Toolbox",
-    "/profile": "Your Profile",
-    "/following": "Your Followed Artists",
-    "/shuffle": "Shuffle Playlists",
-};
-
-export const usePageTitle = () => {
-    const location = useLocation().pathname;
-    document.title = `${titleMap[location] ?? 'A Spotify Toolbox'} | Splotchify`
-}
 
 const router = createBrowserRouter([
     { // Public

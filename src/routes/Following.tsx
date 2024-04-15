@@ -1,17 +1,17 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { gsap, Flip } from "../../gsap";
+import { gsap, Flip } from "../gsap";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { useAppContext } from "../../contexts/AppContext";
-import { useFollowPageContext } from "../../contexts/FollowPageContext";
-import { fetchFollowing } from "../../spotify/user";
-import ArtistCard from "../../components/ArtistCard/ArtistCard";
-import Searchbox from "../../components/Searchbox/Searchbox";
-import NoResults from "../../components/NoResults";
-import ErrorSnack from "../../components/ErrorSnack";
-import { normalize } from "../../utils";
-import "./Following.css";
+import { useAppContext } from "../contexts/AppContext";
+import { useFollowPageContext } from "../contexts/FollowPageContext";
+import { fetchFollowing } from "../spotify/user";
+import ArtistCard from "../components/ArtistCard/ArtistCard";
+import Searchbox from "../components/Searchbox/Searchbox";
+import NoResults from "../components/NoResults";
+import ErrorSnack from "../components/ErrorSnack";
+import { normalize } from "../utils";
+import "./filter.css";
 
 const Following = () => {
     const { clientId, code } = useAppContext();
@@ -40,6 +40,9 @@ const Following = () => {
             firstRender.current = false;
             return;
         }
+        if (!artists.length || artists[0] == undefined) {
+            return;
+        }
         let flipNoRes = false;
 
         const cardState = Flip.getState(cardRefs.current, {simple: true});
@@ -49,7 +52,7 @@ const Following = () => {
 
         // Handle filtering cards from search box
         cardRefs.current.forEach((card) => {
-            if (normalize(card!.id)!.includes(normalizedFilter)) {
+            if (normalize(card!.id)?.includes(normalizedFilter)) {
                 card!.classList.remove("filtered");
             } else {
                 card!.classList.add("filtered");
@@ -105,7 +108,7 @@ const Following = () => {
                         opacity: 0
                     }, {
                         opacity: 1,
-                        delay: 0.1,
+                        delay: 0.15,
                         duration: 0.2
                     })
                 },
@@ -192,22 +195,20 @@ const Following = () => {
                     </Grid>
                     <Grid item xs={0.25} />
                     <Grid container item spacing={1}>
-                        { artists.map((artist, index) => {
-                            return (
-                                <Grid item
-                                    xs={6} sm={4} md={3} lg={12/5} xl={2}
-                                    key={`artist-${index}`}
-                                    className="artist-card-container"
-                                    id={artist?.name}
-                                    ref={(cardRef) => (cardRefs.current[index] = cardRef)}
-                                >
-                                    <ArtistCard
-                                        artist={artist}
-                                        onUnfollow={animateUnfollow(cardRefs.current[index])}
-                                    />
-                                </Grid>
-                            );})
-                        }
+                        { artists.map((artist, index) =>
+                            <Grid item
+                                xs={6} sm={4} md={3} lg={12/5} xl={2}
+                                key={`artist-${index}`}
+                                className="artist-card-container"
+                                id={artist?.name}
+                                ref={(cardRef) => (cardRefs.current[index] = cardRef)}
+                            >
+                                <ArtistCard
+                                    artist={artist}
+                                    onUnfollow={animateUnfollow(cardRefs.current[index])}
+                                />
+                            </Grid>
+                        )}
                     </Grid>
                     <Grid item xs={12}
                         className="no-result"

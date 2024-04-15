@@ -50,7 +50,7 @@ const UserMenu = () => {
                     }
             }}>
                 <Avatar
-                    alt="Profile picture"
+                    alt={profile?.display_name ?? "Profile picture"}
                     src={profilePicUrl}
                 />
             </IconButton>
