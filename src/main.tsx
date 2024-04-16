@@ -16,6 +16,7 @@ const Callback = lazy(() => import("./routes/Callback"));
 const Logout = lazy(() => import("./routes/Logout"));
 const Following = lazy(() => import("./routes/Following"));
 const Shuffle = lazy(() => import("./routes/Shuffle"));
+const Recent = lazy(() => import("./routes/Recent"));
 
 const router = createBrowserRouter([
     { // Public
@@ -64,6 +65,12 @@ const router = createBrowserRouter([
                     <ShufflePageContextProvider>
                         <Shuffle />
                     </ShufflePageContextProvider>
+                </Suspense>
+        }, {
+            path: "recent",
+            element:
+                <Suspense>
+                    <Recent />
                 </Suspense>
         }]
     }

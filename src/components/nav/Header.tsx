@@ -16,7 +16,7 @@ import SplotchifyIcon from "../icons/SplotchifyIcon";
 import UserMenu from "./UserMenu";
 import Login from './Login';
 import { useAppContext } from '../../contexts/AppContext';
-import pages from '../../pages';
+import { navPages } from '../../pages';
 
 const noLoginOrProfile = ["/logout", "/callback"];
 
@@ -92,7 +92,7 @@ const Header = () => {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                            {pages.map((page) => (
+                            {navPages.map((page) => (
                                 <MenuItem key={page.name+"-sm"} onClick={handleCloseNavMenu}>
                                     <Link to={page.url} className="metro-font link-style nav-link">
                                         {page.name}
@@ -141,7 +141,7 @@ const Header = () => {
                     {/* Large menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         { code &&
-                            pages.map((page) => (
+                            navPages.map((page) => (
                                 <Link to={page.url} key={page.name+"-lg"} className="link-style">
                                     <Button
                                         onClick={handleCloseNavMenu}

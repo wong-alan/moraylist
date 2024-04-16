@@ -3,7 +3,10 @@ import { getAccessToken } from "./auth";
 const userEndpoint = "https://api.spotify.com/v1/me"
 const followingEndpoint = userEndpoint + "/following";
 
-export const fetchProfile = async (clientId: string, code: string): Promise<UserProfile | null> => {
+export const fetchProfile = async (
+    clientId: string,
+    code: string
+): Promise<UserProfile | null> => {
     const accessToken = await getAccessToken(clientId, code);
     if (!accessToken) {
         return null;
@@ -17,7 +20,11 @@ export const fetchProfile = async (clientId: string, code: string): Promise<User
     return profile;
 }
 
-export const fetchFollowing = async (clientId: string, code: string, after?: string): Promise<Artist[] | null> => {
+export const fetchFollowing = async (
+    clientId: string,
+    code: string,
+    after?: string
+): Promise<Artist[] | null> => {
     const accessToken = await getAccessToken(clientId, code);
     if (!accessToken) {
         return null;
@@ -44,7 +51,11 @@ export const fetchFollowing = async (clientId: string, code: string, after?: str
     return followingArtists;
 }
 
-export const unfollowArtist = async (clientId: string, code: string, artistId: string): Promise<boolean> => {
+export const unfollowArtist = async (
+    clientId: string,
+    code: string,
+    artistId: string
+): Promise<boolean> => {
     const accessToken = await getAccessToken(clientId, code);
     if (!accessToken) {
         return false;

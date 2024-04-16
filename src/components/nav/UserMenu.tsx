@@ -15,7 +15,7 @@ import { SPLOTCHIFY_SVG } from "../icons/SplotchifyIcon";
 
 const UserMenu = () => {
     const { clientId, code, profile, setProfile } = useAppContext();
-    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+    const [anchorElUser, setAnchorElUser] = useState<HTMLElement|null>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
