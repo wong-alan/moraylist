@@ -22,7 +22,10 @@ const ButtonBase = ({
             variant="contained"
             size={buttonSize}
             className="button-base"
-            sx={{ boxShadow: 5, ...sx }}
+            sx={{
+                boxShadow: 5,
+                textDecorationLine: "none !important",
+                ...sx }}
             startIcon={buttonIcon}
             onClick={onClick}
         >
