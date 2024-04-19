@@ -33,7 +33,7 @@ const Following = () => {
                 setOpenError(true);
             }
         })
-    }, []);
+    }, [code]);
 
     useLayoutEffect(() => {
         if (firstRender.current) {

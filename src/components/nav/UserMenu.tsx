@@ -30,7 +30,7 @@ const UserMenu = () => {
             return;
         }
         fetchProfile(clientId, code!).then(data => setProfile(data));
-    }, []);
+    }, [code]);
 
     const profilePicUrl = profile?.images[0]?.url ?
         profile.images[0].url :

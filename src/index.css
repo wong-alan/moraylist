@@ -126,3 +126,7 @@ a.light-link {
     color: #000000;
     opacity: 0.70;;
 }
+
+.hover-underline:hover {
+    text-decoration: underline;
+}

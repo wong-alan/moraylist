@@ -38,7 +38,7 @@ const Shuffle = () => {
                 setOpenError(true);
             }
         });
-    }, [profile]);
+    }, [code, profile]);
 
     useLayoutEffect(() => {
         if (firstRender.current) {
