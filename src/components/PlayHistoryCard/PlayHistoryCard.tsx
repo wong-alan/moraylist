@@ -1,0 +1,68 @@
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import ExplicitRounded from "@mui/icons-material/ExplicitRounded";
+import "./PlayHistoryCard.css";
+
+interface PlayHistoryCardProps {
+    playHistory: PlayHistory
+}
+
+const PlayHistoryCard = ({playHistory}: PlayHistoryCardProps) => {
+    const dateTimeFormat = new Intl.DateTimeFormat(
+        undefined, {
+            dateStyle: "short",
+            timeStyle: "short",
+        }
+    );
+
+    return (
+        <Card
+            className="history-card"
+            onClick={ ()=> window.location.href = playHistory.track.uri }
+        >
+            <CardMedia
+                className="history-card-media"
+                component="img"
+                src={playHistory.track.album.images.at(-1)?.url}
+                alt={`Album: ${playHistory.track.album.name}`}
+            />
+            <CardContent
+                className="history-card-content"
+            >
+                <Box>
+                    <Typography
+                        className="history-card-track"
+                    >
+                        { playHistory.track.name }
+                    </Typography>
+                    <Typography>
+                        { playHistory.track.artists
+                            .map<React.ReactNode>((artist, index) =>
+                                <a
+                                    className="link-style hover-underline history-card-artist"
+                                    key={`artist-${index}`}
+                                    href={artist.uri}
+                                >
+                                    { playHistory.track.explicit && <ExplicitRounded /> }
+                                    {artist.name}
+                                </a>)
+                            .reduce((prev, curr) => [prev, ", ", curr])
+                        }
+                    </Typography>
+                </Box>
+                <Box
+                    className="history-card-time"
+                >
+                    <Typography>
+                        { dateTimeFormat.format(Date.parse(playHistory.played_at)) }
+                    </Typography>
+                </Box>
+            </CardContent>
+        </Card>
+    );
+}
+
+export default PlayHistoryCard;

@@ -12,7 +12,7 @@ const Profile = () => {
             return;
         }
         fetchProfile(clientId, code!).then(data => setProfile(data));
-    }, []);
+    }, [code]);
 
     return (
         <section id="profile"

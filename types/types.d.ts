@@ -92,7 +92,7 @@ interface Playlist {
     uri: string
 }
 
-interface PlayHistory {
+interface RecentPlayHistory {
     href: string;
     limit: number;
     next?: string;
@@ -101,10 +101,10 @@ interface PlayHistory {
         before: string;
     };
     total: number;
-    items: PlayHistoryObject[];
+    items: PlayHistory[];
 }
 
-interface PlayHistoryObject {
+interface PlayHistory {
     track: Track;
     played_at: string;
     context: {
