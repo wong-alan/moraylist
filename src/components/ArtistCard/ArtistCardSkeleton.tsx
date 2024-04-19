@@ -17,7 +17,7 @@ const ArtistCardSkeleton = () => {
                             ...BASE_SKELETON_SX,
                             width: "75%",
                         }}
-                        />
+                    />
                     <Skeleton variant="text" animation="wave"
                         sx={{
                             ...BASE_SKELETON_SX,
