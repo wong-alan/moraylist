@@ -34,18 +34,12 @@ const PlayHistoryCard = ({playHistory}: PlayHistoryCardProps) => {
                 src={playHistory.track.album.images.at(-1)?.url}
                 alt={`Album: ${playHistory.track.album.name}`}
             />
-            <CardContent
-                className="history-card-content"
-            >
+            <CardContent className="history-card-content">
                 <Box>
-                    <Typography
-                        className="history-card-track"
-                    >
+                    <Typography className="history-card-track">
                         { playHistory.track.name }
                     </Typography>
-                    <Typography
-                        className="history-card-artist"
-                    >
+                    <Typography className="history-card-artist">
                         { playHistory.track.explicit && <ExplicitRounded /> }
                         { playHistory.track.artists
                             .map<React.ReactNode>((artist, index) =>
@@ -60,9 +54,7 @@ const PlayHistoryCard = ({playHistory}: PlayHistoryCardProps) => {
                         }
                     </Typography>
                 </Box>
-                <Box
-                    className="history-card-time"
-                >
+                <Box className="history-card-time">
                     <Typography>
                         { dateTimeFormat.format(Date.parse(playHistory.played_at)) }
                     </Typography>

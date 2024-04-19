@@ -61,9 +61,9 @@ const ShufflePlaylistCardSkeleton  = () => {
                 <div className="playlist-card-button-container">
                     <Skeleton variant="rounded" animation="wave"
                         sx={{
-                                ...BASE_SKELETON_SX,
-                                width: "85px",
-                                height: "28px",
+                            ...BASE_SKELETON_SX,
+                            width: "85px",
+                            height: "28px",
                         }}
                     />
                 </div>

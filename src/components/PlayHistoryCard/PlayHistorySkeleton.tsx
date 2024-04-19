@@ -6,18 +6,15 @@ import { BASE_SKELETON_SX } from "../../utils";
 
 const PlayHistoryCardSkeleton = () => {
     return (
-        <Card
-            className="history-card skeleton"
-        >
+        <Card className="history-card skeleton">
             <Skeleton variant="rounded" animation="wave"
-                className="history-card-media"
                 sx={{
-                    ...BASE_SKELETON_SX
+                    ...BASE_SKELETON_SX,
+                    height: "50px",
+                    width: "55.547px"
                 }}
             />
-            <CardContent
-                className="history-card-content"
-            >
+            <CardContent className="history-card-content">
                 <Box>
                     <Skeleton variant="text" animation="wave"
                         sx={{
@@ -34,9 +31,7 @@ const PlayHistoryCardSkeleton = () => {
                         }}
                     />
                 </Box>
-                <Box
-                    className="history-card-time"
-                >
+                <Box className="history-card-time">
                     <Skeleton variant="text" animation="wave"
                         sx={{
                             ...BASE_SKELETON_SX,
