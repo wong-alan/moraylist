@@ -8,9 +8,9 @@ Try it out at [www.splotchify.com](https://www.splotchify.com)
 ### Current supported functions
 - Shuffle your playlists
 - Manage your followed artists
+- View recently played
 
 ### Planned future functions
-- View recently played
 - View your top genres
 - Analyze playlist tempo
 - Analyze playlist danceability
