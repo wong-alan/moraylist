@@ -43,15 +43,17 @@ const PlayHistoryCard = ({playHistory}: PlayHistoryCardProps) => {
                     >
                         { playHistory.track.name }
                     </Typography>
-                    <Typography>
+                    <Typography
+                        className="history-card-artist"
+                    >
+                        { playHistory.track.explicit && <ExplicitRounded /> }
                         { playHistory.track.artists
                             .map<React.ReactNode>((artist, index) =>
                                 <a
-                                    className="link-style hover-underline history-card-artist"
+                                    className="link-style hover-underline"
                                     key={`artist-${index}`}
                                     href={artist.uri}
                                 >
-                                    { playHistory.track.explicit && <ExplicitRounded /> }
                                     {artist.name}
                                 </a>)
                             .reduce((prev, curr) => [prev, ", ", curr])
