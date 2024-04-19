@@ -27,7 +27,6 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
         key: "recent",
         icon: <HistoryRoundedIcon />,
         content: "View recently played",
-        tooltip: "Coming soon"
     },{
         key: "genres",
         icon: <StarRoundedIcon />,
