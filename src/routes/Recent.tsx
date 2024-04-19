@@ -8,11 +8,16 @@ import PlayHistoryCard from "../components/PlayHistoryCard/PlayHistoryCard";
 
 const Recent = () => {
     const { clientId, code } = useAppContext();
-    const [ playHistory, setPlayHistory ] = useState<PlayHistory[]|null>(null);
+    const [ playHistory, setPlayHistory ] = useState<(PlayHistory|undefined)[]>([...Array(25)]);
 
     useEffect(() => {
-        fetchPlayHistory(clientId, code!, Date.now(), "before")
-            .then(data => setPlayHistory(data));
+        fetchPlayHistory(clientId, code!, Date.now(), "before").then(data => {
+            if (data) {
+                setPlayHistory(data);
+            } else {
+                // TODO: Set error
+            }
+        });
     }, [code]);
 
     return (
@@ -44,19 +49,16 @@ const Recent = () => {
                         xs={12}
                         justifyContent={"center"}
                     >
-                        { playHistory ? playHistory.map((track, index) => {
-                            return (
-                                <Grid item container
-                                    xs={12}
-                                    key={`track-${index}`}
-                                >
-                                    <PlayHistoryCard
-                                        playHistory={track}
-                                    />
-                                </Grid>
-                            );})
-                            : "Fetching history..."
-                        }
+                        { playHistory.map((track, index) =>
+                            <Grid item container
+                                xs={12}
+                                key={`track-${index}`}
+                            >
+                                <PlayHistoryCard
+                                    playHistory={track}
+                                />
+                            </Grid>
+                        )}
                     </Grid>
                 </Grid>
             </Container>

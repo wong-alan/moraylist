@@ -19,6 +19,11 @@
     background-color: #202020;
 }
 
+.history-card.skeleton {
+    cursor: unset;
+    background-color: #242424;
+}
+
 .history-card-media {
     height: 50px;
     width: 50px;

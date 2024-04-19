@@ -4,19 +4,24 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import ExplicitRounded from "@mui/icons-material/ExplicitRounded";
+import PlayHistoryCardSkeleton from "./PlayHistorySkeleton";
 import "./PlayHistoryCard.css";
 
+const dateTimeFormat = Intl.DateTimeFormat(
+    undefined, {
+        dateStyle: "short",
+        timeStyle: "short",
+    }
+);
+
 interface PlayHistoryCardProps {
-    playHistory: PlayHistory
+    playHistory: PlayHistory|undefined
 }
 
 const PlayHistoryCard = ({playHistory}: PlayHistoryCardProps) => {
-    const dateTimeFormat = new Intl.DateTimeFormat(
-        undefined, {
-            dateStyle: "short",
-            timeStyle: "short",
-        }
-    );
+    if (!playHistory) {
+        return <PlayHistoryCardSkeleton />
+    }
 
     return (
         <Card
