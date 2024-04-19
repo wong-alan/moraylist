@@ -5,9 +5,12 @@ import Container from "@mui/material/Container";
 import { useAppContext } from "../contexts/AppContext";
 import { fetchPlayHistory } from "../spotify/player";
 import PlayHistoryCard from "../components/PlayHistoryCard/PlayHistoryCard";
+import ErrorSnack from "../components/ErrorSnack";
+import { useRecentPageContext } from "../contexts/RecentPageContext";
 
 const Recent = () => {
     const { clientId, code } = useAppContext();
+    const { openError, setOpenError, errorMessage, setErrorMessage } = useRecentPageContext();
     const [ playHistory, setPlayHistory ] = useState<(PlayHistory|undefined)[]>([...Array(25)]);
 
     useEffect(() => {
@@ -15,7 +18,8 @@ const Recent = () => {
             if (data) {
                 setPlayHistory(data);
             } else {
-                // TODO: Set error
+                setErrorMessage("Eror loading history. Try again.");
+                setOpenError(true);
             }
         });
     }, [code]);
@@ -62,6 +66,11 @@ const Recent = () => {
                     </Grid>
                 </Grid>
             </Container>
+            <ErrorSnack
+                message={errorMessage}
+                open={openError}
+                setOpen={setOpenError}
+            />
         </section>
     );
 }

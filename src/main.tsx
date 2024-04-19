@@ -8,6 +8,7 @@ import './index.css'
 
 const FollowPageContextProvider = lazy(() => import ("./contexts/FollowPageContext"));
 const ShufflePageContextProvider = lazy(() => import ("./contexts/ShufflePageContext"));
+const RecentPageContextProvider = lazy(() => import ("./contexts/RecentPageContext"));
 
 const ErrorPage = lazy(() => import("./routes/ErrorPage/ErrorPage"));
 const Landing = lazy(() => import("./routes/Landing/Landing"));
@@ -70,7 +71,9 @@ const router = createBrowserRouter([
             path: "recent",
             element:
                 <Suspense>
-                    <Recent />
+                    <RecentPageContextProvider>
+                        <Recent />
+                    </RecentPageContextProvider>
                 </Suspense>
         }]
     }
