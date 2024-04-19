@@ -1,92 +1,94 @@
-.history-card {
-    padding: 10px 24px;
-    margin: 0px auto 1px auto;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    background-color: #242424;
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
-.history-card:hover {
-    background-color: #363636;
-}
-
-.history-card:active {
-    background-color: #202020;
-}
-
-.history-card.skeleton {
-    cursor: unset;
-    background-color: #242424;
-}
-
-.history-card-media {
-    height: 50px;
-    width: 50px;
-    border-radius: 8px;
-}
-
-.history-card-content {
-    display: flex;
-    flex-flow: row nowrap;
-    padding: 0px 0px 0px 10px !important;
-    width: 100%;
-}
-
-.history-card-artist {
-    font-size: 0.9rem;
-    color: #BABABA !important;
-
-    svg {
-        font-size: 1.2rem;
-        transform: translateY(-2px);
-        margin-right: 2px;
-    }
-
-    > * {
-        vertical-align: middle;
-    }
-}
-
-.history-card-time {
-    display: flex;
-    margin-left: auto;
-
-    p {
-        color: #BABABA;
-        font-size: 0.85rem;
-        text-align: right;
-        min-width: 125px;
-    }
-}
-
-@media (max-width: 600px) {
+#recent {
     .history-card {
-        padding: 6px 10px;
+        padding: 10px 24px;
+        margin: 0px auto 1px auto;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+        background-color: #242424;
+        color: #FFFFFF;
+        cursor: pointer;
     }
 
-    .history-card-track {
-        font-size: 0.9rem;
+    .history-card:hover {
+        background-color: #363636;
+    }
+
+    .history-card:active {
+        background-color: #202020;
+    }
+
+    .history-card.skeleton {
+        cursor: unset;
+        background-color: #242424;
+    }
+
+    .history-card-media {
+        height: 50px;
+        width: 50px;
+        border-radius: 8px;
+    }
+
+    .history-card-content {
+        display: flex;
+        flex-flow: row nowrap;
+        padding: 0px 0px 0px 10px !important;
+        width: 100%;
     }
 
     .history-card-artist {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        color: #BABABA !important;
 
         svg {
-            font-size: 1rem;
+            font-size: 1.2rem;
+            transform: translateY(-2px);
+            margin-right: 2px;
+        }
+
+        > * {
+            vertical-align: middle;
         }
     }
 
     .history-card-time {
-        align-items: flex-end;
+        display: flex;
+        margin-left: auto;
 
         p {
+            color: #BABABA;
+            font-size: 0.85rem;
+            text-align: right;
+            min-width: 125px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .history-card {
+            padding: 6px 10px;
+        }
+
+        .history-card-track {
+            font-size: 0.9rem;
+        }
+
+        .history-card-artist {
             font-size: 0.8rem;
-            min-width: 118px;
+
+            svg {
+                font-size: 1rem;
+            }
+        }
+
+        .history-card-time {
+            align-items: flex-end;
+
+            p {
+                font-size: 0.8rem;
+                min-width: 118px;
+            }
         }
     }
 }
