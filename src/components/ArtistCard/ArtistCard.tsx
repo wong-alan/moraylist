@@ -6,8 +6,8 @@ import {
     InfoTitle,
 } from "../../mui-treasury/info-basic";
 import { StyledCard, Content, useStyles } from "./ArtistCardStyles";
-import UnfollowButton from "../UnfollowButton";
-import OpenInAppButton from "../OpenInAppButton";
+import UnfollowButton from "../buttons/UnfollowButton";
+import OpenInAppButton from "../buttons/OpenInAppButton";
 import ArtistCardSkeleton from "./ArtistCardSkeleton";
 import "./ArtistCard.css";
 
@@ -28,6 +28,7 @@ const ArtistCard = ({artist, onUnfollow}: ArtistCardProps) => {
             <CardMedia
                 className="artist-card-media"
                 component="img"
+                loading="lazy"
                 alt={artist.name}
                 image={artist.images[1]?.url ?? artist.images[0].url}
             />

@@ -18,6 +18,7 @@ const Logout = lazy(() => import("./routes/Logout"));
 const Following = lazy(() => import("./routes/Following"));
 const Shuffle = lazy(() => import("./routes/Shuffle"));
 const Recent = lazy(() => import("./routes/Recent"));
+const AnalyzePlaylist = lazy(() => import("./routes/AnalyzePlaylist"));
 
 const router = createBrowserRouter([
     { // Public
@@ -74,6 +75,12 @@ const router = createBrowserRouter([
                     <RecentPageContextProvider>
                         <Recent />
                     </RecentPageContextProvider>
+                </Suspense>
+        }, {
+            path: "analyze",
+            element:
+                <Suspense>
+                    <AnalyzePlaylist />
                 </Suspense>
         }]
     }

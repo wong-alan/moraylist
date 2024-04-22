@@ -1,5 +1,5 @@
 import ButtonBase from "./ButtonBase/ButtonBase";
-import SpotifyIcon from "./icons/SpotifyIcon";
+import SpotifyIcon from "../icons/SpotifyIcon";
 
 const SpotifyButton = () => {
     return (
