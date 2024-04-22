@@ -3,7 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Info, InfoEyebrow, InfoSubtitle, InfoTitle } from "../../mui-treasury/info-basic";
 import { decode } from "html-entities";
-import ShuffleButton from "../ShuffleButton";
+import ShuffleButton from "../buttons/ShuffleButton";
 import ShufflePlaylistCardSkeleton from "./ShufflePlaylistCardSkeleton";
 import "./ShufflePlaylistCard.css";
 
@@ -21,6 +21,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
             <CardMedia
                 className="playlist-card-media"
                 component="img"
+                loading="lazy"
                 alt={`Playlist image: ${playlist.name}`}
                 src={playlist.images[1]?.url ?? playlist.images[0].url}
             />

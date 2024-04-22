@@ -6,9 +6,10 @@ interface page {
 }
 
 export const navPages: page[] = [
-    { name: "My Followed Artists", url: "/following" },
-    { name: "Shuffle Playlists",   url: "/shuffle" },
-    { name: "Recently Played",     url: "/recent" }
+    { name: "Followed Artists",  url: "/following" },
+    { name: "Shuffle Playlists", url: "/shuffle" },
+    { name: "Recently Played",   url: "/recent" },
+    { name: "Analyze Playlists", url: "/analyze"}
 ];
 
 const titleMap: Record<string, string> = {
@@ -17,6 +18,7 @@ const titleMap: Record<string, string> = {
     "/following": "Your Followed Artists",
     "/shuffle": "Shuffle Playlists",
     "/recent": "Recently Played",
+    "/analyze": "Analyze Playlists"
 };
 
 export const usePageTitle = () => {

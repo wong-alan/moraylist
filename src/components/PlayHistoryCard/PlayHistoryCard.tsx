@@ -31,6 +31,7 @@ const PlayHistoryCard = ({playHistory}: PlayHistoryCardProps) => {
             <CardMedia
                 className="history-card-media"
                 component="img"
+                loading="lazy"
                 src={playHistory.track.album.images.at(-1)?.url}
                 alt={`Album: ${playHistory.track.album.name}`}
             />

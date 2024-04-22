@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
-import { useAppContext } from '../contexts/AppContext';
-import LinearWithValueLabel from "./LinearWithValueLabel";
+import { useAppContext } from '../../contexts/AppContext';
+import LinearWithValueLabel from "../LinearWithValueLabel";
 import ButtonBase from "./ButtonBase/ButtonBase";
-import { reorderPlaylist } from '../spotify/playlist';
-import { sleep } from '../utils';
+import { reorderPlaylist } from '../../spotify/playlist';
+import { sleep } from '../../utils';
 
 const doShuffle = async (
     clientId: string,

@@ -121,7 +121,7 @@ a.light-link {
 }
 
 :root input::placeholder {
-    height: 16px;
+    height: 100%;
     font-weight: 600;
     color: #000000;
     opacity: 0.70;;

@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 import Button from "@mui/material/Button";
-import { useAppContext } from "../contexts/AppContext";
-import { useFollowPageContext } from "../contexts/FollowPageContext";
-import { unfollowArtist } from "../spotify/user";
+import { useAppContext } from "../../contexts/AppContext";
+import { useFollowPageContext } from "../../contexts/FollowPageContext";
+import { unfollowArtist } from "../../spotify/user";
 import "./ButtonBase/ButtonBase.css"
 
 const doUnfollow = async (
@@ -31,20 +31,20 @@ const UnfollowButton = ({ artistId, onUnfollow }: UnfollowButtonProps) => {
     const { setOpenError, setErrorMessage } = useFollowPageContext();
 
     return (
-            <Button
-                color="error"
-                variant="contained"
-                size="small"
-                sx={{
-                    boxShadow: 5,
-                    bgcolor: "#2b2322",
-                    letterSpacing: "0.05em"
-                }}
-                onClick={async () =>
-                    await doUnfollow(clientId, code!, artistId, onUnfollow, setOpenError, setErrorMessage)}
-            >
-                Unfollow
-            </Button>
+        <Button
+            color="error"
+            variant="contained"
+            size="small"
+            sx={{
+                boxShadow: 5,
+                bgcolor: "#2b2322",
+                letterSpacing: "0.05em"
+            }}
+            onClick={async () =>
+                await doUnfollow(clientId, code!, artistId, onUnfollow, setOpenError, setErrorMessage)}
+        >
+            Unfollow
+        </Button>
     );
 }
 
