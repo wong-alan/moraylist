@@ -5,8 +5,10 @@ import Typography from "@mui/material/Typography";
 import { useAppContext } from "../contexts/AppContext";
 import { useAnalysisPageContext } from "../contexts/AnalysisPageContext";
 import { fetchUserPlaylists } from "../spotify/playlist";
+import ChipGroup from "../components/ChipGroup";
 import PlaylistSelect from "../components/PlaylistSelect/PlaylistSelect";
 import PlaylistAnalysis from "../components/PlaylistAnalysis/PlaylistAnalysis";
+import { attributeMap } from "../components/PlaylistAnalysis/AttributeMaps";
 import ErrorSnack from "../components/ErrorSnack";
 import "./filter.css";
 
@@ -16,6 +18,7 @@ const AnalyzePlaylist = () => {
     const [ loading, setLoading ] = useState<boolean>(true);
     const [ playlists, setPlaylists ] = useState<Playlist[]>([]);
     const [ selectedPlaylist, setSelectedPlaylist ] = useState<Playlist|null>(null);
+    const [ attribute, setAttribute ] = useState<string>(Object.keys(attributeMap)[0]);
 
     useEffect(() => {
         if (!profile) {
@@ -59,6 +62,15 @@ const AnalyzePlaylist = () => {
                     <Grid item xs={0.25} />
                     <Grid item xs={0.25} />
                     <Grid item xs={11.5}>
+                        <ChipGroup
+                            labels={Object.keys(attributeMap)}
+                            selected={attribute}
+                            setSelected={setAttribute}
+                        />
+                    </Grid>
+                    <Grid item xs={0.25} />
+                    <Grid item xs={0.25} />
+                    <Grid item xs={11.5}>
                         <PlaylistSelect
                             playlists={playlists}
                             setValue={setSelectedPlaylist}
@@ -72,6 +84,7 @@ const AnalyzePlaylist = () => {
                         <Grid item xs={11.5}>
                             <PlaylistAnalysis
                                 playlist={selectedPlaylist}
+                                attribute={attribute}
                             />
                         </Grid>
                         <Grid item xs={0.25} />

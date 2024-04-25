@@ -5,18 +5,18 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { ChartsAxisContentProps } from "@mui/x-charts/ChartsTooltip";
 import { LineSeriesType } from "@mui/x-charts/models/seriesType";
+import { attributeMap } from "./AttributeMaps";
 import "./AxisTooltip.css";
-
-// Requirements: valueFormatter in series
 
 const AxisTooltip = ({
     axisData,
     series,
     dataIndex,
     axisValue
-}:ChartsAxisContentProps) => {
+}: ChartsAxisContentProps) => {
     const track = (axisValue as PlaylistTrack).track as Track;
     const dataSeries = series[0] as LineSeriesType;
+    const attributeProps = attributeMap[dataSeries.dataKey!];
 
     return (
         <Card
@@ -65,7 +65,7 @@ const AxisTooltip = ({
                         className="analysis-tooltip-value"
                         align="right"
                     >
-                        {dataSeries.valueFormatter!(axisData.y?.value as number, {dataIndex: dataIndex || 0})}
+                        {attributeProps.tooltipFormatter(axisData.y?.value)}
                     </Typography>
                 </Box>
             </CardContent>

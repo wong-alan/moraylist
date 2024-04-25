@@ -15,6 +15,7 @@ import { fetchAudioFeatures } from "../../spotify/track";
 import { fetchPlaylistItems } from "../../spotify/playlist";
 import { useAppContext } from "../../contexts/AppContext";
 import { useAnalysisPageContext } from "../../contexts/AnalysisPageContext";
+import { attributeMap } from "./AttributeMaps";
 import AxisTooltip from "./AxisTooltip";
 
 const EmptySlot = () => {
@@ -22,10 +23,11 @@ const EmptySlot = () => {
 }
 
 interface PlaylistAnalysisProps {
-    playlist: Playlist
+    playlist: Playlist,
+    attribute: string
 }
 
-const PlaylistAnalysis = ({playlist}: PlaylistAnalysisProps) => {
+const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
     const { clientId, code, profile } = useAppContext();
     const { setOpenError, setErrorMessage } = useAnalysisPageContext();
     const [ trackData, setTrackData ] = useState<PlaylistTrack[] | null>();
@@ -72,6 +74,8 @@ const PlaylistAnalysis = ({playlist}: PlaylistAnalysisProps) => {
         );
     }
 
+    const attributeProps = attributeMap[attribute];
+
     return (
         <Paper
             elevation={3}
@@ -88,11 +92,10 @@ const PlaylistAnalysis = ({playlist}: PlaylistAnalysisProps) => {
                     type: "line",
                     curve: "catmullRom",
                     color: "#2ECC71",
-                    dataKey: "danceability",
-                    label: "Danceability",
+                    dataKey: attribute,
+                    label: attributeProps.label,
                     highlightScope: { highlighted: "item" },
-                    valueFormatter: (value) => (value === null ?
-                        "" : (value*100).toFixed(2).toString()),
+                    valueFormatter: attributeProps.dataFormatter,
                 }]}
                 xAxis={[{
                     data: trackData,
@@ -101,10 +104,10 @@ const PlaylistAnalysis = ({playlist}: PlaylistAnalysisProps) => {
                     valueFormatter: (value: PlaylistTrack) => (value.track.name)
                 }]}
                 yAxis={[{
-                    label: "Danceability",
-                    valueFormatter: (value) => (value*100).toString(),
-                    min: 0,
-                    max: 1
+                    label: attributeProps.label,
+                    valueFormatter: attributeProps.axisY.formatter,
+                    min: attributeProps.axisY.min,
+                    max: attributeProps.axisY.max
                 }]}
                 dataset={audioFeatures as {}[]}
                 sx={(theme) => ({
@@ -157,12 +160,14 @@ const PlaylistAnalysis = ({playlist}: PlaylistAnalysisProps) => {
                 <ChartsGrid horizontal />
                 <ChartsAxisHighlight x="line" />
                 <ChartsReferenceLine
-                    y={audioFeatures.reduce((prev, curr) => prev + curr.danceability, 0)/audioFeatures.length}
+                    y={audioFeatures.reduce((prev, curr) =>
+                        prev + (curr as any)[attribute], 0) / audioFeatures.length
+                    }
                 />
                 <LinePlot />
                 <MarkPlot />
                 <ChartsTooltip trigger="axis"
-                    slots={{ axisContent: AxisTooltip}}
+                    slots={{ axisContent: AxisTooltip }}
                 />
             </ResponsiveChartContainer>
         </Paper>
