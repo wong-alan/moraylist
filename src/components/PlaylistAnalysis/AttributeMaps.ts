@@ -38,4 +38,14 @@ export const attributeMap: Record<string, AnalysisProps> = {
         dataFormatter: (value) => (value*100).toFixed(2).toString(),
         tooltipFormatter: (value) => (value*100).toFixed(2).toString(),
     },
+    "energy": {
+        label: "Energy",
+        axisY: {
+            min: 0,
+            max: 1,
+            formatter: (value) => (value*100).toString()
+        },
+        dataFormatter: (value) => (value*100).toFixed(2).toString(),
+        tooltipFormatter: (value) => (value*100).toFixed(2).toString(),
+    },
 };

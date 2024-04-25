@@ -4,6 +4,12 @@
     background-color: #181818;
 }
 
+@media (max-width: 600px) {
+    .base-Popper-root:has(.analysis-tooltip-card) {
+        translate: 0px 20px;
+    }
+}
+
 .analysis-tooltip-head {
     display: flex;
     padding: 5px 8px;
