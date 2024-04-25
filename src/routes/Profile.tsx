@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { useAppContext } from "../contexts/AppContext";
-import ProfileCard from "../components/ProfileCard";
+import ProfileCard from "../components/ProfileCard/ProfileCard";
 import { fetchProfile } from "../spotify/user";
 
 const Profile = () => {

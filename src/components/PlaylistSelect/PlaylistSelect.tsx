@@ -1,10 +1,10 @@
-import { PropsWithChildren, forwardRef } from 'react';
+import { Dispatch, PropsWithChildren, SetStateAction, forwardRef, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import "./PlaylistSelect.css"
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import "./PlaylistSelect.css"
 
 const ListItemBox = forwardRef<HTMLLIElement, PropsWithChildren>(function ListItemBox(props, ref) {
     return <Box ref={ref} component={"li"} {...props} />;
@@ -28,17 +28,30 @@ const filterOptions = createFilterOptions<Playlist>({
 });
 
 interface PlaylistSelectProps {
-    playlists: Playlist[]
+    playlists: Playlist[],
+    loading: boolean,
+    setValue: Dispatch<SetStateAction<any>>
 }
 
-const PlaylistSelect = ({playlists}: PlaylistSelectProps) => {
+const PlaylistSelect = ({playlists, setValue, loading}: PlaylistSelectProps) => {
+    const [inputValue, setInputValue] = useState("");
+
     return (
         <Autocomplete<Playlist>
             className="playlist-select"
+            loadingText="Loading playlists..."
+            loading={loading}
             options={playlists}
-            autoHighlight
             getOptionLabel={(option) => option.name}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
             filterOptions={filterOptions}
+            onChange={(_event, newValue: Playlist | null) => {
+                setValue(newValue);
+              }}
+            inputValue={inputValue}
+            onInputChange={(_event, newInputValue: string) => {
+                setInputValue(newInputValue);
+            }}
             renderInput={(params) => (
                 <TextField
                     className="playlist-select-box"
@@ -46,14 +59,17 @@ const PlaylistSelect = ({playlists}: PlaylistSelectProps) => {
                     placeholder="Select a playlist"
                     inputProps={{
                         ...params.inputProps,
-                        autoComplete: 'new-password', // disable autocomplete and autofill
+                        autoComplete: "off"
                     }}
                 />
             )}
             renderOption={(props, option) => (
                 <StyledOptionBox
                     // className doesn't work here
-                    sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+                    sx={{
+                        fontWeight: 500,
+                        '& > img': { mr: 2, flexShrink: 0 }
+                    }}
                     {...props}
                 >
                     <img
