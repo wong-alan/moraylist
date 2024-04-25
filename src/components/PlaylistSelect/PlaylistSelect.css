@@ -2,13 +2,15 @@
     max-width: 450px;
 }
 
-.playlist-select .MuiInputBase-root {
-    font-family: inherit;
-}
-
 .playlist-select-box {
     background-color: #EDEDED;
     border-radius: 8px;
+    max-height: 45px;
+}
+
+.playlist-select .MuiInputBase-root {
+    font-family: inherit;
+    max-height: 45px;
 }
 
 .playlist-select-box > div {
@@ -18,7 +20,7 @@
 
 .playlist-select-box > div > input {
     color: #424242;
-    padding-left: 10px !important;
+    padding: 0px 0px 0px 10px !important;
     font-weight: 600;
 }
 
