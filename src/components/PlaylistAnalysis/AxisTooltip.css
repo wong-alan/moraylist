@@ -53,11 +53,11 @@
 }
 
 .analysis-tooltip-attribute {
-    width: calc(250px - 3 * 5px - 50px - 50px);
+    width: calc(250px - 3 * 5px - 50px - 75px);
     /* (total width) - (body padding + details padding) - (media width) - (value width) */
 }
 
 .analysis-tooltip-value {
-    width: 50px;
+    width: 75px;
     font-size: 0.95rem;
 }
