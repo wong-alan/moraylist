@@ -32,8 +32,13 @@ spotifyTheme = createTheme(spotifyTheme, {
         }),
     },
 });
+
+interface Label {
+    label: string
+}
+
 interface ChipGroupProps {
-    labels: readonly string[] ,
+    labels: Record<string, Label> ,
     selected: string,
     setSelected: Dispatch<SetStateAction<string>>,
 }
@@ -45,13 +50,13 @@ const ChipGroup = ({labels, selected, setSelected}: ChipGroupProps) => {
 
     return (
         <ThemeProvider theme={spotifyTheme}>
-        { labels.map(label =>
+        { Object.entries(labels).map(([key, label]) =>
             <Chip
-                key={label}
-                label={label}
+                key={key}
+                label={label.label}
                 color="spotify"
-                onClick={handleClick(label)}
-                variant={label === selected ? "filled" : "outlined"}
+                onClick={handleClick(key)}
+                variant={key === selected ? "filled" : "outlined"}
                 sx={{
                     margin: "0px 5px",
                     fontFamily: "inherit",

@@ -63,7 +63,7 @@ const AnalyzePlaylist = () => {
                     <Grid item xs={0.25} />
                     <Grid item xs={11.5}>
                         <ChipGroup
-                            labels={Object.keys(attributeMap)}
+                            labels={attributeMap}
                             selected={attribute}
                             setSelected={setAttribute}
                         />

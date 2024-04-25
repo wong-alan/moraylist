@@ -27,5 +27,15 @@ export const attributeMap: Record<string, AnalysisProps> = {
             max: 220,
         },
         tooltipFormatter: (value) => value.toFixed(0) + " BPM",
-    }
+    },
+    "valence": {
+        label: "Mood",
+        axisY: {
+            min: 0,
+            max: 1,
+            formatter: (value) => (value*100).toString()
+        },
+        dataFormatter: (value) => (value*100).toFixed(2).toString(),
+        tooltipFormatter: (value) => (value*100).toFixed(2).toString(),
+    },
 };
