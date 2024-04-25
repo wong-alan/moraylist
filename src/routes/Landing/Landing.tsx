@@ -32,14 +32,13 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
         icon: <NightlifeRoundedIcon />,
         content: "Check playlist danceability",
     },{
-        key: "genres",
-        icon: <StarRoundedIcon />,
-        content: "See your top genres",
-        tooltip: "Coming soon"
-    },{
         key: "tempo",
         icon: <DirectionsRunRoundedIcon />,
         content: "Analyze your playlist tempo",
+    },{
+        key: "genres",
+        icon: <StarRoundedIcon />,
+        content: "See your top genres",
         tooltip: "Coming soon"
     }
 ]
