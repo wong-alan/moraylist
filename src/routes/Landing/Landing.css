@@ -49,7 +49,7 @@
     justify-content: left;
 }
 
-.landing-card-container:nth-last-child(-n + 2)::after {
+.landing-card-container:nth-last-child(-n + 1)::after {
     position: absolute;
     content: "\00A0";
     pointer-events: none;
