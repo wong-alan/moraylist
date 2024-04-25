@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import Paper from "@mui/material/Paper";
 import { ResponsiveChartContainer } from "@mui/x-charts/ResponsiveChartContainer";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
@@ -6,14 +8,14 @@ import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
 import { ChartsYAxis } from '@mui/x-charts/ChartsYAxis';
 import { ChartsGrid, chartsGridClasses } from "@mui/x-charts/ChartsGrid";
 import { ChartsReferenceLine, referenceLineClasses } from '@mui/x-charts/ChartsReferenceLine';
+import { ChartsTooltip, chartsTooltipClasses } from "@mui/x-charts/ChartsTooltip";
+import { ChartsAxisHighlight, chartsAxisHighlightClasses } from "@mui/x-charts/ChartsAxisHighlight";
 import { LinePlot, MarkPlot, markElementClasses } from "@mui/x-charts/LineChart";
 import { fetchAudioFeatures } from "../../spotify/track";
 import { fetchPlaylistItems } from "../../spotify/playlist";
 import { useAppContext } from "../../contexts/AppContext";
-import { ChartsTooltip, chartsTooltipClasses } from "@mui/x-charts/ChartsTooltip";
-import { ChartsAxisHighlight, chartsAxisHighlightClasses } from "@mui/x-charts/ChartsAxisHighlight";
+import { useAnalysisPageContext } from "../../contexts/AnalysisPageContext";
 import AxisTooltip from "./AxisTooltip";
-import { Box, CircularProgress } from "@mui/material";
 
 const EmptySlot = () => {
     return null;
@@ -25,6 +27,7 @@ interface PlaylistAnalysisProps {
 
 const PlaylistAnalysis = ({playlist}: PlaylistAnalysisProps) => {
     const { clientId, code, profile } = useAppContext();
+    const { setOpenError, setErrorMessage } = useAnalysisPageContext();
     const [ trackData, setTrackData ] = useState<PlaylistTrack[] | null>();
     const [ audioFeatures, setAudioFeatures ] = useState<AudioFeatures[]>();
 
@@ -38,7 +41,7 @@ const PlaylistAnalysis = ({playlist}: PlaylistAnalysisProps) => {
                 setTrackData(trackData);
                 return trackData;
             } else {
-                throw new Error("Error fetching track data");
+                throw new Error("Error fetching track data.");
             }
         }).then(trackData =>
             fetchAudioFeatures(clientId, code!,
@@ -47,10 +50,11 @@ const PlaylistAnalysis = ({playlist}: PlaylistAnalysisProps) => {
             if (audioFeatures) {
                 setAudioFeatures(audioFeatures);
             } else {
-                throw new Error("Error fetching audio features");
+                throw new Error("Error fetching audio features.");
             }
         }).catch((error: Error) => {
-            console.log(error.message);
+            setErrorMessage(error.message + " Try again.")
+            setOpenError(true);
         });
     }, [playlist])
 

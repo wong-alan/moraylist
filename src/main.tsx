@@ -9,6 +9,7 @@ import './index.css'
 const FollowPageContextProvider = lazy(() => import ("./contexts/FollowPageContext"));
 const ShufflePageContextProvider = lazy(() => import ("./contexts/ShufflePageContext"));
 const RecentPageContextProvider = lazy(() => import ("./contexts/RecentPageContext"));
+const AnalysisPageContextProvider = lazy(() => import ("./contexts/AnalysisPageContext"));
 
 const ErrorPage = lazy(() => import("./routes/ErrorPage/ErrorPage"));
 const Landing = lazy(() => import("./routes/Landing/Landing"));
@@ -80,7 +81,9 @@ const router = createBrowserRouter([
             path: "analyze",
             element:
                 <Suspense>
-                    <AnalyzePlaylist />
+                    <AnalysisPageContextProvider>
+                        <AnalyzePlaylist />
+                    </AnalysisPageContextProvider>
                 </Suspense>
         }]
     }

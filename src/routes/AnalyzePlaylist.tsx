@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useAppContext } from "../contexts/AppContext";
-import { useShufflePageContext } from "../contexts/ShufflePageContext";
+import { useAnalysisPageContext } from "../contexts/AnalysisPageContext";
 import { fetchUserPlaylists } from "../spotify/playlist";
 import PlaylistSelect from "../components/PlaylistSelect/PlaylistSelect";
 import PlaylistAnalysis from "../components/PlaylistAnalysis/PlaylistAnalysis";
@@ -12,7 +12,7 @@ import "./filter.css";
 
 const AnalyzePlaylist = () => {
     const { clientId, code, profile } = useAppContext();
-    const { openError, setOpenError, errorMessage, setErrorMessage } = useShufflePageContext();
+    const { openError, setOpenError, errorMessage, setErrorMessage } = useAnalysisPageContext();
     const [ loading, setLoading ] = useState<boolean>(true);
     const [ playlists, setPlaylists ] = useState<Playlist[]>([]);
     const [ selectedPlaylist, setSelectedPlaylist ] = useState<Playlist|null>(null);
@@ -26,14 +26,14 @@ const AnalyzePlaylist = () => {
                 setPlaylists(data);
                 setLoading(false);
             } else {
-                setErrorMessage("Eror loading playlists. Try again.");
+                setErrorMessage("Error loading playlists. Try again.");
                 setOpenError(true);
             }
         });
     }, [code, profile]);
 
     return (
-        <section id="shuffle">
+        <section id="analysis">
             <Container maxWidth="xl">
                 <Grid container>
                     <Grid item xs={0.25} />
