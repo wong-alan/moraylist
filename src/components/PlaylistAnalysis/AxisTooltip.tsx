@@ -9,7 +9,6 @@ import { attributeMap } from "./AttributeMaps";
 import "./AxisTooltip.css";
 
 const AxisTooltip = ({
-    axisData,
     series,
     dataIndex,
     axisValue
@@ -59,13 +58,16 @@ const AxisTooltip = ({
                     <Typography
                         className="analysis-tooltip-attribute"
                     >
-                        {dataSeries.dataKey}
+                        {attributeProps.label}
                     </Typography>
                     <Typography
                         className="analysis-tooltip-value"
                         align="right"
                     >
-                        {attributeProps.tooltipFormatter(axisData.y?.value)}
+                        { dataIndex !== null && dataIndex !== undefined && dataSeries.data ?
+                            attributeProps.tooltipFormatter(dataSeries.data[dataIndex])
+                            : "?"
+                        }
                     </Typography>
                 </Box>
             </CardContent>
