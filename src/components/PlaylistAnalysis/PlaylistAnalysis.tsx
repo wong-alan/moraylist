@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import { ResponsiveChartContainer } from "@mui/x-charts/ResponsiveChartContainer";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
@@ -13,6 +13,7 @@ import { useAppContext } from "../../contexts/AppContext";
 import { ChartsTooltip, chartsTooltipClasses } from "@mui/x-charts/ChartsTooltip";
 import { ChartsAxisHighlight, chartsAxisHighlightClasses } from "@mui/x-charts/ChartsAxisHighlight";
 import AxisTooltip from "./AxisTooltip";
+import { Box, CircularProgress } from "@mui/material";
 
 const EmptySlot = () => {
     return null;
@@ -54,7 +55,17 @@ const PlaylistAnalysis = ({playlist}: PlaylistAnalysisProps) => {
     }, [playlist])
 
     if (!trackData || !audioFeatures || trackData.length != audioFeatures.length) {
-        return "Loading..."
+        return (
+            <Box
+                sx={{
+                    width: "fit-content",
+                    margin: "170px auto 0px auto",
+                    transform: "translateY(-50%)"
+                }}
+            >
+                <CircularProgress />
+            </Box>
+        );
     }
 
     return (
