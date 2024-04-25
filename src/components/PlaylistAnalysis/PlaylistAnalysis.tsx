@@ -41,8 +41,9 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
             "next,items(is_local,track(id,type,name,artists(name),album(images,name)))"
         ).then(trackData => {
             if (trackData) {
-                setTrackData(trackData);
-                return trackData;
+                const filteredTracks = trackData.filter((track) => track.track.type === "track");
+                setTrackData(filteredTracks);
+                return filteredTracks;
             } else {
                 throw new Error("Error fetching track data.");
             }

@@ -1,4 +1,5 @@
 import { getAccessToken } from "./auth";
+import { uniqueBy } from "../utils";
 
 const userEndpoint = "https://api.spotify.com/v1/me/playlists";
 const playlistEndpoint = "https://api.spotify.com/v1/playlists";
@@ -6,7 +7,8 @@ const playlistEndpoint = "https://api.spotify.com/v1/playlists";
 export const fetchUserPlaylists = async (
     clientId: string,
     code: string,
-    userId: string
+    userId: string,
+    owned: boolean = true
 ): Promise<Playlist[] | null> => {
     const accessToken = await getAccessToken(clientId, code);
     if (!accessToken) {
@@ -26,11 +28,15 @@ export const fetchUserPlaylists = async (
             headers: { Authorization: `Bearer ${accessToken}` },
         });
         const response: Playlists = await result.json();
-        usersPlaylists.push(...response.items
-            .filter((playlist) => playlist.owner.id == userId));
+        const items: Playlist[] = owned ?
+            response.items.filter((playlist) => playlist.owner.id == userId)
+            : response.items;
+            usersPlaylists.push(...items);
         playlistUrl = response.next;
     } while (playlistUrl);
-    return usersPlaylists;
+    // Spotify is currently returning duplicate playlists
+    // https://community.spotify.com/t5/Spotify-for-Developers/Singular-duplicate-in-paginated-current-user-playlists/m-p/5993387
+    return uniqueBy(usersPlaylists, (playlist) => playlist.id);
 }
 
 export const reorderPlaylist = async (

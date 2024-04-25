@@ -36,6 +36,17 @@ export const normalize = (s: string|undefined): string|undefined => {
         .toLocaleLowerCase();
 }
 
+export const uniqueBy = <T extends unknown>(
+    array: T[],
+    key: (val: T) => any
+): T[] => {
+    return [
+        ...new Map(
+            array.map(x => [key(x), x])
+        ).values()
+    ]
+}
+
 interface RepeatProps {
     count: number
     children: JSX.Element

@@ -145,7 +145,7 @@ interface Track {
     popularity: number;
     preview_url?: string;
     track_number: number;
-    type: string;
+    type: "track";
     uri: string;
     is_local: boolean;
 }
@@ -233,7 +233,7 @@ interface Episode {
         fully_played: boolean;
         resume_position_ms: number;
     };
-    type: string;
+    type: "episode";
     uri: string;
     restrictions: {
         reason: string;
