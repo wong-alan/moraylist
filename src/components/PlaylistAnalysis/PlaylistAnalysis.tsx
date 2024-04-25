@@ -17,6 +17,7 @@ import { useAppContext } from "../../contexts/AppContext";
 import { useAnalysisPageContext } from "../../contexts/AnalysisPageContext";
 import { attributeMap } from "./AttributeMaps";
 import AxisTooltip from "./AxisTooltip";
+import { noFullHover } from "../../utils";
 
 const EmptySlot = () => {
     return null;
@@ -164,7 +165,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                         prev + (curr as any)[attribute], 0) / audioFeatures.length
                     }
                 />
-                <LinePlot />
+                <LinePlot skipAnimation={noFullHover()} />
                 <MarkPlot />
                 <ChartsTooltip trigger="axis"
                     slots={{ axisContent: AxisTooltip }}

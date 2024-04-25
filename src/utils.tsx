@@ -17,6 +17,11 @@ export const BASE_SKELETON_SX: SystemStyleObject = {
     },
 };
 
+// Fix for sticky hover styles on mobile
+export const noFullHover = (): boolean => {
+    return window.matchMedia("(hover:none), (hover:on-demand)").matches;
+}
+
 export const sleep = (ms: number): Promise<void> => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }

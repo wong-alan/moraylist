@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Chip from "@mui/material/Chip";
+import { noFullHover } from "../utils";
 
 // Add 'Spotify' to palette
 declare module '@mui/material/styles' {
@@ -44,9 +45,6 @@ interface ChipGroupProps {
 }
 
 const ChipGroup = ({labels, selected, setSelected}: ChipGroupProps) => {
-    // Fix for sticky hover styles on mobile
-    const noFullHover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
-
     const handleClick = (label: string) => () => {
         setSelected(label);
     }
@@ -64,7 +62,7 @@ const ChipGroup = ({labels, selected, setSelected}: ChipGroupProps) => {
                     margin: "0px 5px",
                     fontFamily: "inherit",
                     fontWeight: 500,
-                    ...(noFullHover && {
+                    ...(noFullHover() && {
                         "&:hover": {
                             backgroundColor: "rgb(29, 173, 80) !important"
                         }
