@@ -45,6 +45,7 @@ const PlaylistSelect = ({playlists, setValue, loading}: PlaylistSelectProps) => 
             getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => option.id === value.id}
             filterOptions={filterOptions}
+            blurOnSelect
             onChange={(_event, newValue: Playlist | null) => {
                 setValue(newValue);
               }}

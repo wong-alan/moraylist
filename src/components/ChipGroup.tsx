@@ -44,6 +44,9 @@ interface ChipGroupProps {
 }
 
 const ChipGroup = ({labels, selected, setSelected}: ChipGroupProps) => {
+    // Fix for sticky hover styles on mobile
+    const noFullHover = window.matchMedia("(hover:none), (hover:on-demand)").matches;
+
     const handleClick = (label: string) => () => {
         setSelected(label);
     }
@@ -60,7 +63,12 @@ const ChipGroup = ({labels, selected, setSelected}: ChipGroupProps) => {
                 sx={{
                     margin: "0px 5px",
                     fontFamily: "inherit",
-                    fontWeight: 500
+                    fontWeight: 500,
+                    ...(noFullHover && {
+                        "&:hover": {
+                            backgroundColor: "rgb(29, 173, 80) !important"
+                        }
+                    })
                 }}
             />)
         }
