@@ -48,6 +48,7 @@
 .analysis-tooltip-artist {
     width: calc(250px - 3 * 5px - 50px);
     color: #BABABA;
+    font-size: 0.95rem;
     /* (total width) - (body padding + details padding) - (media width) */
 }
 

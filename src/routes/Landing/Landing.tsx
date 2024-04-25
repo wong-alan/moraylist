@@ -28,6 +28,10 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
         icon: <HistoryRoundedIcon />,
         content: "View recently played",
     },{
+        key: "dance",
+        icon: <NightlifeRoundedIcon />,
+        content: "Check playlist danceability",
+    },{
         key: "genres",
         icon: <StarRoundedIcon />,
         content: "See your top genres",
@@ -36,11 +40,6 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
         key: "tempo",
         icon: <DirectionsRunRoundedIcon />,
         content: "Analyze your playlist tempo",
-        tooltip: "Coming soon"
-    },{
-        key: "dance",
-        icon: <NightlifeRoundedIcon />,
-        content: "Check playlist danceability",
         tooltip: "Coming soon"
     }
 ]
