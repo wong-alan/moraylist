@@ -1,3 +1,5 @@
+// TODO: Convert to DefinitelyTyped
+
 interface User {
     display_name?: string
     external_urls: {
@@ -29,6 +31,7 @@ interface Image {
     height: number;
     width: number;
 }
+
 interface Artists {
     artists: {
         href: string;
@@ -87,7 +90,7 @@ interface Playlist {
     tracks: {
         href: string;
         total: number
-    }
+    };
     type: string;
     uri: string
 }
@@ -177,4 +180,115 @@ interface SimpleArtist {
     name: string;
     type: string;
     uri: string;
+}
+
+interface Tracks {
+    href: string;
+    limit: number;
+    next: string | null;
+    offset: number;
+    previous?: string
+    total: number;
+    items: PlaylistTrack[]
+}
+
+interface PlaylistTrack {
+    added_at: string;
+    added_by?: {
+        external_urls: {
+            spotify: string;
+        };
+        followers: {
+            href?: string;  // Currently always null
+            total: integer;
+        };
+        href: string;
+        id: string;
+        type: string;
+        uri: string;
+    };
+    is_local: boolean;
+    track: Track | Episode;
+}
+
+interface Episode {
+    audio_preview_url?: string;
+    description: string;
+    html_description: string;
+    duration_ms: number;
+    explicit: boolean;
+    external_urls: {
+        spotify: string;
+    };
+    href: string;
+    id: string;
+    images: Image[];
+    is_externally_hosted: boolean;
+    is_playable: boolean;
+    languages: string[];
+    name: string;
+    release_date: string;
+    release_date_precision: string;
+    resume_point: {
+        fully_played: boolean;
+        resume_position_ms: number;
+    };
+    type: string;
+    uri: string;
+    restrictions: {
+        reason: string;
+    };
+    show: Show;
+}
+
+interface Show {
+    available_markets: string[];
+    copyrights: Copyright[];
+    description: string;
+    html_description: string;
+    explicit: boolean;
+    external_urls: {
+        spotify: string;
+    };
+    href: string;
+    id: string;
+    images: Image[];
+    is_externally_hosted: boolean;
+    lanugages: string[];
+    media_type: string;
+    name: string;
+    publisher: string;
+    type: string;
+    uri: string;
+    total_episodes: number;
+}
+
+interface Copyright {
+    text: string;
+    type: string;
+}
+
+interface AudioFeaturesResponse {
+    audio_features: AudioFeatures[];
+}
+
+interface AudioFeatures {
+    acousticness: number;
+    analysis_url: string;
+    danceability: number;
+    duration_ms: number;
+    energy: number;
+    id: string;
+    instrumentalness: number;
+    key: number;
+    liveness: number;
+    loudness: number;
+    mode: number;
+    speechiness: number;
+    tempo: number;
+    time_signature: number;
+    track_href: string;
+    type: string;
+    uri: string;
+    valence: number;
 }

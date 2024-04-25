@@ -1,0 +1,62 @@
+.analysis-tooltip-card {
+    width: 250px;
+    color: #FFFFFF;
+    background-color: #181818;
+}
+
+.analysis-tooltip-head {
+    display: flex;
+    padding: 5px 8px;
+}
+
+.analysis-tooltip-track-name {
+    /* (total width) - (head padding) - (number width) */
+    width: calc(250px - 2 * 8px - 50px);
+    font-weight: 500;
+}
+
+.analysis-tooltip-track-number {
+    width: 50px;
+    color: #CBCBCB;
+    font-size: 0.95rem;
+}
+
+.analysis-tooltip-divider {
+    background-color: "#EEEEEE";
+    margin: 0px;
+}
+
+.analysis-tooltip-card .analysis-tooltip-body {
+    display: flex;
+    padding: 5px;
+}
+
+.analysis-tooltip-media {
+    width: 50px;
+    height: 50px;
+    margin: auto 0px;
+    border-radius: 6px;
+}
+
+.analysis-tooltip-details {
+    width: calc(250px - 3 * 5px - 50px);
+    padding-left: 5px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.analysis-tooltip-artist {
+    width: calc(250px - 3 * 5px - 50px);
+    color: #BABABA;
+    /* (total width) - (body padding + details padding) - (media width) */
+}
+
+.analysis-tooltip-attribute {
+    width: calc(250px - 3 * 5px - 50px - 50px);
+    /* (total width) - (body padding + details padding) - (media width) - (value width) */
+}
+
+.analysis-tooltip-value {
+    width: 50px;
+    font-size: 0.95rem;
+}

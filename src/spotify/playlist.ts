@@ -64,3 +64,36 @@ export const reorderPlaylist = async (
     const { snapshot_id } = await result.json();
     return snapshot_id;
 }
+
+export const fetchPlaylistItems = async (
+    clientId: string,
+    code: string,
+    playlistId: string,
+    market?: string,
+    fields?: string,
+): Promise<PlaylistTrack[] | null> => {
+    const accessToken = await getAccessToken(clientId, code);
+    if (!accessToken) {
+        return null;
+    }
+    const path = ["playlists", playlistId, "tracks"].join("/");
+    let playlistTracksUrl: URL | string | null = new URL(path, playlistEndpoint);
+    playlistTracksUrl.search = new URLSearchParams({
+        ...(market && {market: market}),
+        ...(fields && {fields: fields}),
+        limit: "50"
+    }).toString();
+
+    let tracks: PlaylistTrack[] = [];
+    do {
+        const result = await fetch(playlistTracksUrl, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        const response: Tracks = await result.json();
+        tracks.push(...response.items
+            .filter((track) => !track.is_local && track.track.type === "track"));
+        playlistTracksUrl = response.next;
+    } while (playlistTracksUrl);
+    return tracks;
+}
