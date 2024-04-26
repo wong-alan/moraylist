@@ -194,7 +194,7 @@ const Shuffle = () => {
                                     margin: "10vh auto 0px auto"
                                 }}
                             >
-                                You haven't created any playlists!
+                                You haven't created any playlists yet!
                             </Typography>
                         </Grid>
                     }

@@ -210,12 +210,26 @@ const Following = () => {
                             </Grid>
                         )}
                     </Grid>
-                    <Grid item xs={12}
-                        className="no-result"
-                        ref={noResultRef}
-                    >
-                        <NoResults input={filterText} />
-                    </Grid>
+                    { artists.length ?
+                        <Grid item xs={12}
+                            className="no-result"
+                            ref={noResultRef}
+                        >
+                            <NoResults input={filterText} />
+                        </Grid>
+                        : <Grid item xs={12}>
+                            <Typography
+                                variant="h6"
+                                className="metro-font"
+                                sx={{
+                                    width: "fit-content",
+                                    margin: "10vh auto 0px auto"
+                                }}
+                            >
+                                You haven't followed any artists yet!
+                            </Typography>
+                        </Grid>
+                    }
                 </Grid>
             </Container>
             <ErrorSnack
