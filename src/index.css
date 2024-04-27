@@ -96,6 +96,7 @@
 :root .nav-link {
     font-weight: 700;
     color: rgba(0, 0, 0, 0.64);
+    padding: 10px 16px;
 }
 
 a.link-style {

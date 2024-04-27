@@ -3,9 +3,20 @@ import SplotchifyLogo from "../../assets/splotchify.svg?react"
 
 export const SPLOTCHIFY_SVG = "./splotchify.svg";
 
-const SplotchifyIcon = () => {
+interface SplotchifyIconProps {
+    size?: number
+}
+
+const SplotchifyIcon = ({size}: SplotchifyIconProps) => {
     return (
-        <SvgIcon component={SplotchifyLogo} />
+        <SvgIcon
+            component={SplotchifyLogo}
+            sx={{
+                ...(size && {
+                    width: size,
+                    height: size})
+            }}
+        />
     );
 }
 

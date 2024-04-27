@@ -32,6 +32,8 @@ You will need a `.env` file with:
 
 Build the project with `npm run build`
 
+Web manifest icons sized by [Maskable](https://maskable.app).
+
 Some base component styling from [MUI](https://github.com/mui/material-ui) and [MUI Treasury](https://github.com/siriwatknp/mui-treasury).
 
 Animated with [GSAP](https://gsap.com/docs) + [Flip](https://gsap.com/docs/Plugins/Flip/).

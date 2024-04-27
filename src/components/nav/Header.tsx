@@ -1,6 +1,5 @@
-import { ElementType, useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,12 +10,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-
 import SplotchifyIcon from "../icons/SplotchifyIcon";
 import UserMenu from "./UserMenu";
 import Login from './Login';
 import { useAppContext } from '../../contexts/AppContext';
 import { navPages } from '../../pages';
+import "./Header.css";
+import { ListItemIcon } from '@mui/material';
 
 const noLoginOrProfile = ["/logout", "/callback"];
 
@@ -38,28 +38,24 @@ const Header = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* Large corner logo */}
-                    <Link to="/" className="nostyle" aria-label="Splotchify Home">
-                        <Box sx={{ display: { xs: 'none', md: 'inline-block' }, height: "24px" }}>
-                            <SplotchifyIcon />
-                        </Box>
-                    </Link>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component={Link as ElementType}
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'inherit',
-                            fontWeight: 600,
-                            color: 'inherit',
-                            textDecoration: 'none',
-                            paddingLeft: '15px'
-                        }}
+                    <Link to="/"
+                        className="link-style header-logo-container"
+                        aria-label="Splotchify Home"
                     >
-                        Splotchify
-                    </Typography>
+                        <Box className="header-logo-box"
+                            sx={{display: { xs: 'none', md: 'inline-block' }}}
+                        >
+                            <SplotchifyIcon size={28} />
+                        </Box>
+                        <Typography
+                            className="header-logo-font"
+                            variant="h6"
+                            noWrap
+                            sx={{display: { xs: 'none', md: 'inline-block' }}}
+                        >
+                            Splotchify
+                        </Typography>
+                    </Link>
 
                     {/* Small menu */}
                     { code &&
@@ -93,11 +89,16 @@ const Header = () => {
                                 }}
                             >
                             {navPages.map((page) => (
-                                <MenuItem key={page.name+"-sm"} onClick={handleCloseNavMenu}>
-                                    <Link to={page.url} className="metro-font link-style nav-link">
+                                <Link to={page.url} className="link-style">
+                                    <MenuItem
+                                        className="metro-font nav-link"
+                                        key={page.name+"-sm"}
+                                        onClick={handleCloseNavMenu}
+                                    >
+                                        <ListItemIcon>{page.icon}</ListItemIcon>
                                         {page.name}
-                                    </Link>
-                                </MenuItem>
+                                    </MenuItem>
+                                </Link>
                             ))}
                             </Menu>
                         </Box>
@@ -113,29 +114,21 @@ const Header = () => {
                             transform: "translate(-50%, -50%)",
                         }}
                     >
-                        <Link to="/" className="link-style" aria-label="Splotchify Home">
-                            <Box sx={{ display: 'inline-block', height: "24px" }}>
-                                <SplotchifyIcon />
+                        <Link to="/" className="link-style header-logo-container" aria-label="Splotchify Home">
+                            <Box className="header-logo-box"
+                                sx={{ display: 'inline-block'}}
+                            >
+                                <SplotchifyIcon size={28} />
                             </Box>
+                            <Typography
+                                className="header-logo-font"
+                                variant="h5"
+                                noWrap
+                                sx={{display: { xs: 'inline-block', md: 'none' }}}
+                            >
+                                Splotchify
+                            </Typography>
                         </Link>
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component={Link as ElementType}
-                            href="/"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'flex', md: 'none' },
-                                flexGrow: 1,
-                                fontFamily: 'inherit',
-                                fontWeight: 600,
-                                color: 'inherit',
-                                textDecoration: 'none',
-                                paddingLeft: '15px'
-                            }}
-                        >
-                            Splotchify
-                        </Typography>
                     </Box>
 
                     {/* Large menu */}
@@ -150,7 +143,8 @@ const Header = () => {
                                             color: 'white',
                                             display: 'block',
                                             fontFamily: 'inherit',
-                                            fontWeight: "600"
+                                            fontWeight: "600",
+                                            fontSize: "revert"
                                         }}
                                     >
                                         {page.name}

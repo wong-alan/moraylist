@@ -32,7 +32,7 @@ const UserMenu = () => {
         fetchProfile(clientId, code!).then(data => setProfile(data));
     }, [code]);
 
-    const profilePicUrl = profile?.images[0]?.url ?
+    const profilePicUrl = profile?.images?.at(0)?.url ?
         profile.images[0].url :
         SPLOTCHIFY_SVG;
 
@@ -70,22 +70,28 @@ const UserMenu = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
             >
-                <MenuItem onClick={handleCloseUserMenu}>
-                    <Link to='/profile' className="metro-font link-style nav-link">
+                <Link to='/profile' className="link-style">
+                    <MenuItem
+                        className="metro-font nav-link"
+                        onClick={handleCloseUserMenu}
+                    >
                         <ListItemIcon>
                             <AccountCircle fontSize="small" />
                         </ListItemIcon>
                         Profile
-                    </Link>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                    <Link to='/logout' className="metro-font link-style nav-link">
+                    </MenuItem>
+                </Link>
+                <Link to='/logout' className="link-style">
+                    <MenuItem
+                        className="metro-font nav-link"
+                        onClick={handleCloseUserMenu}
+                    >
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>
                         Logout
-                    </Link>
-                </MenuItem>
+                    </MenuItem>
+                </Link>
             </Menu>
         </>
     );

@@ -69,7 +69,11 @@ const PlaylistSelect = ({playlists, setValue, loading}: PlaylistSelectProps) => 
                     // className doesn't work here
                     sx={{
                         fontWeight: 500,
-                        '& > img': { mr: 2, flexShrink: 0 }
+                        '& > img': {
+                            mr: 2,
+                            flexShrink: 0,
+                            borderRadius: "4px"
+                        }
                     }}
                     {...props}
                 >

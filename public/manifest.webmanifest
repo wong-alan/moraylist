@@ -6,15 +6,27 @@
     "display": "standalone",
     "orientation": "portrait",
     "theme_color": "#121212",
-    "background_color": "#121212",
+    "background_color": "#000000",
     "description": "A Spotify toolbox.",
     "shortcuts": [
-        {
-            "name": "Shuffle playlists",
-            "url": "/shuffle",
-            "description": "Shuffle your Spotify playlists",
-            "icons": [{ "src": "/icons/shuffle.svg", "sizes": "192x192" }]
-        }
+      {
+        "name": "Shuffle playlists",
+        "url": "/shuffle",
+        "description": "Shuffle your Spotify playlists",
+        "icons": [{ "src": "/icons/shuffle.svg", "sizes": "192x192" }]
+      },
+      {
+        "name": "Recently played",
+        "url": "/recent",
+        "description": "View your recently played songs",
+        "icons": [{ "src": "/icons/recent.svg", "sizes": "192x192" }]
+      },
+      {
+        "name": "Analyze playlists",
+        "url": "/analyze",
+        "description": "Analyze your playlists",
+        "icons": [{ "src": "/icons/analyze.svg", "sizes": "192x192" }]
+      }
     ],
     "icons": [
         {
