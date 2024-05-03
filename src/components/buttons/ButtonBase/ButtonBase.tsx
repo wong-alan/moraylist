@@ -21,6 +21,7 @@ const ButtonBase = ({
         <Button
             variant="contained"
             size={buttonSize}
+            color="spotify"
             className="button-base"
             sx={{ boxShadow: 5, ...sx }}
             startIcon={buttonIcon}

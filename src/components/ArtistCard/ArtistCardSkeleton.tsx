@@ -1,17 +1,18 @@
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Skeleton from "@mui/material/Skeleton";
-import { StyledCard, Content } from "./ArtistCardStyles";
 import { BASE_SKELETON_SX } from "../../utils";
 
 const ArtistCardSkeleton = () => {
     return (
-        <StyledCard>
+        <Card className="artist-card">
             <CardMedia
                 className="artist-card-media"
                 component={"div"}
                 sx={{bgcolor: "#242424"}}
             />
-                <Content className="artist-card-content">
+                <CardContent className="artist-card-content">
                     <Skeleton variant="text" animation="wave"
                         sx={{
                             ...BASE_SKELETON_SX,
@@ -32,8 +33,8 @@ const ArtistCardSkeleton = () => {
                             margin: "5px 0px 10px 0px",
                         }}
                     />
-                </Content>
-        </StyledCard>
+                </CardContent>
+        </Card>
     );
 }
 

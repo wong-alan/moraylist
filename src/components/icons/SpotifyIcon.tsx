@@ -1,9 +1,12 @@
 import SvgIcon from "@mui/material/SvgIcon";
-import SpotifyLogo  from "../../assets/spotify.svg?react";
+import SpotifyIconSvg  from "../../assets/spotify_icon_rgb_white.svg?react";
 
 const SpotifyIcon = () => {
     return (
-        <SvgIcon component={SpotifyLogo} />
+        <SvgIcon
+            component={SpotifyIconSvg}
+            inheritViewBox
+        />
     );
 }
 

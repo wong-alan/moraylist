@@ -18,6 +18,8 @@ import { useAnalysisPageContext } from "../../contexts/AnalysisPageContext";
 import { attributeMap } from "./AttributeMaps";
 import AxisTooltip from "./AxisTooltip";
 import { noFullHover } from "../../utils";
+import OpenInAppButton from "../buttons/OpenInAppButton";
+import "./PlaylistAnalysis.css";
 
 const EmptySlot = () => {
     return null;
@@ -80,6 +82,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
 
     return (
         <Paper
+            className="playlist-analysis-card"
             elevation={3}
             sx={{
                 width: '100%',
@@ -120,10 +123,10 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                         fill: "#FFFFFF"
                     },
                     [`& .${axisClasses.root}.${axisClasses.bottom} .${axisClasses.label}`] : {
-                        transform: "translate(0px, -5.5px)"
+                        transform: "translate(0px, -6px)"
                     },
                     [`& .${axisClasses.root}.${axisClasses.left} .${axisClasses.label}`] : {
-                        transform: "translate(-4px, 0px)"
+                        transform: "translate(-8px, 0px)"
                     },
                     [`& .${axisClasses.root} .${axisClasses.tickLabel}`] : {
                         fontFamily: "inherit",
@@ -172,6 +175,10 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     slots={{ axisContent: AxisTooltip }}
                 />
             </ResponsiveChartContainer>
+            <OpenInAppButton
+                className="playlist-analysis-app-button"
+                link={playlist.uri}
+            />
         </Paper>
     );
 }

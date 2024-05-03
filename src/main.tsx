@@ -1,9 +1,11 @@
 import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import AppContextProvider from './contexts/AppContext';
 import Root from "./routes/Root";
 import ProtectedRoot from "./routes/ProtectedRoot";
+import makeSpotifyTheme from "./theme";
 import './index.css'
 
 const FollowPageContextProvider = lazy(() => import ("./contexts/FollowPageContext"));
@@ -91,8 +93,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <AppContextProvider>
-            <RouterProvider router={router} />
-        </AppContextProvider>
+        <ThemeProvider theme={makeSpotifyTheme()}>
+            <AppContextProvider>
+                <RouterProvider router={router} />
+            </AppContextProvider>
+        </ThemeProvider>
     </React.StrictMode>
 )

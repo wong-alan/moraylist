@@ -197,7 +197,7 @@ const Following = () => {
                     <Grid container item spacing={1}>
                         { artists.map((artist, index) =>
                             <Grid item
-                                xs={6} sm={4} md={3} lg={12/5} xl={2}
+                                xs={6} sm={6} smd={4} md={3} lg={12/5} xl={2}
                                 key={`artist-${index}`}
                                 className="artist-card-container"
                                 id={artist?.name}

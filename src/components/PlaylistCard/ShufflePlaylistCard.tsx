@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -74,7 +75,11 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
                     }}
                 >
                     <InfoEyebrow className="playlist-card-eyebrow">{playlist.tracks.total.toLocaleString()} tracks</InfoEyebrow>
-                    <InfoTitle className="playlist-card-title">{playlist.name}</InfoTitle>
+                    <InfoTitle className="playlist-card-title">
+                        <Link to={playlist.uri} className="link-style hover-underline">
+                            {playlist.name}
+                        </Link>
+                    </InfoTitle>
                     <InfoSubtitle className="playlist-card-subtitle description">
                         {decode(playlist.description)}
                     </InfoSubtitle>

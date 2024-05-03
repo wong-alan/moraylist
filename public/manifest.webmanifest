@@ -1,13 +1,13 @@
 {
-    "name": "Splotchify",
-    "short_name": "Splotchify",
+    "name": "Moraylist",
+    "short_name": "Moraylist",
     "id": "/",
     "start_url": ".",
     "display": "standalone",
     "orientation": "portrait",
     "theme_color": "#121212",
     "background_color": "#000000",
-    "description": "A Spotify toolbox.",
+    "description": "A toolbox for Spotify",
     "shortcuts": [
       {
         "name": "Shuffle playlists",

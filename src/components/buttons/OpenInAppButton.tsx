@@ -1,26 +1,29 @@
 import { Link } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import SpotifyButton from "./SpotifyButton";
 
-interface OpenInAppProps {
-    link: string
+interface OpenInAppButtonProps {
+    link: string;
+    className?: string;
+    condensed?: boolean;
 }
 
-const OpenInAppButton = ({link}: OpenInAppProps) => {
+const OpenInAppButton = ({link, className, condensed}: OpenInAppButtonProps) => {
     return (
         <Link to={link}
+            className={className}
             aria-label="Open in Spotify"
             target="_blank"
             rel="noopener"
         >
-            <IconButton
+            <SpotifyButton
                 aria-label="Open in Spotify"
-                role="link"
-                tabIndex={-1}
-                sx={{ boxShadow: 5 }}
-            >
-                <OpenInNewIcon sx={{ color: "white" }} />
-            </IconButton>
+                aria-roledescription="Link"
+                text="Open in Spotify"
+                sx={condensed ? {
+                        padding: "4px 11px"
+                    }
+                    : undefined}
+            />
         </Link>
     );
 }

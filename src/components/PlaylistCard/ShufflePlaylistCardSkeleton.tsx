@@ -12,7 +12,7 @@ const ShufflePlaylistCardSkeleton  = () => {
                 className="playlist-card-media"
                 sx={(theme) => ({
                     ...BASE_SKELETON_SX,
-                    paddingTop: "54%",
+                    paddingTop: "78%",
                     [theme.breakpoints.up("md")]: {
                         paddingTop: "40%"
                     }
@@ -22,7 +22,7 @@ const ShufflePlaylistCardSkeleton  = () => {
                 className="playlist-card-content"
                 sx={{
                     width: "55%",
-                    padding: "5px 10px 0px 10px !important", // Override :lastchild
+                    padding: "10px 10px 0px 10px !important", // Override :lastchild
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between"
