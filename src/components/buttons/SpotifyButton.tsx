@@ -1,11 +1,21 @@
+import { SystemStyleObject } from "@mui/system";
 import ButtonBase from "./ButtonBase/ButtonBase";
 import SpotifyIcon from "../icons/SpotifyIcon";
 
-const SpotifyButton = () => {
+interface SpotifyButtonProps {
+    text: string;
+    sx?: SystemStyleObject
+}
+
+const SpotifyButton = ({text, sx}: SpotifyButtonProps) => {
     return (
         <ButtonBase
-            buttonText = "Sign in with Spotify"
-            buttonIcon = {<SpotifyIcon/>}
+            buttonText={text}
+            buttonIcon={<SpotifyIcon />}
+            sx = {{
+                minWidth: "168px",
+                ...sx
+            }}
         />
     );
 }

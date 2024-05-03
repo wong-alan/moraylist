@@ -1,0 +1,19 @@
+.playlist-analysis-card {
+    position: relative;
+}
+
+.playlist-analysis-app-button {
+    position: absolute;
+    top: -20px;
+    right: 5px;
+    transform: translate(0px, -100%);
+}
+
+@media (max-width: 750px) {
+    .playlist-analysis-app-button {
+        top: unset;
+        bottom: 7px;
+        right: 50%;
+        transform: translate(50%, 0px);
+    }
+}

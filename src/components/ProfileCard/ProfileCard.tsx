@@ -9,9 +9,10 @@ import OpenInNewOutlined from "@mui/icons-material/OpenInNewOutlined";
 import { Info, InfoEyebrow, InfoSubtitle, InfoTitle } from "../../mui-treasury/info-basic";
 import { getInfoN03Styles } from "../../mui-treasury/info-n03";
 import Emoji, { getFlagEmoji } from "../icons/Emoji";
-import { SPLOTCHIFY_SVG } from "../icons/SplotchifyIcon";
+import { MORAY_SVG } from "../icons/MorayIcon";
 import { DEFAULT_TOOLTIP_SX } from "../../utils";
 import ProfileCardSkeleton from "./ProfileCardSkeleton";
+import OpenInAppButton from "../buttons/OpenInAppButton";
 
 interface ProfileCardProps {
     profile: UserProfile | null
@@ -23,7 +24,7 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
     }
 
     const iconSrc: string = profile.images.length == 0 ?
-        SPLOTCHIFY_SVG :
+        MORAY_SVG :
         profile.images.sort((a, b) => b.height - a.height)[0].url;
         // Sort by decreasing size
 
@@ -109,15 +110,12 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
                         Email: {profile.email} <br/>
                         Explicit content: {profile.explicit_content.filter_enabled ? "Not Allowed" : "Allowed"} <br />
                         Explicit content filter: {profile.explicit_content.filter_locked ? "Locked" : "Unlocked"} <br />
-                        <Link to={profile.uri} className="light-link" target="_blank" rel="noopener">
-                            Spotify Profile <OpenInNewOutlined sx={{fontSize: "1rem"}} />
-                        </Link> <br/>
-                        {
-                            iconSrc != SPLOTCHIFY_SVG &&
-                                <Link to={iconSrc} className="light-link" target="_blank" rel="noopener">
-                                    Profile Image <OpenInNewOutlined sx={{fontSize: "1rem"}} />
-                                </Link>
-                        }
+                        {iconSrc != MORAY_SVG &&
+                            <Link to={iconSrc} className="light-link" target="_blank" rel="noopener">
+                                Profile Image <OpenInNewOutlined sx={{fontSize: "1rem"}} />
+                            </Link>
+                        } <br />
+                        <OpenInAppButton condensed link={profile.uri}/>
                     </InfoSubtitle>
                 </Info>
             </CardContent>

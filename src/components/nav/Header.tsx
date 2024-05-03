@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import SplotchifyIcon from "../icons/SplotchifyIcon";
+import MorayIcon from "../icons/MorayIcon";
 import UserMenu from "./UserMenu";
 import Login from './Login';
 import { useAppContext } from '../../contexts/AppContext';
@@ -40,12 +40,12 @@ const Header = () => {
                     {/* Large corner logo */}
                     <Link to="/"
                         className="link-style header-logo-container"
-                        aria-label="Splotchify Home"
+                        aria-label="Moraylist Home"
                     >
                         <Box className="header-logo-box"
                             sx={{display: { xs: 'none', md: 'inline-block' }}}
                         >
-                            <SplotchifyIcon size={28} />
+                            <MorayIcon size={28} />
                         </Box>
                         <Typography
                             className="header-logo-font"
@@ -53,7 +53,7 @@ const Header = () => {
                             noWrap
                             sx={{display: { xs: 'none', md: 'inline-block' }}}
                         >
-                            Splotchify
+                            Moraylist
                         </Typography>
                     </Link>
 
@@ -89,10 +89,12 @@ const Header = () => {
                                 }}
                             >
                             {navPages.map((page) => (
-                                <Link to={page.url} className="link-style">
+                                <Link to={page.url}
+                                    key={page.name+"-sm"}
+                                    className="link-style"
+                                >
                                     <MenuItem
                                         className="metro-font nav-link"
-                                        key={page.name+"-sm"}
                                         onClick={handleCloseNavMenu}
                                     >
                                         <ListItemIcon>{page.icon}</ListItemIcon>
@@ -112,13 +114,14 @@ const Header = () => {
                             top: "50%",
                             left: "50%",
                             transform: "translate(-50%, -50%)",
+                            minWidth: "178px",
                         }}
                     >
-                        <Link to="/" className="link-style header-logo-container" aria-label="Splotchify Home">
+                        <Link to="/" className="link-style header-logo-container" aria-label="Moraylist Home">
                             <Box className="header-logo-box"
                                 sx={{ display: 'inline-block'}}
                             >
-                                <SplotchifyIcon size={28} />
+                                <MorayIcon size={28} />
                             </Box>
                             <Typography
                                 className="header-logo-font"
@@ -126,7 +129,7 @@ const Header = () => {
                                 noWrap
                                 sx={{display: { xs: 'inline-block', md: 'none' }}}
                             >
-                                Splotchify
+                                Moraylist
                             </Typography>
                         </Link>
                     </Box>

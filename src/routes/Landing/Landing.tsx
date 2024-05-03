@@ -10,6 +10,7 @@ import DirectionsRunRoundedIcon from '@mui/icons-material/DirectionsRunRounded';
 import NightlifeRoundedIcon from '@mui/icons-material/NightlifeRounded';
 import LandingCard, { LandingCardProps } from "../../components/LandingCard/LandingCard";
 import Login from "../../components/nav/Login";
+import SpotifyLogo from "../../components/icons/SpotifyLogo";
 import { useAppContext } from "../../contexts/AppContext";
 import { DEFAULT_TOOLTIP_SX } from "../../utils";
 import "./Landing.css";
@@ -124,6 +125,19 @@ const Landing = () => {
                             <Login size="sm" />
                         </Grid>
                     }
+                    <Grid item xs={1} />
+                    <Grid item container xs={10} justifyContent={"right"}>
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                fontFamily: "inherit",
+                                marginTop: "7vh",
+                            }}
+                        >
+                            A toolbox for <SpotifyLogo width={110} sx={{transform: "translate(0px, 10px)"}} />.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={1} />
                 </Grid>
             </Container>
         </section>

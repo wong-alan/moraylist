@@ -1,12 +1,12 @@
-# Splotchify
+# Moraylist
 
 A web app with [Spotify Web API](https://developer.spotify.com/documentation/web-api) integration to manage your music.
 A learning project.
 
-Try it out at [www.splotchify.com](https://www.splotchify.com)* \
+Try it out at [www.moraylist.com](https://www.moraylist.com)* \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*public access pending Spotify extension request
 
-For a beta preview, message: info@splotchify.com \
+For a beta preview, message: info@moraylist.com \
 Please include your name and the email address associated with your Spotify account.
 
 ___

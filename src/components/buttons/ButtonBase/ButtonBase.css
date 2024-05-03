@@ -1,10 +1,5 @@
 button.button-base {
-    font-family: "Metropolis";
+    font-family: inherit;
     text-transform: none;
     color: white;
-    background-color: #1DAD50;
-}
-
-button.button-base:hover {
-    background-color: #1ED760;
 }

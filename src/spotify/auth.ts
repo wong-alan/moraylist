@@ -1,7 +1,7 @@
 const authEndpoint = "https://accounts.spotify.com/authorize"
 const accessTokenEndpoint = "https://accounts.spotify.com/api/token";
 const callbackEndpoint = import.meta.env.VITE_ENVIRONMENT === "online" ?
-    "https://www.splotchify.com/callback" :
+    "https://www.moraylist.com/callback" :
     "http://localhost:5173/callback";
 
 const scopes = [
@@ -9,11 +9,12 @@ const scopes = [
     "user-read-email",
     "user-follow-read",
     "user-follow-modify",
+    "user-top-read",
+    "user-read-recently-played",
     "playlist-read-private",
     "playlist-read-collaborative",
     "playlist-modify-public",
     "playlist-modify-private",
-    "user-read-recently-played",
 ];
 
 // LOCAL STORAGE

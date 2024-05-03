@@ -15,7 +15,7 @@ const LinearProgressWithLabel = (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ width: '100%', mr: 1 }}>
                     <LinearProgress
-                        color="success"
+                        color="spotify"
                         variant="determinate"
                         value={progress}
                     />
@@ -34,4 +34,4 @@ const LinearProgressWithLabel = (
     );
 }
 
-export default LinearProgressWithLabel
+export default LinearProgressWithLabel;

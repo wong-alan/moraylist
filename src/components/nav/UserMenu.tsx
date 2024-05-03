@@ -11,7 +11,7 @@ import Logout from '@mui/icons-material/Logout';
 
 import { fetchProfile } from '../../spotify/user';
 import { useAppContext } from '../../contexts/AppContext';
-import { SPLOTCHIFY_SVG } from "../icons/SplotchifyIcon";
+import { MORAY_SVG } from "../icons/MorayIcon";
 
 const UserMenu = () => {
     const { clientId, code, profile, setProfile } = useAppContext();
@@ -34,7 +34,7 @@ const UserMenu = () => {
 
     const profilePicUrl = profile?.images?.at(0)?.url ?
         profile.images[0].url :
-        SPLOTCHIFY_SVG;
+        MORAY_SVG;
 
     return (
         <>

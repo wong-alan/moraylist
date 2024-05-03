@@ -15,6 +15,8 @@ interface LoginProps {
     size: "sm"|"lg"
 }
 
+const LOGIN_BUTTON_TEXT = "Login with Spotify";
+
 const Login = ({size}: LoginProps) => {
     const { clientId } = useAppContext();
     const [challenge, setChallenge] = useState<string>('');
@@ -39,7 +41,7 @@ const Login = ({size}: LoginProps) => {
                     ...BASE_SKELETON_SX,
                 }}
             >
-                <SpotifyButton />
+                <SpotifyButton text={LOGIN_BUTTON_TEXT} />
             </Skeleton>
         );
     }
@@ -48,7 +50,7 @@ const Login = ({size}: LoginProps) => {
 
     return (
         <Link to={authUrl} className={`login-${size}`} onClick={() => localStorage.setItem(VERIFIER, verifier)}>
-            <SpotifyButton />
+            <SpotifyButton text={LOGIN_BUTTON_TEXT} />
         </Link>
     );
 }
