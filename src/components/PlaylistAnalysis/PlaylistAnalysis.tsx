@@ -34,9 +34,11 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
     const { clientId, code, profile } = useAppContext();
     const { setOpenError, setErrorMessage } = useAnalysisPageContext();
     const [ trackData, setTrackData ] = useState<PlaylistTrack[] | null>();
-    const [ audioFeatures, setAudioFeatures ] = useState<AudioFeatures[]>();
+    const [ audioFeatures, setAudioFeatures ] = useState<AudioFeatures[] | null>();
 
     useEffect(() => {
+        setTrackData(null);
+        setAudioFeatures(null);
         // TODO: Fetched playlist item could be null if not available in market
         fetchPlaylistItems(
             clientId, code!, playlist.id, profile!.country,

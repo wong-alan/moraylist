@@ -5,12 +5,19 @@ const callbackEndpoint = import.meta.env.VITE_ENVIRONMENT === "online" ?
     "http://localhost:5173/callback";
 
 const scopes = [
+    // Users
     "user-read-private",
     "user-read-email",
+    // Follow
     "user-follow-read",
     "user-follow-modify",
+    // Listening History
     "user-top-read",
     "user-read-recently-played",
+    // Library
+    "user-library-read",
+    "user-library-modify",
+    // Playlist
     "playlist-read-private",
     "playlist-read-collaborative",
     "playlist-modify-public",

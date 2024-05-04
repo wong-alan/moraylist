@@ -132,6 +132,7 @@ const Landing = () => {
                             sx={{
                                 fontFamily: "inherit",
                                 marginTop: "7vh",
+                                marginBottom: "5vh"
                             }}
                         >
                             A toolbox for <SpotifyLogo width={110} sx={{transform: "translate(0px, 10px)"}} />.
