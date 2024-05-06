@@ -23,10 +23,8 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
         return <ProfileCardSkeleton />
     }
 
-    const iconSrc: string = profile.images.length == 0 ?
-        MORAY_SVG :
-        profile.images.sort((a, b) => b.height - a.height)[0].url;
-        // Sort by decreasing size
+    const iconSrc: string = profile.images?.at(0)?.url ?? MORAY_SVG;
+    const pfpUrl = profile.images?.at(-1)?.url ?? MORAY_SVG;
 
     return (
         <Card
@@ -47,6 +45,7 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
+                        position: "relative"
                     }}
                 >
                     <Avatar
@@ -79,7 +78,8 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
                                 textTransform: "uppercase",
                                 color: "grey.500",
                                 letterSpacing: "1px",
-                                marginLeft: "calc(100% - 310px)",
+                                position: "absolute",
+                                right: "20px"
                             }}
                         >
                             {profile.id}
@@ -110,8 +110,8 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
                         Email: {profile.email} <br/>
                         Explicit content: {profile.explicit_content.filter_enabled ? "Not Allowed" : "Allowed"} <br />
                         Explicit content filter: {profile.explicit_content.filter_locked ? "Locked" : "Unlocked"} <br />
-                        {iconSrc != MORAY_SVG &&
-                            <Link to={iconSrc} className="light-link" target="_blank" rel="noopener">
+                        {pfpUrl != MORAY_SVG &&
+                            <Link to={pfpUrl} className="light-link" target="_blank" rel="noopener">
                                 Profile Image <OpenInNewOutlined sx={{fontSize: "1rem"}} />
                             </Link>
                         } <br />

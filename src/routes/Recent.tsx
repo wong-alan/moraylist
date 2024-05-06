@@ -53,16 +53,29 @@ const Recent = () => {
                         xs={12}
                         justifyContent={"center"}
                     >
-                        { playHistory.map((track, index) =>
-                            <Grid item container
-                                xs={12}
-                                key={`track-${index}`}
-                            >
-                                <PlayHistoryCard
-                                    playHistory={track}
-                                />
+                        { playHistory.length ?
+                            playHistory.map((track, index) =>
+                                <Grid item container
+                                    xs={12}
+                                    key={`track-${index}`}
+                                >
+                                    <PlayHistoryCard
+                                        playHistory={track}
+                                    />
+                                </Grid>)
+                            : <Grid item xs={12}>
+                                <Typography
+                                    variant="h6"
+                                    className="metro-font"
+                                    sx={{
+                                        width: "fit-content",
+                                        margin: "10vh auto 0px auto"
+                                    }}
+                                >
+                                    You haven't played any songs yet!
+                                </Typography>
                             </Grid>
-                        )}
+                        }
                     </Grid>
                 </Grid>
             </Container>

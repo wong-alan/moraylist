@@ -29,7 +29,7 @@ const Shuffle = () => {
         if (!profile) {
             return;
         }
-        fetchUserPlaylists(clientId, code!, profile!.id).then(data => {
+        fetchUserPlaylists(clientId, code!, profile!.id, true).then(data => {
             if (data) {
                 setPlaylistMap(new Map(data.map((playlist) => [playlist.name, playlist])));
                 setPlaylists(data);

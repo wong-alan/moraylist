@@ -7,6 +7,7 @@ import { ChartsAxisContentProps } from "@mui/x-charts/ChartsTooltip";
 import { LineSeriesType } from "@mui/x-charts/models/seriesType";
 import { attributeMap } from "./AttributeMaps";
 import "./AxisTooltip.css";
+import { MORAY_SVG } from "../icons/MorayIcon";
 
 const AxisTooltip = ({
     series,
@@ -46,7 +47,7 @@ const AxisTooltip = ({
                     className="analysis-tooltip-media"
                     component={"img"}
                     loading="lazy"
-                    src={track.album.images.at(-1)?.url}
+                    src={track.album.images?.at(-1)?.url ?? MORAY_SVG}
                 />
                 <Box className="analysis-tooltip-details">
                     <Typography

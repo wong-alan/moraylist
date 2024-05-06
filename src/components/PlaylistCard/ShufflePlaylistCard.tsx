@@ -7,6 +7,7 @@ import { decode } from "html-entities";
 import ShuffleButton from "../buttons/ShuffleButton";
 import ShufflePlaylistCardSkeleton from "./ShufflePlaylistCardSkeleton";
 import "./ShufflePlaylistCard.css";
+import { MORAY_SVG } from "../icons/MorayIcon";
 
 interface ShufflePlaylistCardProps {
     playlist: Playlist | undefined
@@ -17,6 +18,11 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
         return <ShufflePlaylistCardSkeleton />
     }
 
+    const playlist_img = playlist.images?.at(1)?.url ??
+        playlist.images?.at(0)?.url ??
+        MORAY_SVG;
+
+
     return (
         <Card raised className="playlist-card">
             <CardMedia
@@ -24,7 +30,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
                 component="img"
                 loading="lazy"
                 alt={`Playlist image: ${playlist.name}`}
-                src={playlist.images[1]?.url ?? playlist.images[0].url}
+                src={playlist_img}
             />
             <CardContent
                 className="playlist-card-content"
