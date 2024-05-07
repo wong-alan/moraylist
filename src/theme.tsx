@@ -30,6 +30,12 @@ declare module '@mui/material/LinearProgress' {
     }
 }
 
+declare module '@mui/material/CircularProgress' {
+  interface CircularProgressPropsColorOverrides {
+    spotify: true;
+  }
+}
+
 // Add custom breakpoints to theme
 declare module '@mui/material/styles' {
     interface BreakpointOverrides {

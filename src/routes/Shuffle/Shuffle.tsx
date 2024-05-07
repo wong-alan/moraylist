@@ -1,17 +1,18 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { gsap, Flip } from "../gsap";
+import { gsap, Flip } from "../../gsap";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { useAppContext } from "../contexts/AppContext";
-import { useShufflePageContext } from "../contexts/ShufflePageContext";
-import { fetchUserPlaylists } from "../spotify/playlist";
-import ShufflePlaylistCard from "../components/PlaylistCard/ShufflePlaylistCard";
-import Searchbox from "../components/Searchbox/Searchbox";
-import NoResults from "../components/NoResults";
-import ErrorSnack from "../components/ErrorSnack";
-import { normalize } from "../utils";
-import "./filter.css";
+import { useAppContext } from "../../contexts/AppContext";
+import { useShufflePageContext } from "../../contexts/ShufflePageContext";
+import { fetchUserPlaylists } from "../../spotify/playlist";
+import ShufflePlaylistCard from "../../components/PlaylistCard/ShufflePlaylistCard";
+import Searchbox from "../../components/Searchbox/Searchbox";
+import NoResults from "../../components/NoResults";
+import ErrorSnack from "../../components/ErrorSnack";
+import { normalize } from "../../utils";
+import "./Shuffle.css";
+import "../filter.css";
 
 const Shuffle = () => {
     const { clientId, code, profile } = useAppContext();
@@ -151,6 +152,7 @@ const Shuffle = () => {
                             Tired of Spotify "shuffle" playing the same songs over and over? <br />
                             Your job is to fill playlists with good songs. Leave the order to us. <br />
                             Truly randomize your playlist and hear the songs you've been missing. <br />
+                            <span className="shuffle-note">* you can only shuffle playlists that you have created</span>
                         </Typography>
                     </Grid>
                     <Grid item xs={0.25} />

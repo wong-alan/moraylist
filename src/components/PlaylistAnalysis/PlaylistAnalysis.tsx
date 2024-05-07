@@ -75,7 +75,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     transform: "translateY(-50%)"
                 }}
             >
-                <CircularProgress />
+                <CircularProgress color="spotify" />
             </Box>
         );
     }

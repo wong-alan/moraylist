@@ -19,7 +19,7 @@ const Profile = lazy(() => import("./routes/Profile"));
 const Callback = lazy(() => import("./routes/Callback"));
 const Logout = lazy(() => import("./routes/Logout"));
 const Following = lazy(() => import("./routes/Following"));
-const Shuffle = lazy(() => import("./routes/Shuffle"));
+const Shuffle = lazy(() => import("./routes/Shuffle/Shuffle"));
 const Recent = lazy(() => import("./routes/Recent"));
 const AnalyzePlaylist = lazy(() => import("./routes/AnalyzePlaylist"));
 
