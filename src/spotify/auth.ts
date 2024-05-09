@@ -14,9 +14,6 @@ const scopes = [
     // Listening History
     "user-top-read",
     "user-read-recently-played",
-    // Library
-    "user-library-read",
-    "user-library-modify",
     // Playlist
     "playlist-read-private",
     "playlist-read-collaborative",
