@@ -4,7 +4,7 @@ A web app with [Spotify Web API](https://developer.spotify.com/documentation/web
 A learning project.
 
 Try it out at [www.moraylist.com](https://www.moraylist.com)* \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*public access pending Spotify extension request
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*public access pending Spotify extension request.
 
 For a beta preview, message: info@moraylist.com \
 Please include your name and the email address associated with your Spotify account.
@@ -19,8 +19,12 @@ ___
 - Analyze playlist mood
 - Analyze playlist energy
 
-### Planned future functions
-- View your top genres
+### Planned future improvements
+- Functional
+  - View your top genres/decades
+- Technical
+  - Rewrite using [Spotify Web API SDK](https://www.npmjs.com/package/@spotify/web-api-ts-sdk) [[Blog post](https://developer.spotify.com/blog/2023-07-03-typescript-sdk)]
+  - Use [React Query](https://tanstack.com/query/latest) to handle state management of fetched data
 
 ___
 ### React + TypeScript + Vite
