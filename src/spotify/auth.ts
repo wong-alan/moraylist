@@ -1,3 +1,5 @@
+import { Scopes } from "@spotify/web-api-ts-sdk"
+
 const authEndpoint = "https://accounts.spotify.com/authorize"
 const accessTokenEndpoint = "https://accounts.spotify.com/api/token";
 const callbackEndpoint = import.meta.env.VITE_ENVIRONMENT === "online" ?
@@ -5,20 +7,10 @@ const callbackEndpoint = import.meta.env.VITE_ENVIRONMENT === "online" ?
     "http://localhost:5173/callback";
 
 const scopes = [
-    // Users
-    "user-read-private",
-    "user-read-email",
-    // Follow
-    "user-follow-read",
-    "user-follow-modify",
-    // Listening History
-    "user-top-read",
-    "user-read-recently-played",
-    // Playlist
-    "playlist-read-private",
-    "playlist-read-collaborative",
-    "playlist-modify-public",
-    "playlist-modify-private",
+    Scopes.userDetails,
+    Scopes.userFollow,
+    Scopes.userRecents,
+    Scopes.playlist.filter(s => s !== "ugc-image-upload"),
 ];
 
 // LOCAL STORAGE
