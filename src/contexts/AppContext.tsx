@@ -11,6 +11,8 @@ interface IAppContext {
 
 const AppContext = createContext<IAppContext>({} as IAppContext);
 
+// TODO: Remove from AppContext
+// Probably only needed in useSpotify hook
 const clientId: string = import.meta.env.VITE_CLIENT_ID;
 
 interface AppContextProviderProps {
