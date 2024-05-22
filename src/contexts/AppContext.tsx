@@ -1,12 +1,15 @@
 import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
+import { SpotifyApi } from "@spotify/web-api-ts-sdk";
 import { CODE } from "../utils";
+import { getSpotifyApi } from "../spotify/auth";
 
 interface IAppContext {
     clientId: string,
     code: string | null,
     setCode: Dispatch<SetStateAction<string | null>>,
     profile: UserProfile | null,
-    setProfile: Dispatch<SetStateAction<UserProfile | null>>
+    setProfile: Dispatch<SetStateAction<UserProfile | null>>,
+    spotify: SpotifyApi
   }
 
 const AppContext = createContext<IAppContext>({} as IAppContext);
@@ -28,7 +31,8 @@ const AppContextProvider = ({children}: AppContextProviderProps) => {
         code,
         setCode,
         profile,
-        setProfile
+        setProfile,
+        spotify: getSpotifyApi()
     };
 
     return (

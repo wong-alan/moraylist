@@ -5,9 +5,10 @@ import SpotifyIcon from "../icons/SpotifyIcon";
 interface SpotifyButtonProps {
     text: string;
     sx?: SystemStyleObject
+    onClick?: () => void
 }
 
-const SpotifyButton = ({text, sx}: SpotifyButtonProps) => {
+const SpotifyButton = ({text, sx, onClick}: SpotifyButtonProps) => {
     return (
         <ButtonBase
             buttonText={text}
@@ -16,6 +17,7 @@ const SpotifyButton = ({text, sx}: SpotifyButtonProps) => {
                 minWidth: "168px",
                 ...sx
             }}
+            onClick={onClick}
         />
     );
 }

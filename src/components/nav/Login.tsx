@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
 import SpotifyButton from "../buttons/SpotifyButton";
 import { useAppContext } from "../../contexts/AppContext";
-import { VERIFIER,
+import {
+    VERIFIER,
+    authenticateSpotify,
     generateAuthUrl,
     generateCodeChallenge,
     generateCodeVerifier
@@ -18,40 +20,40 @@ interface LoginProps {
 const LOGIN_BUTTON_TEXT = "Login with Spotify";
 
 const Login = ({size}: LoginProps) => {
-    const { clientId } = useAppContext();
+    const { clientId, spotify } = useAppContext();
     const [challenge, setChallenge] = useState<string>('');
     const [verifier, setVerifier] = useState<string>('');
 
-    useEffect(() => {
-        const verifier = generateCodeVerifier(128);
-        generateCodeChallenge(verifier)
-            .then(data => {
-                setVerifier(verifier);
-                setChallenge(data);
-            })
-    }, []);
+    // useEffect(() => {
+    //     const verifier = generateCodeVerifier(128);
+    //     generateCodeChallenge(verifier)
+    //         .then(data => {
+    //             setVerifier(verifier);
+    //             setChallenge(data);
+    //         })
+    // }, []);
 
-    if (!challenge || !verifier) {
-        return (
-            <Skeleton
-                className={`login-skeleton login-${size}`}
-                variant="rounded"
-                animation="wave"
-                sx={{
-                    ...BASE_SKELETON_SX,
-                }}
-            >
-                <SpotifyButton text={LOGIN_BUTTON_TEXT} />
-            </Skeleton>
-        );
-    }
+    // if (!challenge || !verifier) {
+    //     return (
+    //         <Skeleton
+    //             className={`login-skeleton login-${size}`}
+    //             variant="rounded"
+    //             animation="wave"
+    //             sx={{
+    //                 ...BASE_SKELETON_SX,
+    //             }}
+    //         >
+    //             <SpotifyButton text={LOGIN_BUTTON_TEXT} />
+    //         </Skeleton>
+    //     );
+    // }
 
-    const authUrl = generateAuthUrl(clientId, challenge);
+    // const authUrl = generateAuthUrl(clientId, challenge);
 
     return (
-        <Link to={authUrl} className={`login-${size}`} onClick={() => localStorage.setItem(VERIFIER, verifier)}>
-            <SpotifyButton text={LOGIN_BUTTON_TEXT} />
-        </Link>
+        // <Link to={authUrl} className={`login-${size}`} onClick={() => localStorage.setItem(VERIFIER, verifier)}>
+        <SpotifyButton text={LOGIN_BUTTON_TEXT} onClick={() => authenticateSpotify(spotify)} />
+        // </Link>
     );
 }
 

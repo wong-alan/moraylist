@@ -1,4 +1,9 @@
-import { Scopes } from "@spotify/web-api-ts-sdk"
+import {
+    AuthorizationCodeWithPKCEStrategy,
+    Scopes,
+    SdkOptions,
+    SpotifyApi
+} from "@spotify/web-api-ts-sdk"
 
 const authEndpoint = "https://accounts.spotify.com/authorize"
 const accessTokenEndpoint = "https://accounts.spotify.com/api/token";
@@ -12,6 +17,44 @@ const scopes = [
     Scopes.userRecents,
     Scopes.playlist.filter(s => s !== "ugc-image-upload"),
 ];
+
+// === NEW SDK ===
+const clientId: string = import.meta.env.VITE_CLIENT_ID;
+const redirectUrl = import.meta.env.VITE_ENVIRONMENT === "online" ?
+    "https://moraylist.com/callback" :
+    "http://localhost:5173/callback";
+const newScopes = [
+    ...Scopes.userDetails,
+    ...Scopes.userFollow,
+    ...Scopes.userRecents,
+    ...Scopes.playlist.filter(s => s !== "ugc-image-upload"),
+];
+
+export const getSpotifyApi = (config?: SdkOptions): SpotifyApi => {
+    const auth = new AuthorizationCodeWithPKCEStrategy(clientId, redirectUrl, newScopes);
+    const internalSdk = new SpotifyApi(auth, config);
+    return internalSdk;
+}
+
+export const authenticateSpotify = async (spotify: SpotifyApi) => {
+    try {
+        console.log("Authenticating!")
+        const { authenticated } = await spotify.authenticate();
+
+        if (authenticated) {
+            console.log("Authenticated!")
+        }
+    } catch (e: Error | unknown) {
+
+        const error = e as Error;
+        if (error && error.message && error.message.includes("No verifier found in cache")) {
+            console.error("If you are seeing this error in a React Development Environment it's because React calls useEffect twice. Using the Spotify SDK performs a token exchange that is only valid once, so React re-rendering this component will result in a second, failed authentication. This will not impact your production applications (or anything running outside of Strict Mode - which is designed for debugging components).", error);
+        } else {
+            console.error(e);
+        }
+    }
+}
+// ================
 
 // LOCAL STORAGE
 export const ACCESS_TOKEN = "access-token";

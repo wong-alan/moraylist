@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { SpotifyApi, Scopes, SdkOptions, AuthorizationCodeWithPKCEStrategy } from "@spotify/web-api-ts-sdk";
 
 const clientId: string = import.meta.env.VITE_CLIENT_ID;
@@ -24,6 +24,7 @@ export const useSpotify = (config?: SdkOptions) => {
                 const { authenticated } = await internalSdk.authenticate();
 
                 if (authenticated) {
+                    console.log("Authenticated!")
                     setSdk(() => internalSdk);
                 }
             } catch (e: Error | unknown) {
