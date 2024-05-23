@@ -6,28 +6,12 @@
     display: none;
 }
 
-.login-skeleton.login-sm {
-    display: block;
-}
-
-.login-skeleton.login-lg {
-    display: none;
-}
-
 @media (min-width: 900px) {
     .login-sm {
         display: none;
     }
     .login-lg {
         display: inline;
-    }
-
-    .login-skeleton.login-sm {
-        display: none;
-    }
-
-    .login-skeleton.login-lg {
-        display: block;
     }
 }
 
