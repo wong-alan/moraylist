@@ -45,7 +45,7 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
 ]
 
 const Landing = () => {
-    const { code, profile } = useAppContext();
+    const { code } = useAppContext();
 
     return (<>
         <div className="landing-gradient" />
@@ -139,16 +139,6 @@ const Landing = () => {
                         </Typography>
                     </Grid>
                     <Grid item xs={1} />
-                    { !profile &&
-                        <Grid item xs={12}>
-                            <Typography
-                                variant="body2"
-                                sx={{ fontFamily: "inherit"}}
-                            >
-                                Beta preview. <a href="mailto:info@moraylist.com">Send an access request.</a> Include your Spotify email.
-                            </Typography>
-                        </Grid>
-                    }
                 </Grid>
             </Container>
         </section>

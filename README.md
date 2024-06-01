@@ -6,9 +6,6 @@ A learning project.
 Try it out at [www.moraylist.com](https://www.moraylist.com)* \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*public access pending Spotify extension request.
 
-For a beta preview, message: info@moraylist.com \
-Please include your name and the email address associated with your Spotify account.
-
 ___
 ### Current supported functions
 - Shuffle your playlists
