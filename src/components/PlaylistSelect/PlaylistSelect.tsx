@@ -72,7 +72,7 @@ const PlaylistSelect = ({playlists, setValue, loading}: PlaylistSelectProps) => 
                         '& > img': {
                             mr: 2,
                             flexShrink: 0,
-                            borderRadius: "1px"
+                            borderRadius: "4px"
                         }
                     }}
                     {...props}
