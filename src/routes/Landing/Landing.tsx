@@ -19,23 +19,28 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
     {
         key: "shuffle",
         icon: <QueueMusicRoundedIcon />,
-        content: "Shuffle your playlists"
+        content: "Shuffle your playlists",
+        link: "/shuffle"
     },{
         key: "following",
         icon: <RecordVoiceOverRoundedIcon />,
-        content: "Manage your followed artists"
+        content: "Manage your followed artists",
+        link: "/following"
     },{
         key: "recent",
         icon: <HistoryRoundedIcon />,
         content: "View recently played",
+        link: "/recent"
     },{
         key: "dance",
         icon: <NightlifeRoundedIcon />,
         content: "Check playlist danceability",
+        link: "/analyze"
     },{
         key: "tempo",
         icon: <DirectionsRunRoundedIcon />,
         content: "Analyze your playlist tempo",
+        link: "/analyze"
     },{
         key: "genres",
         icon: <StarRoundedIcon />,
@@ -107,11 +112,13 @@ const Landing = () => {
                                         <LandingCard
                                             icon={card.icon}
                                             content={card.content}
+                                            link={card.link}
                                         />
                                     </Tooltip>
                                     : <LandingCard
                                         icon={card.icon}
                                         content={card.content}
+                                        link={card.link}
                                     />
                                 }
                             </Grid>

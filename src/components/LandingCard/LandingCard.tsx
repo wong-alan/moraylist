@@ -5,15 +5,16 @@ import CardContent from "@mui/material/CardContent";
 import "./LandingCard.css";
 
 export interface LandingCardProps {
-    icon: React.ReactNode
-    content: string
+    icon: React.ReactNode,
+    content: string,
+    link?: string
 }
 
 const LandingCard = forwardRef((
     props: LandingCardProps,
     ref: React.Ref<HTMLDivElement>
 ) => {
-    const {icon, content} = props;
+    const {icon, content, link} = props;
     return (
         <Card
             ref={ref}  // Needed for tooltips
@@ -32,6 +33,11 @@ const LandingCard = forwardRef((
                 boxShadow: "none",
                 color: "white"
         }}>
+            {link &&
+                <a href={link}>
+                    <span className="landing-card-link"></span>
+                </a>
+            }
             <CardMedia
                 className="landing-card-media"
                 sx={{
