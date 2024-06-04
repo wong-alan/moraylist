@@ -3,8 +3,7 @@
 A web app with [Spotify Web API](https://developer.spotify.com/documentation/web-api) integration to manage your music.
 A learning project.
 
-Try it out at [www.moraylist.com](https://www.moraylist.com)* \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*public access pending Spotify extension request.
+Try it out at [www.moraylist.com](https://www.moraylist.com)
 
 ___
 ### Current supported functions
