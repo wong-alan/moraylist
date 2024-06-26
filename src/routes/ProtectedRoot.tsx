@@ -1,12 +1,26 @@
 import { Navigate } from "react-router-dom";
 import Root from "./Root";
 import { useAppContext } from "../contexts/AppContext";
+import { useEffect, useState } from "react";
 
 const ProtectedRoot = () => {
-    const { code } = useAppContext();
+    const { spotify } = useAppContext();
+    const [checkedAuth, setCheckedAuth] = useState<boolean>(false);
+    const [auth, setAuth] = useState<boolean>(false);
 
     // User is not authenticated
-    if (!code) {
+    useEffect(() => {
+        (async () => {
+            await spotify.getAccessToken().then(token => setAuth(!!token));
+            setCheckedAuth(true);
+        })();
+    }, []);
+
+    if (!checkedAuth) {
+        return <></>
+    }
+
+    if (!auth) {
         return <Navigate to="/" replace />
     }
 

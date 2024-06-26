@@ -1,23 +1,13 @@
+import { SpotifyApi, UserProfile } from "@spotify/web-api-ts-sdk";
 import { getAccessToken } from "./auth";
 
 const userEndpoint = "https://api.spotify.com/v1/me"
 const followingEndpoint = userEndpoint + "/following";
 
 export const fetchProfile = async (
-    clientId: string,
-    code: string
-): Promise<UserProfile | null> => {
-    const accessToken = await getAccessToken(clientId, code);
-    if (!accessToken) {
-        return null;
-    }
-
-    const result = await fetch(userEndpoint, {
-        method: "GET",
-        headers: { Authorization: `Bearer ${accessToken}` }
-    });
-    const profile: UserProfile = await result.json();
-    return profile;
+    spotify: SpotifyApi
+): Promise<UserProfile> => {
+    return spotify.currentUser.profile();
 }
 
 export const fetchFollowing = async (

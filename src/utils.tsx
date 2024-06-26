@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { SystemStyleObject } from "@mui/system";
 
 // LOCAL STORAGE
+// TODO: remove, let SDK handle this
 export const CODE = "code";
 
 export const DEFAULT_TOOLTIP_SX: SystemStyleObject = {

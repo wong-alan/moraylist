@@ -14,7 +14,7 @@ import { useAppContext } from '../../contexts/AppContext';
 import { MORAY_SVG } from "../icons/MorayIcon";
 
 const UserMenu = () => {
-    const { clientId, code, profile, setProfile } = useAppContext();
+    const { spotify, profile, setProfile } = useAppContext();
     const [anchorElUser, setAnchorElUser] = useState<HTMLElement|null>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -29,8 +29,8 @@ const UserMenu = () => {
         if (profile) {
             return;
         }
-        fetchProfile(clientId, code!).then(data => setProfile(data));
-    }, [code]);
+        fetchProfile(spotify).then(data => setProfile(data));
+    }, []);
 
     const profilePicUrl = profile?.images?.at(0)?.url ?
         profile.images[0].url :

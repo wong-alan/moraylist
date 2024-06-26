@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -21,9 +21,20 @@ import { ListItemIcon } from '@mui/material';
 const noLoginOrProfile = ["/logout", "/callback"];
 
 const Header = () => {
-    const { code } = useAppContext();
+    const { spotify, authUpdate } = useAppContext();
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+    const [_, setCheckedAuth] = useState<boolean>(false);
+    const [authenticated, setAuth] = useState<boolean>(false);
 
+    useEffect(() => {
+        (async () => {
+            console.log(window.location.pathname);
+            const token = await spotify.getAccessToken(); //.then(token => setAuth(!!token));
+            console.log("Token: " + token);
+            setAuth(!!token);
+            setCheckedAuth(true);
+        })();
+    }, [authUpdate]);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
       setAnchorElNav(event.currentTarget);
@@ -58,7 +69,7 @@ const Header = () => {
                     </Link>
 
                     {/* Small menu */}
-                    { code &&
+                    { authenticated &&
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
                                 size="large"
@@ -136,7 +147,7 @@ const Header = () => {
 
                     {/* Large menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        { code &&
+                        { authenticated &&
                             navPages.map((page) => (
                                 <Link to={page.url} key={page.name+"-lg"} className="link-style">
                                     <Button
@@ -161,7 +172,7 @@ const Header = () => {
                     <Box sx={{ flexGrow: 0 }}>
                         {
                             noLoginOrProfile.includes(useLocation().pathname) ? <></> :
-                            code ?
+                            authenticated ?
                             <UserMenu /> :
                             <Login size="lg" />
                         }

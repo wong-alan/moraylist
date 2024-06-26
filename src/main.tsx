@@ -92,11 +92,11 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
+    // <React.StrictMode>
         <ThemeProvider theme={makeSpotifyTheme()}>
             <AppContextProvider>
                 <RouterProvider router={router} />
             </AppContextProvider>
         </ThemeProvider>
-    </React.StrictMode>
+    // </React.StrictMode>
 )

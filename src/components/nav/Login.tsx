@@ -1,6 +1,6 @@
 import SpotifyButton from "../buttons/SpotifyButton";
 import { useAppContext } from "../../contexts/AppContext";
-import { authenticateSpotify } from "../../spotify/auth";
+import { redirectAuthSpotify } from "../../spotify/auth";
 import "./Login.css";
 
 interface LoginProps {
@@ -16,7 +16,7 @@ const Login = ({size}: LoginProps) => {
         <SpotifyButton
             className={`login-${size}`}
             text={LOGIN_BUTTON_TEXT}
-            onClick={() => authenticateSpotify(spotify)}
+            onClick={() => redirectAuthSpotify(spotify)}
         />
     );
 }

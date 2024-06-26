@@ -1,3 +1,4 @@
+import { useState, useLayoutEffect } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
@@ -45,7 +46,12 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
 ]
 
 const Landing = () => {
-    const { code, profile } = useAppContext();
+    const { spotify, profile } = useAppContext();
+    const [authenticated, setAuth] = useState<boolean>(false);
+
+    useLayoutEffect(() => {
+        spotify.getAccessToken().then(token => setAuth(token ? true : false))
+    }, []);
 
     return (<>
         <div className="landing-gradient" />
@@ -118,7 +124,7 @@ const Landing = () => {
                         )}
                     </Grid>
                     <Grid item xs={2} />
-                    {!code &&
+                    {!authenticated &&
                         <Grid item container xs={12} justifyContent={"center"}
                             sx={{marginTop: "5vh"}}
                         >

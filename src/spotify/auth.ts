@@ -28,9 +28,14 @@ export const getSpotifyApi = (config?: SdkOptions): SpotifyApi => {
     return internalSdk;
 }
 
+export const redirectAuthSpotify = (spotify: SpotifyApi) => {
+    spotify.authenticate();
+}
+
 export const authenticateSpotify = async (spotify: SpotifyApi) => {
     try {
-        await spotify.authenticate();
+        const { authenticated } = await spotify.authenticate();
+        return authenticated;
     } catch (e: Error | unknown) {
         const error = e as Error;
         if (error && error.message && error.message.includes("No verifier found in cache")) {
@@ -39,6 +44,7 @@ export const authenticateSpotify = async (spotify: SpotifyApi) => {
             console.error(e);
         }
     }
+    return false;
 }
 
 // LOCAL STORAGE

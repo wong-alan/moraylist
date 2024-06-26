@@ -1,14 +1,15 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 
 const Logout = () => {
-    const { setCode, setProfile } = useAppContext();
+    const { spotify, setProfile, setAuthUpdate } = useAppContext();
 
-    useEffect(() => {
-        localStorage.clear();
-        setCode(null);
+    spotify.logOut();
+
+    useLayoutEffect(() => {
         setProfile(null);
+        setAuthUpdate(value => value + 1);
     }, []);
 
     return (

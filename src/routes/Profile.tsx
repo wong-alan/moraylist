@@ -5,14 +5,14 @@ import ProfileCard from "../components/ProfileCard/ProfileCard";
 import { fetchProfile } from "../spotify/user";
 
 const Profile = () => {
-    const { clientId, code, profile, setProfile } = useAppContext();
-
+    const { spotify, profile, setProfile } = useAppContext();
+    console.log("Landed at profile")
     useEffect(() => {
         if (profile) {
             return;
         }
-        fetchProfile(clientId, code!).then(data => setProfile(data));
-    }, [code]);
+        fetchProfile(spotify).then(data => setProfile(data));
+    }, []);
 
     return (
         <section id="profile"

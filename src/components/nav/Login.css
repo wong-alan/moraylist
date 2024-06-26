@@ -1,17 +1,17 @@
-.login-sm {
-    display: inline;
+.button-base.login-sm {
+    display: inline-flex;
 }
 
-.login-lg {
+.button-base.login-lg {
     display: none;
 }
 
 @media (min-width: 900px) {
-    .login-sm {
+    .button-base.login-sm {
         display: none;
     }
-    .login-lg {
-        display: inline;
+    .button-base.login-lg {
+        display: inline-flex;
     }
 }
 
