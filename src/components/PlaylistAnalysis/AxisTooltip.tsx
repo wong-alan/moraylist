@@ -14,7 +14,7 @@ const AxisTooltip = ({
     dataIndex,
     axisValue
 }: ChartsAxisContentProps) => {
-    const track = (axisValue as PlaylistTrack).track as Track;
+    const track = ((axisValue as unknown) as PlaylistTrack).track as Track;
     const dataSeries = series[0] as LineSeriesType;
     const attributeProps = attributeMap[dataSeries.dataKey!];
 

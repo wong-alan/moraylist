@@ -1,7 +1,6 @@
 # Moraylist
 
 A web app with [Spotify Web API](https://developer.spotify.com/documentation/web-api) integration to manage your music.
-A learning project.
 
 Try it out at [www.moraylist.com](https://www.moraylist.com)
 
@@ -31,6 +30,8 @@ You will need a `.env` file with:
 * Deployment environment
 
 Build the project with `npm run build`
+
+View bundle visualization at `analyse.html`
 
 Web manifest icons sized by [Maskable](https://maskable.app).
 
