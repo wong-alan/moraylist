@@ -19,7 +19,7 @@ export type InfoCaptionProps = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-} & Omit<JSX.IntrinsicElements["div"], "ref">;
+} & Omit<React.JSX.IntrinsicElements["div"], "ref">;
 
 const InfoCaptionRoot = styled("div", {
   name: "JunInfo",

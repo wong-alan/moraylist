@@ -39,8 +39,8 @@ const AnalyzePlaylist = () => {
         <section id="analysis">
             <Container maxWidth="xl">
                 <Grid container>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }}>
                         <Typography
                             variant="h4"
                             className="title"
@@ -48,9 +48,9 @@ const AnalyzePlaylist = () => {
                             Analyze Playlists
                         </Typography>
                     </Grid>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }}>
                         <Typography
                             variant="body1"
                             className="subtitle"
@@ -59,35 +59,35 @@ const AnalyzePlaylist = () => {
                             Let us delve into the depths of your musical universe and unearth the secrets hidden within.<br />
                         </Typography>
                     </Grid>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }}>
                         <ChipGroup
                             labels={attributeMap}
                             selected={attribute}
                             setSelected={setAttribute}
                         />
                     </Grid>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }}>
                         <PlaylistSelect
                             playlists={playlists}
                             setValue={setSelectedPlaylist}
                             loading={loading}
                         />
                     </Grid>
-                    <Grid item xs={0.25} />
+                    <Grid size={{ xs: 0.25 }} />
                     { selectedPlaylist &&
                         <>
-                        <Grid item xs={0.25} />
-                        <Grid item xs={11.5}>
+                        <Grid size={{ xs: 0.25 }} />
+                        <Grid size={{ xs: 11.5 }}>
                             <PlaylistAnalysis
                                 playlist={selectedPlaylist}
                                 attribute={attribute}
                             />
                         </Grid>
-                        <Grid item xs={0.25} />
+                        <Grid size={{ xs: 0.25 }} />
                         </>
                     }
                 </Grid>

@@ -133,8 +133,8 @@ const Shuffle = () => {
         <section id="shuffle">
             <Container maxWidth="xl">
                 <Grid container>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }}>
                         <Typography
                             variant="h4"
                             className="title"
@@ -142,9 +142,9 @@ const Shuffle = () => {
                             Shuffle Playlists
                         </Typography>
                     </Grid>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }}>
                         <Typography
                             variant="body1"
                             className="subtitle"
@@ -155,9 +155,9 @@ const Shuffle = () => {
                             <span className="shuffle-note">* you can only shuffle playlists that you have created</span>
                         </Typography>
                     </Grid>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5} sx={{position: "sticky", zIndex: 10, top: "30px"}}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }} sx={{position: "sticky", zIndex: 10, top: "30px"}}>
                         <Searchbox
                             label="Filter playlists by name"
                             placeholder="Filter playlists by name"
@@ -165,14 +165,14 @@ const Shuffle = () => {
                             setText={setFilterText}
                         />
                     </Grid>
-                    <Grid item xs={0.25} />
+                    <Grid size={{ xs: 0.25 }} />
                     { playlists.map((playlist, index) => (
-                        <Grid item container
-                            xs={6} sm={4} md={6} lg={4}
+                        <Grid container
+                            size={{ xs: 6, sm: 4, md: 6, lg: 4 }}
                             key={`playlist-${index}`}
                             className="playlist-card-container"
                             id={playlist?.name}
-                            ref={(playlistRef) => (playlistRefs.current[index] = playlistRef)}
+                            ref={(playlistRef): void => {playlistRefs.current[index] = playlistRef}}
                             justifyContent={"center"}
                             width={"auto"} // GSAP will record "width: 100%" and animate weird without this
                         >
@@ -181,13 +181,13 @@ const Shuffle = () => {
                         ))
                     }
                     { playlists.length ?
-                        <Grid item xs={12}
+                        <Grid size={{ xs: 12 }}
                             className="no-result"
                             ref={noResultRef}
                         >
                             <NoResults input={filterText} />
                         </Grid>
-                        : <Grid item xs={12}>
+                        : <Grid size={{ xs: 12 }}>
                             <Typography
                                 variant="h6"
                                 className="metro-font"

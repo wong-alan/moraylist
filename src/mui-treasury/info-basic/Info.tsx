@@ -37,7 +37,7 @@ export type InfoProps = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-} & Omit<JSX.IntrinsicElements["div"], "ref">;
+} & Omit<React.JSX.IntrinsicElements["div"], "ref">;
 
 const StylesContext = React.createContext<InfoProps["useStyles"] | undefined>(
   undefined

@@ -43,7 +43,8 @@ const LandingCard = forwardRef((
                 sx={{
                     paddingLeft: "16px"
             }}>
-                {cloneElement(icon as ReactElement, {className: "landing-card-icon"})}
+                {cloneElement(icon as ReactElement) //, {className: "landing-card-icon"})} TODO: Fix this
+                }
             </CardMedia>
             <CardContent
                 className="landing-card-content"

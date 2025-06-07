@@ -3,20 +3,18 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { ChartsAxisContentProps } from "@mui/x-charts/ChartsTooltip";
-import { LineSeriesType } from "@mui/x-charts/models/seriesType";
-import { attributeMap } from "./AttributeMaps";
-import "./AxisTooltip.css";
+import "./TrackTooltip.css";
 import { MORAY_SVG } from "../icons/MorayIcon";
+import { useAxesTooltip } from "@mui/x-charts";
 
-const AxisTooltip = ({
-    series,
-    dataIndex,
-    axisValue
-}: ChartsAxisContentProps) => {
-    const track = ((axisValue as unknown) as PlaylistTrack).track as Track;
-    const dataSeries = series[0] as LineSeriesType;
-    const attributeProps = attributeMap[dataSeries.dataKey!];
+const TrackTooltip = () => {
+    const tooltipData = useAxesTooltip();
+    const axisData = tooltipData?.[0]; // x-axis
+    if (!axisData) {
+        return null;
+    }
+    const track = ((axisData.axisValue as unknown) as PlaylistTrack).track as Track;
+    const trackData = axisData.seriesItems[0];
 
     return (
         <Card
@@ -28,13 +26,13 @@ const AxisTooltip = ({
                     className="analysis-tooltip-track-name"
                     noWrap
                 >
-                    {track.name}
+                    {axisData.axisFormattedValue}
                 </Typography>
                 <Typography
                     className="analysis-tooltip-track-number"
                     align="right"
                 >
-                    #{dataIndex! + 1}
+                    #{axisData.dataIndex + 1}
                 </Typography>
 
             </Box>
@@ -47,7 +45,7 @@ const AxisTooltip = ({
                     className="analysis-tooltip-media"
                     component={"img"}
                     loading="lazy"
-                    src={track.album.images?.at(-1)?.url ?? MORAY_SVG}
+                    src={track.album?.images?.at(-1)?.url ?? MORAY_SVG}
                 />
                 <Box className="analysis-tooltip-details">
                     <Typography
@@ -59,16 +57,13 @@ const AxisTooltip = ({
                     <Typography
                         className="analysis-tooltip-attribute"
                     >
-                        {attributeProps.label}
+                        {trackData.formattedLabel}
                     </Typography>
                     <Typography
                         className="analysis-tooltip-value"
                         align="right"
                     >
-                        { dataIndex !== null && dataIndex !== undefined && dataSeries.data ?
-                            attributeProps.tooltipFormatter(dataSeries.data[dataIndex])
-                            : "?"
-                        }
+                        {trackData.formattedValue}
                     </Typography>
                 </Box>
             </CardContent>
@@ -76,4 +71,4 @@ const AxisTooltip = ({
     );
 }
 
-export default AxisTooltip;
+export default TrackTooltip;

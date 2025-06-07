@@ -18,7 +18,7 @@ export type InfoParagraphProps = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-} & Omit<JSX.IntrinsicElements["p"], "ref">;
+} & Omit<React.JSX.IntrinsicElements["p"], "ref">;
 
 const InfoParagraphRoot = styled("p", {
   name: "JunInfo",

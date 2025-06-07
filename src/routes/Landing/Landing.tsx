@@ -57,7 +57,8 @@ const Landing = () => {
         <section id="landing">
             <Container maxWidth="xl">
                 <Grid container>
-                    <Grid item container xs={12}
+                    <Grid container
+                        size={{ xs: 12 }}
                         justifyContent={"center"}
                     >
                         <Typography
@@ -75,7 +76,8 @@ const Landing = () => {
                             Your music, managed.
                         </Typography>
                     </Grid>
-                    <Grid item container xs={12}
+                    <Grid container
+                        size={{ xs: 12 }}
                         justifyContent={"center"}
                     >
                         <Typography
@@ -92,12 +94,15 @@ const Landing = () => {
                             Organize your playlists, artists, and tracks, in one spot.
                         </Typography>
                     </Grid>
-                    <Grid item xs={2} />
-                    <Grid item container xs={8} spacing={2}>
+                    <Grid size={{ xs: 2 }} />
+                    <Grid container
+                        size={{ xs: 8 }}
+                        spacing={2}
+                    >
                         {cards.map(card =>
                             <Grid key={card.key}
-                                item container
-                                xs={6}
+                                container
+                                size={{ xs: 6 }}
                                 className="landing-card-container"
                             >
                                 { card.tooltip ?
@@ -124,16 +129,21 @@ const Landing = () => {
                             </Grid>
                         )}
                     </Grid>
-                    <Grid item xs={2} />
+                    <Grid size={{ xs: 2 }} />
                     {!code &&
-                        <Grid item container xs={12} justifyContent={"center"}
+                        <Grid container
+                            size={{ xs: 12 }}
+                            justifyContent={"center"}
                             sx={{marginTop: "5vh"}}
                         >
                             <Login size="sm" />
                         </Grid>
                     }
-                    <Grid item xs={1} />
-                    <Grid item container xs={10} justifyContent={"right"}>
+                    <Grid size={{ xs: 1 }} />
+                    <Grid container
+                        size={{ xs: 10 }}
+                        justifyContent={"right"}
+                    >
                         <Typography
                             variant="h6"
                             sx={{
@@ -145,7 +155,7 @@ const Landing = () => {
                             A toolbox for <SpotifyLogo width={110} sx={{transform: "translate(0px, 10px)"}} />.
                         </Typography>
                     </Grid>
-                    <Grid item xs={1} />
+                    <Grid size={{ xs: 1 }} />
                 </Grid>
             </Container>
         </section>

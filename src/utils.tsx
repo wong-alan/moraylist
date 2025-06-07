@@ -49,10 +49,10 @@ export const uniqueBy = <T extends unknown>(
 
 interface RepeatProps {
     count: number
-    children: JSX.Element
+    children: React.JSX.Element
 }
 
-export const Repeat = ({count, children}: RepeatProps): JSX.Element[] => {
+export const Repeat = ({count, children}: RepeatProps): React.JSX.Element[] => {
     return [...Array(count)].map((_, i) => (
         <Fragment key={i}>{children}</Fragment>
     ));

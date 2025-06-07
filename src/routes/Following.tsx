@@ -163,8 +163,8 @@ const Following = () => {
         <section id="following">
             <Container maxWidth="xl">
                 <Grid container>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }}>
                         <Typography
                             variant="h4"
                             className="title"
@@ -172,9 +172,9 @@ const Following = () => {
                             Artists You Follow
                         </Typography>
                     </Grid>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }}>
                         <Typography
                             variant="body1"
                             className="subtitle"
@@ -183,9 +183,9 @@ const Following = () => {
                             Not a stan anymore? Drop them like your ex. <br />
                         </Typography>
                     </Grid>
-                    <Grid item xs={0.25} />
-                    <Grid item xs={0.25} />
-                    <Grid item xs={11.5} sx={{position: "sticky", zIndex: 10, top: "30px"}}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid size={{ xs: 11.5 }} sx={{position: "sticky", zIndex: 10, top: "30px"}}>
                         <Searchbox
                             label="Filter artists by name"
                             placeholder="Filter artists by name"
@@ -193,15 +193,15 @@ const Following = () => {
                             setText={setFilterText}
                         />
                     </Grid>
-                    <Grid item xs={0.25} />
-                    <Grid container item spacing={1}>
+                    <Grid size={{ xs: 0.25 }} />
+                    <Grid container spacing={1}>
                         { artists.map((artist, index) =>
-                            <Grid item
-                                xs={6} sm={6} smd={4} md={3} lg={12/5} xl={2}
+                            <Grid
+                                size={{ xs:6, sm:6, smd:4, md:3, lg:12/5, xl:2 }}
                                 key={`artist-${index}`}
                                 className="artist-card-container"
                                 id={artist?.name}
-                                ref={(cardRef) => (cardRefs.current[index] = cardRef)}
+                                ref={(cardRef): void => {cardRefs.current[index] = cardRef}}
                             >
                                 <ArtistCard
                                     artist={artist}
@@ -211,13 +211,13 @@ const Following = () => {
                         )}
                     </Grid>
                     { artists.length ?
-                        <Grid item xs={12}
+                        <Grid size={{ xs: 12 }}
                             className="no-result"
                             ref={noResultRef}
                         >
                             <NoResults input={filterText} />
                         </Grid>
-                        : <Grid item xs={12}>
+                        : <Grid size={{ xs: 12 }}>
                             <Typography
                                 variant="h6"
                                 className="metro-font"

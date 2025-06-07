@@ -1,4 +1,4 @@
-import createTheme from '@mui/material/styles/createTheme';
+import { createTheme } from '@mui/material/styles';
 
 // Add 'Spotify' to palette
 declare module '@mui/material/styles' {

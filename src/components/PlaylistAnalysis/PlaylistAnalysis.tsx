@@ -2,21 +2,21 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Paper from "@mui/material/Paper";
-import { ResponsiveChartContainer } from "@mui/x-charts/ResponsiveChartContainer";
+import { ChartContainer } from "@mui/x-charts/ChartContainer";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
 import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
 import { ChartsYAxis } from '@mui/x-charts/ChartsYAxis';
 import { ChartsGrid, chartsGridClasses } from "@mui/x-charts/ChartsGrid";
 import { ChartsReferenceLine, referenceLineClasses } from '@mui/x-charts/ChartsReferenceLine';
-import { ChartsTooltip, chartsTooltipClasses } from "@mui/x-charts/ChartsTooltip";
+import { chartsTooltipClasses, ChartsTooltipContainer } from "@mui/x-charts/ChartsTooltip";
 import { ChartsAxisHighlight, chartsAxisHighlightClasses } from "@mui/x-charts/ChartsAxisHighlight";
-import { LinePlot, MarkPlot, markElementClasses } from "@mui/x-charts/LineChart";
+import { LinePlot, MarkPlot, lineElementClasses, markElementClasses } from "@mui/x-charts/LineChart";
 import { fetchAudioFeatures } from "../../spotify/track";
 import { fetchPlaylistItems } from "../../spotify/playlist";
 import { useAppContext } from "../../contexts/AppContext";
 import { useAnalysisPageContext } from "../../contexts/AnalysisPageContext";
 import { attributeMap } from "./AttributeMaps";
-import AxisTooltip from "./AxisTooltip";
+import TrackTooltip from "./TrackTooltip";
 import { noFullHover } from "../../utils";
 import OpenInAppButton from "../buttons/OpenInAppButton";
 import "./PlaylistAnalysis.css";
@@ -94,14 +94,14 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                 borderRadius: "8px"
             }}
         >
-            <ResponsiveChartContainer
+            <ChartContainer
                 series={[{
                     type: "line",
                     curve: "catmullRom",
                     color: "#2ECC71",
                     dataKey: attribute,
                     label: attributeProps.label,
-                    highlightScope: { highlighted: "item" },
+                    highlightScope: { highlight: "item" },
                     valueFormatter: attributeProps.dataFormatter,
                 }]}
                 xAxis={[{
@@ -141,6 +141,9 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     [`& .${referenceLineClasses.root} .${referenceLineClasses.line}`] : {
                         stroke: "rgba(255,0,0,0.5)",
                     },
+                    [`& .${lineElementClasses.root}`] : {
+                        pointerEvents: "none",
+                    },
                     [`& .${markElementClasses.root}.${markElementClasses.highlighted}`] : {
                         fill: "#2ECC71",
                     },
@@ -152,7 +155,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     },
                     [theme.breakpoints.down("sm")]: {
                         [`& .${markElementClasses.root}`] : {
-                            scale: "0.75",
+                            r: `${5 * 0.75}`, // Default marker radius is 5
                         },
                     }
                 })}
@@ -173,10 +176,10 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                 />
                 <LinePlot skipAnimation={noFullHover()} />
                 <MarkPlot />
-                <ChartsTooltip trigger="axis"
-                    slots={{ axisContent: AxisTooltip }}
-                />
-            </ResponsiveChartContainer>
+                <ChartsTooltipContainer trigger="axis">
+                    <TrackTooltip />
+                </ChartsTooltipContainer>
+            </ChartContainer>
             <OpenInAppButton
                 className="playlist-analysis-app-button"
                 link={playlist.uri}
