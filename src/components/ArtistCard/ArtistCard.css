@@ -26,6 +26,10 @@
     background: #363636;
 }
 
+.artist-card-eyebrow {
+    width: 100%;
+}
+
 .artist-card-content {
     width: 80%;
     padding-top: 10px !important;
