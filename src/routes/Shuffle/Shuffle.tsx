@@ -166,20 +166,23 @@ const Shuffle = () => {
                         />
                     </Grid>
                     <Grid size={{ xs: 0.25 }} />
-                    { playlists.map((playlist, index) => (
-                        <Grid container
-                            size={{ xs: 6, sm: 4, md: 6, lg: 4 }}
-                            key={`playlist-${index}`}
-                            className="playlist-card-container"
-                            id={playlist?.name}
-                            ref={(playlistRef): void => {playlistRefs.current[index] = playlistRef}}
-                            justifyContent={"center"}
-                            width={"auto"} // GSAP will record "width: 100%" and animate weird without this
-                        >
-                            <ShufflePlaylistCard playlist={playlist}/>
-                        </Grid>
-                        ))
-                    }
+                    <Grid container>
+                        { playlists.map((playlist, index) => (
+                            <Grid container
+                                spacing={1}
+                                size={{ xs: 6, sm: 4, md: 6, lg: 4 }}
+                                key={`playlist-${index}`}
+                                className="playlist-card-container"
+                                id={playlist?.name}
+                                ref={(playlistRef): void => {playlistRefs.current[index] = playlistRef}}
+                                justifyContent={"center"}
+                                width={"auto"} // GSAP will record "width: 100%" and animate weird without this
+                            >
+                                <ShufflePlaylistCard playlist={playlist}/>
+                            </Grid>
+                            ))
+                        }
+                    </Grid>
                     { playlists.length ?
                         <Grid size={{ xs: 12 }}
                             className="no-result"

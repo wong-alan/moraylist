@@ -3,3 +3,7 @@
     color: #808080;
     font-weight: 600;
 }
+
+.playlist-card-container {
+    max-width: 50%;
+}
