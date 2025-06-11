@@ -1,11 +1,11 @@
 interface AnalysisProps {
     label: string,
     axisY: {
-        min: number,
-        max: number,
+        min?: number,
+        max?: number,
         formatter?: (value: any) => string
     },
-    dataFormatter?: (value: any) => string,
+    dataFormatter: (value: any) => string,
     tooltipFormatter: (value: any) => string,
 }
 
@@ -17,8 +17,8 @@ export const attributeMap: Record<string, AnalysisProps> = {
             max: 1,
             formatter: (value) => (value*100).toString()
         },
-        dataFormatter: (value) => (value*100).toFixed(2).toString(),
-        tooltipFormatter: (value) => (value*100).toFixed(2).toString(),
+        dataFormatter: (value) => (value*100).toFixed(2),
+        tooltipFormatter: (value) => (value*100).toFixed(2),
     },
     "tempo": {
         label: "Tempo",
@@ -26,6 +26,7 @@ export const attributeMap: Record<string, AnalysisProps> = {
             min: 0,
             max: 220,
         },
+        dataFormatter: (value) => value,
         tooltipFormatter: (value) => value.toFixed(0) + " BPM",
     },
     "valence": {
@@ -35,8 +36,8 @@ export const attributeMap: Record<string, AnalysisProps> = {
             max: 1,
             formatter: (value) => (value*100).toString()
         },
-        dataFormatter: (value) => (value*100).toFixed(2).toString(),
-        tooltipFormatter: (value) => (value*100).toFixed(2).toString(),
+        dataFormatter: (value) => (value*100).toFixed(2),
+        tooltipFormatter: (value) => (value*100).toFixed(2),
     },
     "energy": {
         label: "Energy",
@@ -45,7 +46,15 @@ export const attributeMap: Record<string, AnalysisProps> = {
             max: 1,
             formatter: (value) => (value*100).toString()
         },
-        dataFormatter: (value) => (value*100).toFixed(2).toString(),
-        tooltipFormatter: (value) => (value*100).toFixed(2).toString(),
+        dataFormatter: (value) => (value*100).toFixed(2),
+        tooltipFormatter: (value) => (value*100).toFixed(2),
     },
+    "release_year": {
+        label: "Release",
+        axisY: {
+            formatter: (value) => value.toString()
+        },
+        dataFormatter: (value) => value.toString(),
+        tooltipFormatter: (value) => value.toString()
+    }
 };

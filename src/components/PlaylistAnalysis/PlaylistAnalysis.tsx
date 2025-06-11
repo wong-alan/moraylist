@@ -30,19 +30,25 @@ interface PlaylistAnalysisProps {
     attribute: string
 }
 
+type ChartData = AudioFeatures & {
+    release_year: number
+}
+
 const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
     const { clientId, code, profile } = useAppContext();
     const { setOpenError, setErrorMessage } = useAnalysisPageContext();
     const [ trackData, setTrackData ] = useState<PlaylistTrack[] | null>();
     const [ audioFeatures, setAudioFeatures ] = useState<AudioFeatures[] | null>();
+    const [ chartData, setChartData ] = useState<ChartData[] | null>();
 
     useEffect(() => {
         setTrackData(null);
         setAudioFeatures(null);
+        setChartData(null);
         // TODO: Fetched playlist item could be null if not available in market
         fetchPlaylistItems(
             clientId, code!, playlist.id, profile!.country,
-            "next,items(is_local,track(id,type,name,artists(name),album(images,name)))"
+            "next,items(is_local,track(id,type,name,artists(name),album(images,name,release_date)))"
         ).then(trackData => {
             if (trackData) {
                 const filteredTracks = trackData.filter((track) => track.track.type === "track");
@@ -66,7 +72,18 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
         });
     }, [playlist])
 
-    if (!trackData || !audioFeatures || trackData.length != audioFeatures.length) {
+    useEffect(() => {
+        if (!trackData || !audioFeatures || audioFeatures.length != trackData.length) return;
+
+        setChartData(audioFeatures.map((feat, index) => {
+            return {
+                release_year: +(trackData![index].track as Track).album.release_date.substring(0, 4),
+                ...feat,
+            }})
+        );
+    }, [audioFeatures]);
+
+    if (!trackData || !audioFeatures || !chartData || trackData.length != audioFeatures.length) {
         return (
             <Box
                 sx={{
@@ -116,7 +133,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     min: attributeProps.axisY.min,
                     max: attributeProps.axisY.max
                 }]}
-                dataset={audioFeatures as {}[]}
+                dataset={chartData as {}[]}
                 sx={(theme) => ({
                     [`& .${axisClasses.root} .${axisClasses.line}`] : {
                         stroke: "#FFFFFF"
@@ -126,9 +143,6 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     },
                     [`& .${axisClasses.root}.${axisClasses.bottom} .${axisClasses.label}`] : {
                         transform: "translate(0px, -6px)"
-                    },
-                    [`& .${axisClasses.root}.${axisClasses.left} .${axisClasses.label}`] : {
-                        transform: "translate(-8px, 0px)"
                     },
                     [`& .${axisClasses.root} .${axisClasses.tickLabel}`] : {
                         fontFamily: "inherit",
@@ -155,6 +169,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     },
                     [theme.breakpoints.down("sm")]: {
                         [`& .${markElementClasses.root}`] : {
+                            transition: "r 0.5s ease-in-out ",
                             r: `${5 * 0.75}`, // Default marker radius is 5
                         },
                     }
@@ -170,8 +185,8 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                 <ChartsGrid horizontal />
                 <ChartsAxisHighlight x="line" />
                 <ChartsReferenceLine
-                    y={audioFeatures.reduce((prev, curr) =>
-                        prev + (curr as any)[attribute], 0) / audioFeatures.length
+                    y={chartData.reduce((prev, curr) =>
+                        prev + (curr as any)[attribute], 0) / chartData.length
                     }
                 />
                 <LinePlot skipAnimation={noFullHover()} />
