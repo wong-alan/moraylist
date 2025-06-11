@@ -49,6 +49,16 @@ export const attributeMap: Record<string, AnalysisProps> = {
         dataFormatter: (value) => (value*100).toFixed(2),
         tooltipFormatter: (value) => (value*100).toFixed(2),
     },
+    "popularity": {
+        label: "Popularity",
+        axisY: {
+            min: 0,
+            max: 100,
+            formatter: (value) => value.toString()
+        },
+        dataFormatter: (value) => value.toString(),
+        tooltipFormatter: (value) => value.toString()
+    },
     "release_year": {
         label: "Release",
         axisY: {

@@ -31,6 +31,7 @@ interface PlaylistAnalysisProps {
 }
 
 type ChartData = AudioFeatures & {
+    popularity: number,
     release_year: number
 }
 
@@ -48,7 +49,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
         // TODO: Fetched playlist item could be null if not available in market
         fetchPlaylistItems(
             clientId, code!, playlist.id, profile!.country,
-            "next,items(is_local,track(id,type,name,artists(name),album(images,name,release_date)))"
+            "next,items(is_local,track(id,type,name,artists(name),popularity,album(images,name,release_date)))"
         ).then(trackData => {
             if (trackData) {
                 const filteredTracks = trackData.filter((track) => track.track.type === "track");
@@ -75,12 +76,14 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
     useEffect(() => {
         if (!trackData || !audioFeatures || audioFeatures.length != trackData.length) return;
 
-        setChartData(audioFeatures.map((feat, index) => {
+        let chartData: ChartData[] = audioFeatures.map((feat, index) => {
             return {
-                release_year: +(trackData![index].track as Track).album.release_date.substring(0, 4),
+                release_year: +(trackData[index].track as Track).album.release_date.substring(0, 4),
+                popularity: (trackData[index].track as Track).popularity,
                 ...feat,
-            }})
-        );
+            }
+        });
+        setChartData(chartData);
     }, [audioFeatures]);
 
     if (!trackData || !audioFeatures || !chartData || trackData.length != audioFeatures.length) {
