@@ -14,7 +14,7 @@ export const fetchAudioFeatures = async (
 
     const trackAudioFeatureUrl: URL | string | null = new URL(audioFeatureEndpoint);
 
-    let features: AudioFeatures[] = [];
+    const features: AudioFeatures[] = [];
     for(let i = 0, songIdParams = songIds.slice(i*100, (i+1)*100);
         songIdParams.length;
         songIdParams = songIds.slice(++i*100, (i+1)*100)

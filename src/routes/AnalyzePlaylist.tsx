@@ -73,7 +73,7 @@ const AnalyzePlaylist = () => {
                     <Grid size={{ xs: 11.5 }}>
                         <PlaylistSelect
                             playlists={playlists}
-                            setValue={setSelectedPlaylist}
+                            setPlaylist={setSelectedPlaylist}
                             loading={loading}
                         />
                     </Grid>

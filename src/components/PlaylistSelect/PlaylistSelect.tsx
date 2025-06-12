@@ -30,10 +30,10 @@ const filterOptions = createFilterOptions<Playlist>({
 interface PlaylistSelectProps {
     playlists: Playlist[],
     loading: boolean,
-    setValue: Dispatch<SetStateAction<any>>
+    setPlaylist: Dispatch<SetStateAction<Playlist|null>>
 }
 
-const PlaylistSelect = ({playlists, setValue, loading}: PlaylistSelectProps) => {
+const PlaylistSelect = ({playlists, setPlaylist, loading}: PlaylistSelectProps) => {
     const [inputValue, setInputValue] = useState("");
 
     return (
@@ -47,7 +47,7 @@ const PlaylistSelect = ({playlists, setValue, loading}: PlaylistSelectProps) => 
             filterOptions={filterOptions}
             blurOnSelect
             onChange={(_event, newValue: Playlist | null) => {
-                setValue(newValue);
+                setPlaylist(newValue);
               }}
             inputValue={inputValue}
             onInputChange={(_event, newInputValue: string) => {

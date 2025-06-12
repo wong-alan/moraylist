@@ -37,7 +37,7 @@ export const fetchFollowing = async (
         limit: "50"
     }).toString();
 
-    let followingArtists: Artist[] = [];
+    const followingArtists: Artist[] = [];
     do {
         const result = await fetch(followingUrl!, {
             method: "GET",

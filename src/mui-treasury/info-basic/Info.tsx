@@ -5,8 +5,6 @@ import { infoClasses } from "./infoClasses";
 
 const defaultUseStyles = () => ({});
 
-export interface InfoPropsVariantOverrides {}
-
 export type InfoSlotStyles = {
   root: CSSObject;
   title: CSSObject;

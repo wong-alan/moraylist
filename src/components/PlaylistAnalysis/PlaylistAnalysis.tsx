@@ -76,14 +76,13 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
     useEffect(() => {
         if (!trackData || !audioFeatures || audioFeatures.length != trackData.length) return;
 
-        let chartData: ChartData[] = audioFeatures.map((feat, index) => {
+        setChartData(audioFeatures.map((feat, index) => {
             return {
                 release_year: +(trackData[index].track as Track).album.release_date.substring(0, 4),
                 popularity: (trackData[index].track as Track).popularity,
                 ...feat,
             }
-        });
-        setChartData(chartData);
+        }));
     }, [audioFeatures]);
 
     if (!trackData || !audioFeatures || !chartData || trackData.length != audioFeatures.length) {
@@ -136,7 +135,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     min: attributeProps.axisY.min,
                     max: attributeProps.axisY.max
                 }]}
-                dataset={chartData as {}[]}
+                dataset={chartData as {}[]}  // eslint-disable-line @typescript-eslint/no-empty-object-type
                 sx={(theme) => ({
                     [`& .${axisClasses.root} .${axisClasses.line}`] : {
                         stroke: "#FFFFFF"
@@ -189,7 +188,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                 <ChartsAxisHighlight x="line" />
                 <ChartsReferenceLine
                     y={chartData.reduce((prev, curr) =>
-                        prev + (curr as any)[attribute], 0) / chartData.length
+                        prev + (curr[attribute as keyof ChartData] as number), 0) / chartData.length
                     }
                 />
                 <LinePlot skipAnimation={noFullHover()} />

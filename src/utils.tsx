@@ -36,9 +36,9 @@ export const normalize = (s: string|undefined): string|undefined => {
         .toLocaleLowerCase();
 }
 
-export const uniqueBy = <T extends unknown>(
+export const uniqueBy = <T,>(
     array: T[],
-    key: (val: T) => any
+    key: (val: T) => unknown
 ): T[] => {
     return [
         ...new Map(

@@ -43,7 +43,7 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
             }}>
                 <Info
                     className="playlist-card-info"
-                    useStyles={(_theme) => {
+                    useStyles={() => {
                         return {
                             eyebrow: {
                                 textTransform: "uppercase",

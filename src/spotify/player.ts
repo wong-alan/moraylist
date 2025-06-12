@@ -15,7 +15,7 @@ export const fetchPlayHistory = async (
         return null;
     }
 
-    let playHistoryUrl: URL | string | null = new URL(playHistoryEndpoint);
+    const playHistoryUrl: URL | string | null = new URL(playHistoryEndpoint);
     playHistoryUrl.search = new URLSearchParams({
         limit: Math.trunc(limit).toString(),
         [when]: Math.trunc(timestamp).toString(),

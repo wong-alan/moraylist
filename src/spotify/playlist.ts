@@ -21,7 +21,7 @@ export const fetchUserPlaylists = async (
         offset: "0"
     }).toString();
 
-    let usersPlaylists: Playlist[] = [];
+    const usersPlaylists: Playlist[] = [];
     do {
         const result = await fetch(playlistUrl, {
             method: "GET",
@@ -90,7 +90,7 @@ export const fetchPlaylistItems = async (
         limit: "50"
     }).toString();
 
-    let tracks: PlaylistTrack[] = [];
+    const tracks: PlaylistTrack[] = [];
     do {
         const result = await fetch(playlistTracksUrl, {
             method: "GET",

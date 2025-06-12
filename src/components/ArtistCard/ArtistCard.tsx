@@ -40,7 +40,7 @@ const ArtistCard = ({artist, onUnfollow}: ArtistCardProps) => {
             }}>
                 <Info
                     className="artist-card-info"
-                    useStyles={(_theme) => {
+                    useStyles={() => {
                         return {
                             eyebrow: {
                                 textTransform: "none",

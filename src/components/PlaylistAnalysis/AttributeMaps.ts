@@ -3,22 +3,27 @@ interface AnalysisProps {
     axisY: {
         min?: number,
         max?: number,
-        formatter?: (value: any) => string
+        formatter?: (value: number | null) => string
     },
-    dataFormatter: (value: any) => string,
-    tooltipFormatter: (value: any) => string,
+    dataFormatter: (value: number | null) => string,
+    tooltipFormatter: (value: number | null) => string,
 }
 
+const formatNull = (value: number | null) => {
+    return value ? null : "-1";
+}
+// PlaylistAnalysis only charts numerical data
+// Keys should only map to numerical fields
 export const attributeMap: Record<string, AnalysisProps> = {
     "danceability": {
         label: "Danceability",
         axisY: {
             min: 0,
             max: 1,
-            formatter: (value) => (value*100).toString()
+            formatter: (value) => formatNull(value) || (value!*100).toString(),
         },
-        dataFormatter: (value) => (value*100).toFixed(2),
-        tooltipFormatter: (value) => (value*100).toFixed(2),
+        dataFormatter: (value) => formatNull(value) || (value!*100).toFixed(2),
+        tooltipFormatter: (value) => formatNull(value) || (value!*100).toFixed(2),
     },
     "tempo": {
         label: "Tempo",
@@ -26,45 +31,45 @@ export const attributeMap: Record<string, AnalysisProps> = {
             min: 0,
             max: 220,
         },
-        dataFormatter: (value) => value,
-        tooltipFormatter: (value) => value.toFixed(0) + " BPM",
+        dataFormatter: (value) => formatNull(value) || value!.toString(),
+        tooltipFormatter: (value) => formatNull(value) || value!.toFixed(0) + " BPM",
     },
     "valence": {
         label: "Mood",
         axisY: {
             min: 0,
             max: 1,
-            formatter: (value) => (value*100).toString()
+            formatter: (value) => formatNull(value) || (value!*100).toString(),
         },
-        dataFormatter: (value) => (value*100).toFixed(2),
-        tooltipFormatter: (value) => (value*100).toFixed(2),
+        dataFormatter: (value) => formatNull(value) || (value!*100).toFixed(2),
+        tooltipFormatter: (value) => formatNull(value) || (value!*100).toFixed(2),
     },
     "energy": {
         label: "Energy",
         axisY: {
             min: 0,
             max: 1,
-            formatter: (value) => (value*100).toString()
+            formatter: (value) => formatNull(value) || (value!*100).toString(),
         },
-        dataFormatter: (value) => (value*100).toFixed(2),
-        tooltipFormatter: (value) => (value*100).toFixed(2),
+        dataFormatter: (value) => formatNull(value) || (value!*100).toFixed(2),
+        tooltipFormatter: (value) => formatNull(value) || (value!*100).toFixed(2),
     },
     "popularity": {
         label: "Popularity",
         axisY: {
             min: 0,
             max: 100,
-            formatter: (value) => value.toString()
+            formatter: (value) => formatNull(value) || value!.toString(),
         },
-        dataFormatter: (value) => value.toString(),
-        tooltipFormatter: (value) => value.toString()
+        dataFormatter: (value) => formatNull(value) || value!.toString(),
+        tooltipFormatter: (value) => formatNull(value) || value!.toString(),
     },
     "release_year": {
         label: "Release",
         axisY: {
-            formatter: (value) => value.toString()
+            formatter: (value) => formatNull(value) || value!.toString(),
         },
-        dataFormatter: (value) => value.toString(),
-        tooltipFormatter: (value) => value.toString()
+        dataFormatter: (value) => formatNull(value) || value!.toString(),
+        tooltipFormatter: (value) => formatNull(value) || value!.toString(),
     }
 };
