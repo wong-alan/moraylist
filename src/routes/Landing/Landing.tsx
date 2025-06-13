@@ -108,7 +108,7 @@ const Landing = () => {
                                 { card.tooltip ?
                                     <Tooltip
                                         title={card.tooltip}
-                                        componentsProps={{
+                                        slotProps={{
                                             tooltip: {
                                                 sx: DEFAULT_TOOLTIP_SX
                                             }

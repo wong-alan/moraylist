@@ -28,7 +28,7 @@ const Login = ({size}: LoginProps) => {
             .then(data => {
                 setVerifier(verifier);
                 setChallenge(data);
-            })
+            });
     }, []);
 
     if (!challenge || !verifier) {

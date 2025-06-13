@@ -64,7 +64,7 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
                     <Tooltip
                         title="User ID"
                         placement="bottom-end"
-                        componentsProps={{
+                        slotProps={{
                             tooltip: {
                                 sx: DEFAULT_TOOLTIP_SX
                             }

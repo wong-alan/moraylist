@@ -56,11 +56,13 @@ const PlaylistSelect = ({playlists, setPlaylist, loading}: PlaylistSelectProps) 
             renderInput={(params) => (
                 <TextField
                     className="playlist-select-box"
+                    ref={params.InputProps.ref}
                     {...params}
                     placeholder="Select a playlist"
-                    inputProps={{
-                        ...params.inputProps,
-                        autoComplete: "off"
+                    slotProps={{
+                        input: {
+                            ...params.InputProps,
+                            autoComplete: "off"}
                     }}
                 />
             )}
@@ -86,15 +88,16 @@ const PlaylistSelect = ({playlists, setPlaylist, loading}: PlaylistSelectProps) 
                     {option.name}
                 </StyledOptionBox>
             )}
-            PaperComponent={(props) => (
-                <Paper
-                    // className doesn't work here
-                    {...props}
-                    sx={{
-                        backgroundColor: "#EFEFEF"
-                    }}
-                />
-            )}
+            slots={{
+                paper: (props) => (
+                    <Paper
+                        // className doesn't work here
+                        {...props}
+                        sx={{
+                            backgroundColor: "#EFEFEF"
+                        }}
+                    />
+            )}}
         />
     );
 };
