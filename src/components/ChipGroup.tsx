@@ -2,18 +2,14 @@ import { Dispatch, SetStateAction } from "react";
 import Chip from "@mui/material/Chip";
 import { noFullHover } from "../utils";
 
-interface Label {
-    label: string
+interface ChipGroupProps<T = string> {
+    labels: Record<string, { label: string }> ,
+    selected: T,
+    setSelected: Dispatch<SetStateAction<T>>,
 }
 
-interface ChipGroupProps {
-    labels: Record<string, Label> ,
-    selected: string,
-    setSelected: Dispatch<SetStateAction<string>>,
-}
-
-const ChipGroup = ({labels, selected, setSelected}: ChipGroupProps) => {
-    const handleClick = (label: string) => () => {
+const ChipGroup = <T extends string>({labels, selected, setSelected}: ChipGroupProps<T>) => {
+    const handleClick = (label: T) => () => {
         setSelected(label);
     };
 
@@ -23,7 +19,7 @@ const ChipGroup = ({labels, selected, setSelected}: ChipGroupProps) => {
                 key={key}
                 label={label.label}
                 color="spotify"
-                onClick={handleClick(key)}
+                onClick={handleClick(key as T)}
                 variant={key === selected ? "filled" : "outlined"}
                 sx={{
                     margin: "5px",

@@ -15,7 +15,7 @@ import { fetchAudioFeatures } from "../../spotify/track";
 import { fetchPlaylistItems } from "../../spotify/playlist";
 import { useAppContext } from "../../contexts/AppContext";
 import { useAnalysisPageContext } from "../../contexts/AnalysisPageContext";
-import { attributeMap } from "./AttributeMaps";
+import { attributeMap } from "./TrackFeaturesMap";
 import TrackTooltip from "./TrackTooltip";
 import { noFullHover } from "../../utils";
 import OpenInAppButton from "../buttons/OpenInAppButton";

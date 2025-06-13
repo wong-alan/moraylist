@@ -74,3 +74,34 @@ export const unfollowArtist = async (
 
     return result.ok ;
 };
+
+export const topItemTypes = ["tracks", "artists"] as const;
+export const topItemTimeRanges = ["short_term", "medium_term", "long_term"] as const;
+export type TopItemType = typeof topItemTypes[number];
+export type TopItemTimeRange = typeof topItemTimeRanges[number];
+
+export const fetchTopItems = async (
+    clientId: string,
+    code: string,
+    type: TopItemType,
+    time_range: TopItemTimeRange,
+): Promise<Artist[] | Track[] | null> => {
+    const accessToken = await getAccessToken(clientId, code);
+    if (!accessToken) {
+        return null;
+    }
+
+    const topItemsURL: URL | string | null = new URL([userEndpoint, "top", type].join("/"));
+    topItemsURL.search = new URLSearchParams({
+        time_range: time_range,
+        limit: "50",
+        offset: "0"
+    }).toString();
+
+    const result = await fetch(topItemsURL, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const response: TopItemsResponse = await result.json() as TopItemsResponse;
+    return response.items;
+}

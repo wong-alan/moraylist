@@ -22,6 +22,7 @@ const Following = lazy(() => import("./routes/Following"));
 const Shuffle = lazy(() => import("./routes/Shuffle/Shuffle"));
 const Recent = lazy(() => import("./routes/Recent"));
 const AnalyzePlaylist = lazy(() => import("./routes/AnalyzePlaylist"));
+const TopItems = lazy(() => import("./routes/TopItems"));
 
 const router = createBrowserRouter([
     { // Public
@@ -86,6 +87,14 @@ const router = createBrowserRouter([
                     <AnalysisPageContextProvider>
                         <AnalyzePlaylist />
                     </AnalysisPageContextProvider>
+                </Suspense>
+        }, {
+            path: "top",
+            element:
+                <Suspense>
+                    {/* <AnalysisPageContextProvider> */}
+                        <TopItems />
+                    {/* </AnalysisPageContextProvider> */}
                 </Suspense>
         }]
     }

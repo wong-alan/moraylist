@@ -11,14 +11,14 @@ import { useRecentPageContext } from "../contexts/RecentPageContext";
 const Recent = () => {
     const { clientId, code } = useAppContext();
     const { openError, setOpenError, errorMessage, setErrorMessage } = useRecentPageContext();
-    const [ playHistory, setPlayHistory ] = useState<(PlayHistory|undefined)[]>([...Array<undefined>(25)]);
+    const [ playHistory, setPlayHistory ] = useState<PlayHistory[] | undefined[]>([...Array<undefined>(25)]);
 
     useEffect(() => {
         fetchPlayHistory(clientId, code!, Date.now(), "before").then(data => {
             if (data) {
                 setPlayHistory(data);
             } else {
-                setErrorMessage("Eror loading history. Try again.");
+                setErrorMessage("Error loading history. Try again.");
                 setOpenError(true);
             }
         });

@@ -304,3 +304,13 @@ interface AudioFeatures {
     uri: string;
     valence: number;
 }
+
+interface TopItemsResponse {
+    href: string;
+    limit: number;
+    next?: string;
+    offset: number;
+    previous?: string;
+    total: number;
+    items: Artist[] | Track[];
+}

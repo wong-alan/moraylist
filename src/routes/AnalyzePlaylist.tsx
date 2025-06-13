@@ -8,7 +8,7 @@ import { fetchUserPlaylists } from "../spotify/playlist";
 import ChipGroup from "../components/ChipGroup";
 import PlaylistSelect from "../components/PlaylistSelect/PlaylistSelect";
 import PlaylistAnalysis from "../components/PlaylistAnalysis/PlaylistAnalysis";
-import { attributeMap } from "../components/PlaylistAnalysis/AttributeMaps";
+import { trackFeaturesMap } from "../components/PlaylistAnalysis/TrackFeaturesMap";
 import ErrorSnack from "../components/ErrorSnack";
 import "./filter.css";
 
@@ -18,7 +18,7 @@ const AnalyzePlaylist = () => {
     const [ loading, setLoading ] = useState<boolean>(true);
     const [ playlists, setPlaylists ] = useState<Playlist[]>([]);
     const [ selectedPlaylist, setSelectedPlaylist ] = useState<Playlist|null>(null);
-    const [ attribute, setAttribute ] = useState<string>(Object.keys(attributeMap)[0]);
+    const [ attribute, setAttribute ] = useState<string>(Object.keys(trackFeaturesMap)[0]);
 
     useEffect(() => {
         if (!profile) {
@@ -63,7 +63,7 @@ const AnalyzePlaylist = () => {
                     <Grid size={{ xs: 0.25 }} />
                     <Grid size={{ xs: 11.5 }}>
                         <ChipGroup
-                            labels={attributeMap}
+                            labels={trackFeaturesMap}
                             selected={attribute}
                             setSelected={setAttribute}
                         />

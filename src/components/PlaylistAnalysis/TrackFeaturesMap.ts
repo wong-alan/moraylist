@@ -14,7 +14,7 @@ const formatNull = (value: number | null) => {
 };
 // PlaylistAnalysis only charts numerical data
 // Keys should only map to numerical fields
-export const attributeMap: Record<string, AnalysisProps> = {
+export const trackFeaturesMap: Record<string, AnalysisProps> = {
     "danceability": {
         label: "Danceability",
         axisY: {

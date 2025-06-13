@@ -35,7 +35,7 @@ const Shuffle = () => {
                 setPlaylistMap(new Map(data.map((playlist) => [playlist.name, playlist])));
                 setPlaylists(data);
             } else {
-                setErrorMessage("Eror loading playlists. Try again.");
+                setErrorMessage("Error loading playlists. Try again.");
                 setOpenError(true);
             }
         });
