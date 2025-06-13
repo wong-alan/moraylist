@@ -60,4 +60,6 @@ const LandingCard = forwardRef((
     );
 });
 
+LandingCard.displayName = "LandingCard";
+
 export default LandingCard;

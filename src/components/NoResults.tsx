@@ -24,7 +24,7 @@ const NoResults = ({input}: NoResultsProps) => {
                     margin: "10vh auto 0px auto"
                 }}
             >
-                No results found for "{input.trim()}"
+                No results found for &lsquo;{input.trim()}&rsquo;
             </Typography>
             <Typography
                 variant="body1"

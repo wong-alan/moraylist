@@ -45,7 +45,7 @@ const Recent = () => {
                             className="subtitle"
                         >
                             Take a walk down recent memory lane and see what you just listened to. <br />
-                            Play it again, or write it down so you never play it again. It's up to you! <br />
+                            Play it again, or write it down so you never play it again. It&apos;s up to you! <br />
                         </Typography>
                     </Grid>
                     <Grid size={{ xs: 0.25}} />
@@ -72,7 +72,7 @@ const Recent = () => {
                                         margin: "10vh auto 0px auto"
                                     }}
                                 >
-                                    You haven't played any songs yet!
+                                    You haven&apos;t played any songs yet!
                                 </Typography>
                             </Grid>
                         }

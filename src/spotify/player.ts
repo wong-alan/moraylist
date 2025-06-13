@@ -7,7 +7,7 @@ export const fetchPlayHistory = async (
     code: string,
     timestamp: number,
     when: "before"|"after",
-    limit: number = 50,
+    limit = 50,
 
 ): Promise<PlayHistory[] | null> => {
     const accessToken = await getAccessToken(clientId, code);
@@ -25,6 +25,6 @@ export const fetchPlayHistory = async (
         method: "GET",
         headers: { Authorization: `Bearer ${accessToken}` },
     });
-    const response: RecentPlayHistory = <RecentPlayHistory> await result.json();
+    const response: RecentPlayHistory = await result.json() as RecentPlayHistory;
     return response.items;
 };

@@ -26,7 +26,7 @@ export const fetchAudioFeatures = async (
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         });
-        const response: AudioFeaturesResponse = <AudioFeaturesResponse> await result.json();
+        const response: AudioFeaturesResponse = await result.json() as AudioFeaturesResponse;
         features.push(...response.audio_features);
     }
     return features;

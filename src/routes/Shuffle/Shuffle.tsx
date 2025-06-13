@@ -149,9 +149,9 @@ const Shuffle = () => {
                             variant="body1"
                             className="subtitle"
                         >
-                            Tired of Spotify "shuffle" playing the same songs over and over? <br />
+                            Tired of Spotify &lsquo;shuffle&rsquo; playing the same songs over and over? <br />
                             Your job is to fill playlists with good songs. Leave the order to us. <br />
-                            Truly randomize your playlist and hear the songs you've been missing. <br />
+                            Truly randomize your playlist and hear the songs you&apos;ve been missing. <br />
                             <span className="shuffle-note">* you can only shuffle playlists that you have created</span>
                         </Typography>
                     </Grid>
@@ -199,7 +199,7 @@ const Shuffle = () => {
                                     margin: "10vh auto 0px auto"
                                 }}
                             >
-                                You haven't created any playlists yet!
+                                You haven&apos;t created any playlists yet!
                             </Typography>
                         </Grid>
                     }

@@ -226,7 +226,7 @@ const Following = () => {
                                     margin: "10vh auto 0px auto"
                                 }}
                             >
-                                You haven't followed any artists yet!
+                                You haven&apos;t followed any artists yet!
                             </Typography>
                         </Grid>
                     }

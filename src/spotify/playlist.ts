@@ -8,7 +8,7 @@ export const fetchUserPlaylists = async (
     clientId: string,
     code: string,
     userId: string,
-    owned: boolean = true
+    owned = true
 ): Promise<Playlist[] | null> => {
     const accessToken = await getAccessToken(clientId, code);
     if (!accessToken) {
@@ -27,7 +27,7 @@ export const fetchUserPlaylists = async (
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         });
-        const response: Playlists = <Playlists> await result.json();
+        const response: Playlists = await result.json() as Playlists;
         const items: Playlist[] = owned ?
             response.items.filter((playlist) => playlist.owner.id == userId)
             : response.items;
@@ -67,7 +67,7 @@ export const reorderPlaylist = async (
     if (!result.ok) {
         return null;
     }
-    const { snapshot_id } = <UpdatePlaylistResponse> await result.json();
+    const { snapshot_id } = await result.json() as UpdatePlaylistResponse;
     return snapshot_id;
 };
 
@@ -96,7 +96,7 @@ export const fetchPlaylistItems = async (
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         });
-        const response: Tracks = <Tracks> await result.json();
+        const response: Tracks = await result.json() as Tracks;
         tracks.push(...response.items
             .filter((track) => !track.is_local && track.track.type === "track"));
         playlistTracksUrl = response.next;

@@ -51,5 +51,12 @@ export default tseslint.config(
                 "allowConstantExport": true }
             ]
         }
+    // }, {
+    //   Disable rules if Mercury is in retrograde
+    //     rules: {
+    //         "react-refresh/only-export-components": "off",
+    //         "@typescript-eslint/no-floating-promises": "off",
+    //         "react-hooks/exhaustive-deps": "off"
+    //     }
     }
 );

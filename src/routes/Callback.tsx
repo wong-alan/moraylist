@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import {
@@ -12,6 +12,12 @@ import { useAppContext } from "../contexts/AppContext";
 const Callback = () => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
+    const { setCode } = useAppContext();
+
+    localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(REFRESH_TOKEN);
+    localStorage.removeItem(TOKEN_EXPIRY);
+    localStorage.removeItem(CODE);
 
     // No auth code
     if (!code) {
@@ -25,15 +31,11 @@ const Callback = () => {
     }
 
     // Save new code
-    const { setCode } = useAppContext();
-    localStorage.removeItem(ACCESS_TOKEN);
-    localStorage.removeItem(REFRESH_TOKEN);
-    localStorage.removeItem(TOKEN_EXPIRY);
     localStorage.setItem(CODE, code);
-
-    useEffect(() => {
-        setCode(code);
-    }, []);
+    setCode(code);
+    // useEffect(() => {
+    //     setCode(code);
+    // }, []);
 
     return (
         <Navigate to="/" replace />

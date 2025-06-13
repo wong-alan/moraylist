@@ -96,7 +96,7 @@ const refreshAccessToken = async (clientId: string): Promise<string | null> => {
         }),
     };
     const result = await fetch(accessTokenEndpoint, payload);
-    const { access_token, expires_in, refresh_token } = <AccessTokenResponse> await result.json();
+    const { access_token, expires_in, refresh_token } = await result.json() as AccessTokenResponse;
     if (!result.ok) {
         return null;
     }
@@ -127,7 +127,7 @@ const getNewAccessToken = async (clientId: string, code: string): Promise<string
     if (!result.ok) {
         return null;
     }
-    const { access_token, expires_in, refresh_token } = <AccessTokenResponse> await result.json();
+    const { access_token, expires_in, refresh_token } = await result.json() as AccessTokenResponse;
 
     const expiryDate = new Date(new Date().getTime() + expires_in * MS_PER_SECOND).toString();
     localStorage.setItem(TOKEN_EXPIRY, expiryDate);

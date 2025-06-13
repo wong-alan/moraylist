@@ -5,13 +5,13 @@ import { infoClasses } from "./infoClasses";
 
 const defaultUseStyles = () => ({});
 
-export type InfoSlotStyles = {
+export interface InfoSlotStyles {
   root: CSSObject;
   title: CSSObject;
   subtitle: CSSObject;
   caption: CSSObject;
   eyebrow: CSSObject;
-};
+}
 
 export type AppendUseStyles<T> = T & {
   useStyles: (theme: Theme) => Partial<InfoSlotStyles>;
@@ -58,7 +58,7 @@ const InfoRoot = styled("div", {
   },
 })<{ ownerState: InfoProps }>(({ theme, ownerState }) => ({
   display: "block",
-  ...(ownerState.useStyles && ownerState.useStyles(theme).root),
+  ...(ownerState.useStyles?.(theme).root),
 }));
 
 export const Info = React.forwardRef<HTMLDivElement, InfoProps>(function Info(
@@ -81,7 +81,7 @@ export const Info = React.forwardRef<HTMLDivElement, InfoProps>(function Info(
       className={cx(infoClasses.root, props.className)}
       ownerState={ownerState}
     >
-      <StylesContext.Provider value={useStyles || defaultUseStyles}>
+      <StylesContext.Provider value={useStyles ?? defaultUseStyles}>
         {children}
       </StylesContext.Provider>
     </InfoRoot>

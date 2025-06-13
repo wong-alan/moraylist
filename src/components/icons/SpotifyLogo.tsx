@@ -16,8 +16,8 @@ const SpotifyLogo = ({width, height, sx}: SpotifyLogoProps) => {
             title="Spotify Logo"
             sx={{
                 "&": {
-                    width: width || "initial",
-                    height: height || "initial",
+                    width: width ?? "initial",
+                    height: height ?? "initial",
                     ...(sx && {...sx})
                 }
             }}

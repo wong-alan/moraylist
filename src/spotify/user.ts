@@ -16,7 +16,7 @@ export const fetchProfile = async (
         method: "GET",
         headers: { Authorization: `Bearer ${accessToken}` }
     });
-    const profile: UserProfile = <UserProfile> await result.json();
+    const profile: UserProfile = await result.json() as UserProfile;
     return profile;
 };
 
@@ -43,7 +43,7 @@ export const fetchFollowing = async (
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         });
-        const response: Artists = <Artists> await result.json();
+        const response: Artists = await result.json() as Artists;
         followingArtists.push(...response.artists.items);
         followingUrl = response.artists.next;
     } while (followingUrl);
