@@ -21,11 +21,11 @@ const Searchbox = ({
 }: SearchboxProps) => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value);
-    }
+    };
 
     const clearTextbox = () => {
         setText("");
-    }
+    };
 
     const clearButton = () => {
         return (
@@ -39,7 +39,7 @@ const Searchbox = ({
                 </IconButton>
             </InputAdornment>
         );
-    }
+    };
 
     return (
         <Input
@@ -65,6 +65,6 @@ const Searchbox = ({
             onChange={handleChange}
         />
     );
-}
+};
 
 export default Searchbox;

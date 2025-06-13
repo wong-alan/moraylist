@@ -1,4 +1,4 @@
-const authEndpoint = "https://accounts.spotify.com/authorize"
+const authEndpoint = "https://accounts.spotify.com/authorize";
 const accessTokenEndpoint = "https://accounts.spotify.com/api/token";
 const callbackEndpoint = import.meta.env.VITE_ENVIRONMENT === "online" ?
     "https://moraylist.com/callback" :
@@ -25,7 +25,7 @@ const scopes = [
 export const ACCESS_TOKEN = "access-token";
 export const REFRESH_TOKEN = "refresh-token";
 export const TOKEN_EXPIRY = "token-expiry";
-export const VERIFIER = "verifier"
+export const VERIFIER = "verifier";
 
 const MS_PER_MINUTE = 60_000;
 const MS_PER_SECOND = 1_000;
@@ -38,7 +38,7 @@ export const generateCodeVerifier = (length: number): string => {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
-}
+};
 
 export const generateCodeChallenge = async (codeVerifier: string): Promise<string> => {
     const data = new TextEncoder().encode(codeVerifier);
@@ -47,7 +47,7 @@ export const generateCodeChallenge = async (codeVerifier: string): Promise<strin
         .replace(/\+/g, '-')
         .replace(/\//g, '_')
         .replace(/=+$/, '');
-}
+};
 
 export const generateAuthUrl = (clientId: string, challenge: string): string => {
     const params = new URLSearchParams({
@@ -61,7 +61,7 @@ export const generateAuthUrl = (clientId: string, challenge: string): string => 
     const authUrl = new URL(authEndpoint);
     authUrl.search = params.toString();
     return authUrl.toString();
-}
+};
 
 const getLocalToken = (): string | null => {
     const localToken = localStorage.getItem(ACCESS_TOKEN);
@@ -75,7 +75,7 @@ const getLocalToken = (): string | null => {
         }
     }
     return null;
-}
+};
 
 const refreshAccessToken = async (clientId: string): Promise<string | null> => {
     const refreshToken = localStorage.getItem(REFRESH_TOKEN);
@@ -94,9 +94,9 @@ const refreshAccessToken = async (clientId: string): Promise<string | null> => {
             refresh_token: refreshToken,
             client_id: clientId
         }),
-    }
+    };
     const result = await fetch(accessTokenEndpoint, payload);
-    const { access_token, expires_in, refresh_token } = await result.json();
+    const { access_token, expires_in, refresh_token } = <AccessTokenResponse> await result.json();
     if (!result.ok) {
         return null;
     }
@@ -106,7 +106,7 @@ const refreshAccessToken = async (clientId: string): Promise<string | null> => {
     localStorage.setItem(ACCESS_TOKEN, access_token);
     localStorage.setItem(REFRESH_TOKEN, refresh_token);
     return access_token;
-}
+};
 
 const getNewAccessToken = async (clientId: string, code: string): Promise<string | null> => {
     const verifier = localStorage.getItem(VERIFIER);
@@ -127,14 +127,14 @@ const getNewAccessToken = async (clientId: string, code: string): Promise<string
     if (!result.ok) {
         return null;
     }
-    const { access_token, expires_in, refresh_token } = await result.json();
+    const { access_token, expires_in, refresh_token } = <AccessTokenResponse> await result.json();
 
     const expiryDate = new Date(new Date().getTime() + expires_in * MS_PER_SECOND).toString();
     localStorage.setItem(TOKEN_EXPIRY, expiryDate);
     localStorage.setItem(ACCESS_TOKEN, access_token);
     localStorage.setItem(REFRESH_TOKEN, refresh_token);
     return access_token;
-}
+};
 
 export const getAccessToken = async (clientId: string, code: string): Promise<string|null> => {
     // Check if there is a valid access token in local storage
@@ -156,4 +156,4 @@ export const getAccessToken = async (clientId: string, code: string): Promise<st
     }
 
     return null;
-}
+};

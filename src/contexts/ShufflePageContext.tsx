@@ -28,10 +28,10 @@ const ShufflePageContextProvider = ({children}: ShufflePageContextProps) => {
             {children}
         </ShufflePageContext.Provider>
     );
-}
+};
 
 export const useShufflePageContext = () => {
     return useContext(ShufflePageContext);
-}
+};
 
 export default ShufflePageContextProvider;

@@ -15,7 +15,7 @@ interface ShufflePlaylistCardProps {
 
 const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
     if (!playlist) {
-        return <ShufflePlaylistCardSkeleton />
+        return <ShufflePlaylistCardSkeleton />;
     }
 
     const playlist_img = playlist.images?.at(1)?.url ??
@@ -96,6 +96,6 @@ const ShufflePlaylistCard = ({playlist}: ShufflePlaylistCardProps) => {
             </CardContent>
         </Card>
     );
-}
+};
 
 export default ShufflePlaylistCard;

@@ -77,6 +77,6 @@ const ProfileCardSkeleton = () => {
             </CardContent>
         </Card>
     );
-}
+};
 
 export default ProfileCardSkeleton;

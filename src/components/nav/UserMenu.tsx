@@ -95,6 +95,6 @@ const UserMenu = () => {
             </Menu>
         </>
     );
-}
+};
 
 export default UserMenu;

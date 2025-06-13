@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import { useAppContext } from "../../contexts/AppContext";
 import { useFollowPageContext } from "../../contexts/FollowPageContext";
 import { unfollowArtist } from "../../spotify/user";
-import "./ButtonBase/ButtonBase.css"
+import "./ButtonBase/ButtonBase.css";
 
 const doUnfollow = async (
     clientId: string,
@@ -20,7 +20,7 @@ const doUnfollow = async (
         setErrorMessage("Failed to unfollow artist. Try again.");
         setOpenError(true);
     }
-}
+};
 interface UnfollowButtonProps {
     artistId: string,
     onUnfollow: () => void
@@ -41,11 +41,12 @@ const UnfollowButton = ({ artistId, onUnfollow }: UnfollowButtonProps) => {
                 letterSpacing: "0.05em"
             }}
             onClick={async () =>
-                await doUnfollow(clientId, code!, artistId, onUnfollow, setOpenError, setErrorMessage)}
+                await doUnfollow(clientId, code!, artistId, onUnfollow, setOpenError, setErrorMessage)
+            }
         >
             Unfollow
         </Button>
     );
-}
+};
 
 export default UnfollowButton;

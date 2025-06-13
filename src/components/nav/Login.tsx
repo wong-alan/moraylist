@@ -53,6 +53,6 @@ const Login = ({size}: LoginProps) => {
             <SpotifyButton text={LOGIN_BUTTON_TEXT} />
         </Link>
     );
-}
+};
 
 export default Login;

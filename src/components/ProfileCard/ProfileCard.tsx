@@ -20,7 +20,7 @@ interface ProfileCardProps {
 
 export const ProfileCard = ({profile}: ProfileCardProps) => {
     if (!profile) {
-        return <ProfileCardSkeleton />
+        return <ProfileCardSkeleton />;
     }
 
     const iconSrc: string = profile.images?.at(0)?.url ?? MORAY_SVG;
@@ -121,6 +121,6 @@ export const ProfileCard = ({profile}: ProfileCardProps) => {
             </CardContent>
         </Card>
     );
-}
+};
 
 export default ProfileCard;

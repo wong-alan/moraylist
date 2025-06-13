@@ -20,21 +20,21 @@ export const BASE_SKELETON_SX: SystemStyleObject = {
 // Fix for sticky hover styles on mobile
 export const noFullHover = (): boolean => {
     return window.matchMedia("(hover:none), (hover:on-demand)").matches;
-}
+};
 
 export const sleep = (ms: number): Promise<void> => {
     return new Promise(resolve => setTimeout(resolve, ms));
-}
+};
 
 export const toPascalCase = (s: string | null | undefined) => {
-    return s ? s.replace(/(\w)(\w*)/g, (_, p, q) => p.toUpperCase() + q.toLowerCase()) : s;
-}
+    return s ? s.replace(/(\w)(\w*)/g, (_, p: string, q: string) => p.toUpperCase() + q.toLowerCase()) : s;
+};
 
 export const normalize = (s: string|undefined): string|undefined => {
     return s?.normalize("NFKD")
         .replace(/\p{Diacritic}/gu, "")
         .toLocaleLowerCase();
-}
+};
 
 export const uniqueBy = <T,>(
     array: T[],
@@ -44,8 +44,8 @@ export const uniqueBy = <T,>(
         ...new Map(
             array.map(x => [key(x), x])
         ).values()
-    ]
-}
+    ];
+};
 
 interface RepeatProps {
     count: number
@@ -53,7 +53,7 @@ interface RepeatProps {
 }
 
 export const Repeat = ({count, children}: RepeatProps): React.JSX.Element[] => {
-    return [...Array(count)].map((_, i) => (
+    return [...Array<undefined>(count)].map((_, i) => (
         <Fragment key={i}>{children}</Fragment>
     ));
 };

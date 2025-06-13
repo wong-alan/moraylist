@@ -26,6 +26,6 @@ const OpenInAppButton = ({link, className, condensed}: OpenInAppButtonProps) => 
             />
         </Link>
     );
-}
+};
 
 export default OpenInAppButton;

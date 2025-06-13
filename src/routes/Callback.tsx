@@ -33,11 +33,11 @@ const Callback = () => {
 
     useEffect(() => {
         setCode(code);
-    }, [])
+    }, []);
 
     return (
         <Navigate to="/" replace />
     );
-}
+};
 
 export default Callback;

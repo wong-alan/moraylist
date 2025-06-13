@@ -19,7 +19,7 @@ interface ArtistCardProps {
 
 const ArtistCard = ({artist, onUnfollow}: ArtistCardProps) => {
     if (!artist) {
-        return <ArtistCardSkeleton />
+        return <ArtistCardSkeleton />;
     }
 
     return (
@@ -91,6 +91,6 @@ const ArtistCard = ({artist, onUnfollow}: ArtistCardProps) => {
             </CardContent>
         </Card>
     );
-}
+};
 
 export default ArtistCard;

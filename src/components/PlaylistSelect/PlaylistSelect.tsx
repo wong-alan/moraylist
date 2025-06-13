@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import "./PlaylistSelect.css"
+import "./PlaylistSelect.css";
 
 const ListItemBox = forwardRef<HTMLLIElement, PropsWithChildren>(function ListItemBox(props, ref) {
     return <Box ref={ref} component={"li"} {...props} />;
@@ -97,6 +97,6 @@ const PlaylistSelect = ({playlists, setPlaylist, loading}: PlaylistSelectProps) 
             )}
         />
     );
-}
+};
 
 export default PlaylistSelect;

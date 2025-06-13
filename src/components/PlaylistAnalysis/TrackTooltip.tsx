@@ -69,6 +69,6 @@ const TrackTooltip = () => {
             </CardContent>
         </Card>
     );
-}
+};
 
 export default TrackTooltip;

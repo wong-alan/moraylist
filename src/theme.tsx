@@ -74,6 +74,6 @@ const makeSpotifyTheme = () => {
     });
 
     return spotifyTheme;
-}
+};
 
 export default makeSpotifyTheme;

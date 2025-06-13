@@ -34,6 +34,6 @@ const ErrorSnack = ({message, open, setOpen}: ErrorSnackProps) => {
             </Alert>
         </Snackbar>
     );
-}
+};
 
 export default ErrorSnack;

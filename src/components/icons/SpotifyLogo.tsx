@@ -23,6 +23,6 @@ const SpotifyLogo = ({width, height, sx}: SpotifyLogoProps) => {
             }}
         />
     );
-}
+};
 
 export default SpotifyLogo;

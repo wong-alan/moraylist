@@ -47,7 +47,7 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
         content: "See your top genres",
         tooltip: "Coming soon"
     }
-]
+];
 
 const Landing = () => {
     const { code } = useAppContext();
@@ -160,6 +160,6 @@ const Landing = () => {
             </Container>
         </section>
     </>);
-}
+};
 
 export default Landing;

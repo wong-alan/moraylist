@@ -32,6 +32,6 @@ const LinearProgressWithLabel = (
             </Box>
         </Box>
     );
-}
+};
 
 export default LinearProgressWithLabel;

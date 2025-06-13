@@ -1,7 +1,15 @@
 // TODO: Convert to DefinitelyTyped
 
+interface AccessTokenResponse {
+    access_token: string;
+    token_type: "Bearer";
+    scope: string;
+    expires_in: number;
+    refresh_token: string;
+}
+
 interface User {
-    display_name?: string
+    display_name?: string;
     external_urls: {
         spotify: string;
     };
@@ -20,7 +28,7 @@ interface UserProfile extends User {
     email: string;
     explicit_content: {
         filter_enabled: boolean;
-        filter_locked: boolean
+        filter_locked: boolean;
     };
     images: Image[];
     product: string;
@@ -72,6 +80,10 @@ interface Playlists {
     previous: string | null;
     total: number;
     items: Playlist[]
+}
+
+interface UpdatePlaylistResponse {
+    snapshot_id: string
 }
 
 interface Playlist {

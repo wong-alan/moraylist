@@ -28,10 +28,10 @@ const AnalysisPageContextProvider = ({children}: AnalysisPageContextProps) => {
             {children}
         </AnalysisPageContext.Provider>
     );
-}
+};
 
 export const useAnalysisPageContext = () => {
     return useContext(AnalysisPageContext);
-}
+};
 
 export default AnalysisPageContextProvider;

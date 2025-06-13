@@ -28,10 +28,10 @@ const FollowPageContextProvider = ({children}: FollowPageContextProps) => {
             {children}
         </FollowPageContext.Provider>
     );
-}
+};
 
 export const useFollowPageContext = () => {
     return useContext(FollowPageContext);
-}
+};
 
 export default FollowPageContextProvider;

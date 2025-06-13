@@ -36,6 +36,6 @@ const ArtistCardSkeleton = () => {
                 </CardContent>
         </Card>
     );
-}
+};
 
 export default ArtistCardSkeleton;

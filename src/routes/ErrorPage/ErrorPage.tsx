@@ -16,14 +16,14 @@ const ErrorPage = ({children}: ErrorPageProps) => {
             return;
         }
         const intervalId = setInterval(() => {
-            setTimeLeft(timeLeft - 1)
+            setTimeLeft(timeLeft - 1);
         }, 1000);
 
         return () => clearInterval(intervalId);
     }, [timeLeft]);
 
     if (timeLeft == 0) {
-        return <Navigate to="/" />
+        return <Navigate to="/" />;
     }
 
     return (
@@ -46,6 +46,6 @@ const ErrorPage = ({children}: ErrorPageProps) => {
             </div>
         </div>
     );
-}
+};
 
 export default ErrorPage;

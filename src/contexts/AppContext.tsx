@@ -34,10 +34,10 @@ const AppContextProvider = ({children}: AppContextProviderProps) => {
             {children}
         </AppContext.Provider>
     );
-}
+};
 
 export const useAppContext = () => {
     return useContext(AppContext);
-}
+};
 
 export default AppContextProvider;

@@ -10,7 +10,7 @@ const Emoji = ({children}: EmojiProps) => {
             {children}
         </span>
     );
-}
+};
 
 export const getFlagEmoji = (countryCode: string): string => {
     const codePoints = countryCode
@@ -18,6 +18,6 @@ export const getFlagEmoji = (countryCode: string): string => {
       .split('')
       .map(char =>  127397 + char.charCodeAt(0));
     return String.fromCodePoint(...codePoints);
-  }
+  };
 
 export default Emoji;

@@ -1,5 +1,5 @@
 import SvgIcon from "@mui/material/SvgIcon";
-import MorayLogo from "../../assets/moray.svg?react"
+import MorayLogo from "../../assets/moray.svg?react";
 
 export const MORAY_SVG = "./moray.svg";
 
@@ -18,6 +18,6 @@ const MorayIcon = ({size}: MorayIconProps) => {
             }}
         />
     );
-}
+};
 
 export default MorayIcon;

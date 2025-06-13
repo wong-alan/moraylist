@@ -24,7 +24,7 @@ const AnalyzePlaylist = () => {
         if (!profile) {
             return;
         }
-        fetchUserPlaylists(clientId, code!, profile!.id, false).then(data => {
+        fetchUserPlaylists(clientId, code!, profile.id, false).then(data => {
             if (data) {
                 setPlaylists(data);
                 setLoading(false);
@@ -99,6 +99,6 @@ const AnalyzePlaylist = () => {
             />
         </section>
     );
-}
+};
 
 export default AnalyzePlaylist;

@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import { SystemStyleObject } from "@mui/system";
-import "./ButtonBase.css"
+import "./ButtonBase.css";
 
 interface ButtonBaseProps {
     buttonText: string,
@@ -30,6 +30,6 @@ const ButtonBase = ({
             {buttonText}
         </Button>
     );
-}
+};
 
 export default ButtonBase;

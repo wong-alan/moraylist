@@ -27,7 +27,7 @@ export const fetchUserPlaylists = async (
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         });
-        const response: Playlists = await result.json();
+        const response: Playlists = <Playlists> await result.json();
         const items: Playlist[] = owned ?
             response.items.filter((playlist) => playlist.owner.id == userId)
             : response.items;
@@ -37,7 +37,7 @@ export const fetchUserPlaylists = async (
     // Spotify is currently returning duplicate playlists
     // https://community.spotify.com/t5/Spotify-for-Developers/Singular-duplicate-in-paginated-current-user-playlists/m-p/5993387
     return uniqueBy(usersPlaylists, (playlist) => playlist.id);
-}
+};
 
 export const reorderPlaylist = async (
     clientId: string,
@@ -52,7 +52,7 @@ export const reorderPlaylist = async (
         return null;
     }
 
-    const playlistUrl: URL = new URL([playlistEndpoint,playlistId,"tracks"].join("/"));
+    const playlistUrl: URL = new URL([playlistEndpoint, playlistId, "tracks"].join("/"));
     const payload: RequestInit = {
         method: 'PUT',
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -62,14 +62,14 @@ export const reorderPlaylist = async (
             range_length: 1,
             ...(snapshotId && {snapshot_id: snapshotId})
         })
-    }
+    };
     const result = await fetch(playlistUrl, payload);
     if (!result.ok) {
         return null;
     }
-    const { snapshot_id } = await result.json();
+    const { snapshot_id } = <UpdatePlaylistResponse> await result.json();
     return snapshot_id;
-}
+};
 
 export const fetchPlaylistItems = async (
     clientId: string,
@@ -96,10 +96,10 @@ export const fetchPlaylistItems = async (
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         });
-        const response: Tracks = await result.json();
+        const response: Tracks = <Tracks> await result.json();
         tracks.push(...response.items
             .filter((track) => !track.is_local && track.track.type === "track"));
         playlistTracksUrl = response.next;
     } while (playlistTracksUrl);
     return tracks;
-}
+};

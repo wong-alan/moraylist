@@ -17,7 +17,7 @@ import "../filter.css";
 const Shuffle = () => {
     const { clientId, code, profile } = useAppContext();
     const { openError, setOpenError, errorMessage, setErrorMessage } = useShufflePageContext();
-    const [ playlists, setPlaylists ] = useState<(Playlist|undefined)[]>([...Array(16)]);
+    const [ playlists, setPlaylists ] = useState<(Playlist|undefined)[]>([...Array<undefined>(16)]);
     const [ filterText, setFilterText ] = useState<string>("");
     const [ playlistMap, setPlaylistMap ] = useState<Map<string, Playlist>>();
 
@@ -30,7 +30,7 @@ const Shuffle = () => {
         if (!profile) {
             return;
         }
-        fetchUserPlaylists(clientId, code!, profile!.id, true).then(data => {
+        fetchUserPlaylists(clientId, code!, profile.id, true).then(data => {
             if (data) {
                 setPlaylistMap(new Map(data.map((playlist) => [playlist.name, playlist])));
                 setPlaylists(data);
@@ -122,7 +122,7 @@ const Shuffle = () => {
                         opacity: 1,
                         delay: 0.15,
                         duration: 0.2
-                    })
+                    });
                 },
                 onLeave: elements => gsap.to(elements, {opacity: 0, duration: 0.15})
             });
@@ -212,6 +212,6 @@ const Shuffle = () => {
             />
         </section>
     );
-}
+};
 
 export default Shuffle;

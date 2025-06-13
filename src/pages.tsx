@@ -29,5 +29,5 @@ const titleMap: Record<string, string> = {
 
 export const usePageTitle = () => {
     const location = useLocation().pathname;
-    document.title = `${titleMap[location] ?? 'A Toolbox for Spotify'} | Moraylist`
-}
+    document.title = `${titleMap[location] ?? 'A Toolbox for Spotify'} | Moraylist`;
+};

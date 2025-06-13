@@ -25,6 +25,6 @@ export const fetchPlayHistory = async (
         method: "GET",
         headers: { Authorization: `Bearer ${accessToken}` },
     });
-    const response: RecentPlayHistory = await result.json();
+    const response: RecentPlayHistory = <RecentPlayHistory> await result.json();
     return response.items;
-}
+};

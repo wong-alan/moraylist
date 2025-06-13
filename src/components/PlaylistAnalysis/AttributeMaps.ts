@@ -11,7 +11,7 @@ interface AnalysisProps {
 
 const formatNull = (value: number | null) => {
     return value ? null : "-1";
-}
+};
 // PlaylistAnalysis only charts numerical data
 // Keys should only map to numerical fields
 export const attributeMap: Record<string, AnalysisProps> = {

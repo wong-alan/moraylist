@@ -28,10 +28,10 @@ const RecentPageContextProvider = ({children}: RecentPageContextProps) => {
             {children}
         </RecentPageContext.Provider>
     );
-}
+};
 
 export const useRecentPageContext = () => {
     return useContext(RecentPageContext);
-}
+};
 
 export default RecentPageContextProvider;

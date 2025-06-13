@@ -16,7 +16,7 @@ import "./filter.css";
 const Following = () => {
     const { clientId, code } = useAppContext();
     const { openError, setOpenError, errorMessage, setErrorMessage } = useFollowPageContext();
-    const [ artists, setArtists ] = useState<(Artist|undefined)[]>([...Array(25)]);
+    const [ artists, setArtists ] = useState<(Artist|undefined)[]>([...Array<undefined>(25)]);
     const [ filterText, setFilterText ] = useState<string>("");
 
     const cardRefs = useRef<(HTMLDivElement|null)[]>([]);
@@ -32,7 +32,7 @@ const Following = () => {
                 setErrorMessage("Error loading artists. Try again.");
                 setOpenError(true);
             }
-        })
+        });
     }, [code]);
 
     useLayoutEffect(() => {
@@ -110,7 +110,7 @@ const Following = () => {
                         opacity: 1,
                         delay: 0.15,
                         duration: 0.2
-                    })
+                    });
                 },
                 onLeave: elements => gsap.to(elements, {opacity: 0, duration: 0.15})
             });
@@ -154,10 +154,10 @@ const Following = () => {
                     opacity: 1,
                     delay: 0.2,
                     duration: 0.2
-                })
+                });
             }
         });
-    }
+    };
 
     return (
         <section id="following">
@@ -239,6 +239,6 @@ const Following = () => {
             />
         </section>
     );
-}
+};
 
 export default Following;

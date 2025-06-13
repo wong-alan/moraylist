@@ -70,6 +70,6 @@ const ShufflePlaylistCardSkeleton  = () => {
             </CardContent>
         </Card>
     );
-}
+};
 
 export default ShufflePlaylistCardSkeleton;

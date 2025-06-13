@@ -18,6 +18,6 @@ const SpotifyButton = ({text, sx}: SpotifyButtonProps) => {
             }}
         />
     );
-}
+};
 
 export default SpotifyButton;

@@ -1,6 +1,6 @@
 import { getAccessToken } from "./auth";
 
-const userEndpoint = "https://api.spotify.com/v1/me"
+const userEndpoint = "https://api.spotify.com/v1/me";
 const followingEndpoint = userEndpoint + "/following";
 
 export const fetchProfile = async (
@@ -16,9 +16,9 @@ export const fetchProfile = async (
         method: "GET",
         headers: { Authorization: `Bearer ${accessToken}` }
     });
-    const profile: UserProfile = await result.json();
+    const profile: UserProfile = <UserProfile> await result.json();
     return profile;
-}
+};
 
 export const fetchFollowing = async (
     clientId: string,
@@ -39,17 +39,17 @@ export const fetchFollowing = async (
 
     const followingArtists: Artist[] = [];
     do {
-        const result = await fetch(followingUrl!, {
+        const result = await fetch(followingUrl, {
             method: "GET",
             headers: { Authorization: `Bearer ${accessToken}` },
         });
-        const response: Artists = await result.json();
+        const response: Artists = <Artists> await result.json();
         followingArtists.push(...response.artists.items);
         followingUrl = response.artists.next;
     } while (followingUrl);
 
     return followingArtists;
-}
+};
 
 export const unfollowArtist = async (
     clientId: string,
@@ -67,10 +67,10 @@ export const unfollowArtist = async (
         ids: artistId
     }).toString();
 
-    const result = await fetch(followingUrl!, {
+    const result = await fetch(followingUrl, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${accessToken}` },
     });
 
     return result.ok ;
-}
+};

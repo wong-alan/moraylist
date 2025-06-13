@@ -8,6 +8,6 @@ const SpotifyIcon = () => {
             inheritViewBox
         />
     );
-}
+};
 
 export default SpotifyIcon;

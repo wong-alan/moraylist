@@ -15,7 +15,7 @@ interface ChipGroupProps {
 const ChipGroup = ({labels, selected, setSelected}: ChipGroupProps) => {
     const handleClick = (label: string) => () => {
         setSelected(label);
-    }
+    };
 
     return (<>
         { Object.entries(labels).map(([key, label]) =>
@@ -38,6 +38,6 @@ const ChipGroup = ({labels, selected, setSelected}: ChipGroupProps) => {
             />)
         }
     </>);
-}
+};
 
 export default ChipGroup;

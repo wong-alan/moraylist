@@ -1,12 +1,12 @@
 import React, { lazy, Suspense } from 'react';
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import AppContextProvider from './contexts/AppContext';
 import Root from "./routes/Root";
 import ProtectedRoot from "./routes/ProtectedRoot";
 import makeSpotifyTheme from "./theme";
-import './index.css'
+import './index.css';
 
 const FollowPageContextProvider = lazy(() => import ("./contexts/FollowPageContext"));
 const ShufflePageContextProvider = lazy(() => import ("./contexts/ShufflePageContext"));
@@ -99,4 +99,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             </AppContextProvider>
         </ThemeProvider>
     </React.StrictMode>
-)
+);

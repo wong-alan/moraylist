@@ -23,7 +23,7 @@ import "./PlaylistAnalysis.css";
 
 const EmptySlot = () => {
     return null;
-}
+};
 
 interface PlaylistAnalysisProps {
     playlist: Playlist,
@@ -68,10 +68,10 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                 throw new Error("Error fetching audio features.");
             }
         }).catch((error: Error) => {
-            setErrorMessage(error.message + " Try again.")
+            setErrorMessage(error.message + " Try again.");
             setOpenError(true);
         });
-    }, [playlist])
+    }, [playlist]);
 
     useEffect(() => {
         if (!trackData || !audioFeatures || audioFeatures.length != trackData.length) return;
@@ -81,7 +81,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                 release_year: +(trackData[index].track as Track).album.release_date.substring(0, 4),
                 popularity: (trackData[index].track as Track).popularity,
                 ...feat,
-            }
+            };
         }));
     }, [audioFeatures]);
 
@@ -203,6 +203,6 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
             />
         </Paper>
     );
-}
+};
 
 export default PlaylistAnalysis;

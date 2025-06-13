@@ -20,7 +20,7 @@ interface PlayHistoryCardProps {
 
 const PlayHistoryCard = ({playHistory}: PlayHistoryCardProps) => {
     if (!playHistory) {
-        return <PlayHistoryCardSkeleton />
+        return <PlayHistoryCardSkeleton />;
     }
 
     return (
@@ -63,6 +63,6 @@ const PlayHistoryCard = ({playHistory}: PlayHistoryCardProps) => {
             </CardContent>
         </Card>
     );
-}
+};
 
 export default PlayHistoryCard;

@@ -24,6 +24,6 @@ const Profile = () => {
             <ProfileCard profile={profile} />
         </section>
     );
-}
+};
 
 export default Profile;

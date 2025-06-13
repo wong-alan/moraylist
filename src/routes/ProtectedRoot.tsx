@@ -7,11 +7,11 @@ const ProtectedRoot = () => {
 
     // User is not authenticated
     if (!code) {
-        return <Navigate to="/" replace />
+        return <Navigate to="/" replace />;
     }
 
-    return <Root />
+    return <Root />;
 
-}
+};
 
 export default ProtectedRoot;

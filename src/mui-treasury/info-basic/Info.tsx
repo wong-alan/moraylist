@@ -53,8 +53,8 @@ const InfoRoot = styled("div", {
   name: "JunInfo",
   slot: "Root",
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-    return [styles.root, ownerState.variant && styles[ownerState.variant]];
+    const { ownerState } = props; // eslint-disable-line
+    return [styles.root, ownerState.variant && styles[ownerState.variant]];  // eslint-disable-line
   },
 })<{ ownerState: InfoProps }>(({ theme, ownerState }) => ({
   display: "block",

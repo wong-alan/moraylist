@@ -18,7 +18,7 @@ const doShuffle = async (
     // Inclusive of min, exclusive of max
     const randInt = (min: number, max: number): number => {
         return Math.floor(Math.random() * (max - min) + min);
-    }
+    };
     setShuffling(true);
 
     let snapshot_id;
@@ -27,7 +27,7 @@ const doShuffle = async (
         setProgress(Math.floor(((to+1) / (length-1)) * 100));
 
         const from = randInt(to, length);
-        if (to === from) { continue; }
+        if (to === from) { continue }
         snapshot_id = await reorderPlaylist(clientId, code, playlistId, from, to, snapshot_id);
 
         await sleep(100);
@@ -35,7 +35,7 @@ const doShuffle = async (
     setLabel(length + "/" + length);
     await sleep(5000);
     setShuffling(false);
-}
+};
 
 interface ShuffleButtonProps {
     playlistId: string,
@@ -56,9 +56,11 @@ const ShuffleButton = ({playlistId, length}: ShuffleButtonProps) => {
                 buttonIcon = {<ShuffleIcon />}
                 buttonSize = "small"
                 sx = {{ fontSize: "0.85rem" }}
-                onClick = {async () => await doShuffle(clientId, code!, playlistId, length, setShuffling, setProgress, setLabel)}
+                onClick = {async () =>
+                    await doShuffle(clientId, code!, playlistId, length, setShuffling, setProgress, setLabel)
+                }
             />
     }</>);
-}
+};
 
 export default ShuffleButton;

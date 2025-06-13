@@ -40,6 +40,6 @@ const NoResults = ({input}: NoResultsProps) => {
             </Typography>
         </Box>
     );
-}
+};
 
 export default NoResults;

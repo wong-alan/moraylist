@@ -43,6 +43,6 @@ const PlayHistoryCardSkeleton = () => {
             </CardContent>
         </Card>
     );
-}
+};
 
 export default PlayHistoryCardSkeleton;
