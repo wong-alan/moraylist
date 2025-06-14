@@ -13,13 +13,7 @@ ___
 - Analyze playlist danceability
 - Analyze playlist mood
 - Analyze playlist energy
-
-### Planned future improvements
-- Functional
-  - View your top genres/decades
-- Technical
-  - Rewrite using [Spotify Web API SDK](https://www.npmjs.com/package/@spotify/web-api-ts-sdk) [[Blog post](https://developer.spotify.com/blog/2023-07-03-typescript-sdk)]
-  - Use [React Query](https://tanstack.com/query/latest) to handle state management of fetched data
+- See your top tracks/artists
 
 ___
 ### React + TypeScript + Vite

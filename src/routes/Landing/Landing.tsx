@@ -44,8 +44,8 @@ const cards: (LandingCardProps & {key:string, tooltip?:string})[] = [
     },{
         key: "genres",
         icon: <StarRoundedIcon />,
-        content: "See your top genres",
-        tooltip: "Coming soon"
+        content: "See your top tracks",
+        link: "/top"
     }
 ];
 
