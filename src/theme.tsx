@@ -55,7 +55,7 @@ const makeSpotifyTheme = () => {
             xs: 0,
             sm: 600,
             smd: 700,
-            md: 900,
+            md: 975,
             lg: 1200,
             xl: 1536,
             },

@@ -1,7 +1,15 @@
 #recent {
+    .history-card-container {
+        justify-content: center;
+    }
+
+    .history-card-container:nth-last-child(1) {
+        margin-bottom: 30px;
+    }
+
     .history-card {
         padding: 10px 24px;
-        margin: 0px auto 1px auto;
+        margin: 0px 0px 1px 0px;
         display: flex;
         flex-flow: row nowrap;
         align-items: center;

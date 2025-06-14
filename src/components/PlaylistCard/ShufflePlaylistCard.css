@@ -57,7 +57,7 @@
 }
 
 /* xs sm */
-@media (max-width: 900px) {
+@media (max-width: 975px) {
     :root {
         .playlist-card-content {
             width: 75%;
@@ -75,7 +75,7 @@
 }
 
 /* md lg xl */
-@media (min-width: 900px) {
+@media (min-width: 975px) {
     :root {
         .playlist-card {
             flex-direction: row;

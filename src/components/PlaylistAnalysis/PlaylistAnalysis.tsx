@@ -15,7 +15,7 @@ import { fetchAudioFeatures } from "../../spotify/track";
 import { fetchPlaylistItems } from "../../spotify/playlist";
 import { useAppContext } from "../../contexts/AppContext";
 import { useAnalysisPageContext } from "../../contexts/AnalysisPageContext";
-import { attributeMap } from "./TrackFeaturesMap";
+import { trackFeaturesMap } from "./TrackFeaturesMap";
 import TrackTooltip from "./TrackTooltip";
 import { noFullHover } from "../../utils";
 import OpenInAppButton from "../buttons/OpenInAppButton";
@@ -99,7 +99,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
         );
     }
 
-    const attributeProps = attributeMap[attribute];
+    const trackFeatures = trackFeaturesMap[attribute];
 
     return (
         <Paper
@@ -119,9 +119,9 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     curve: "catmullRom",
                     color: "#2ECC71",
                     dataKey: attribute,
-                    label: attributeProps.label,
+                    label: trackFeatures.label,
                     highlightScope: { highlight: "item" },
-                    valueFormatter: attributeProps.dataFormatter,
+                    valueFormatter: trackFeatures.dataFormatter,
                 }]}
                 xAxis={[{
                     data: trackData,
@@ -130,10 +130,10 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     valueFormatter: (value: PlaylistTrack) => (value.track.name)
                 }]}
                 yAxis={[{
-                    label: attributeProps.label,
-                    valueFormatter: attributeProps.axisY.formatter,
-                    min: attributeProps.axisY.min,
-                    max: attributeProps.axisY.max
+                    label: trackFeatures.label,
+                    valueFormatter: trackFeatures.axisY.formatter,
+                    min: trackFeatures.axisY.min,
+                    max: trackFeatures.axisY.max
                 }]}
                 dataset={chartData as {}[]}  // eslint-disable-line @typescript-eslint/no-empty-object-type
                 sx={(theme) => ({

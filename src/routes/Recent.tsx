@@ -49,21 +49,19 @@ const Recent = () => {
                         </Typography>
                     </Grid>
                     <Grid size={{ xs: 0.25}} />
-                    <Grid container
-                        size={{ xs: 12 }}
-                        justifyContent={"center"}
-                    >
+                    <Grid container size={{ xs: 12 }}>
                         { playHistory.length ?
                             playHistory.map((track, index) =>
                                 <Grid container
                                     size={{ xs: 12 }}
                                     key={`track-${index}`}
+                                    className="history-card-container"
                                 >
                                     <PlayHistoryCard
                                         playHistory={track}
                                     />
                                 </Grid>)
-                            : <Grid size={{ xs: 12}}>
+                            : <Grid size={{ xs: 12 }}>
                                 <Typography
                                     variant="h6"
                                     className="metro-font"

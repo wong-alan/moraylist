@@ -1,0 +1,188 @@
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  5% { background-position: 100% 50%; }
+  10% { background-position: 0% 50%; }
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(10deg); }
+    2% { transform: rotate(-10deg); }
+    3% { transform: rotate(20deg); }
+    5% { transform: rotate(-5deg); }
+    7% { transform: rotate(0deg); }
+    to  { transform: rotate(0deg); }
+}
+
+#top-items {
+    .top-item-card-container {
+        justify-content: center;
+        padding: 0px 10px;
+        margin-top: 8px;
+    }
+
+    .top-item-card {
+        padding: 10px 24px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 640px;
+        background-color: #242424;
+        color: #FFFFFF;
+    }
+
+    .top-item-card-place {
+        font-size: 80px;
+        font-weight: 900;
+        padding-right: 20px;
+        margin-top: -20px;
+        margin-bottom: -20px;
+        min-width: 92px;
+        max-width: 92px;
+        text-align: center;
+        position: relative;
+    }
+
+    .top-item-card-container:nth-child(1) {
+        margin-top: 10px;
+
+        .top-item-card-place {
+            background: linear-gradient(60deg,
+                lemonchiffon,
+                gold,
+                darkgoldenrod,
+                gold,
+                lemonchiffon
+            );
+        }
+    }
+
+    .top-item-card-container:nth-child(2) {
+        .top-item-card-place {
+            background: linear-gradient(
+                60deg,
+                silver,
+                dimgray,
+                gainsboro,
+                lightslategray,
+                silver
+            );
+        }
+    }
+    .top-item-card-container:nth-child(3) {
+        .top-item-card-place {
+            background: linear-gradient(
+                60deg,
+                chocolate,
+                darkgoldenrod,
+                saddlebrown,
+                darkgoldenrod,
+                sienna
+            );
+        }
+    }
+
+    .top-item-card-container:nth-last-child(1) {
+        margin-bottom: 30px;
+    }
+
+    .top-item-card-container:nth-child(-n + 3) .top-item-card-place {
+        color: transparent;
+        background-clip: text;
+        background-size: 200% 200%;
+        animation: gradient-animation 10s ease 5s infinite;
+    }
+
+    .top-item-card-container:nth-child(-n + 3) .top-item-card-place::after {
+        content: "✨";
+        color: initial;
+        position: absolute;
+        font-size: 30px;
+        top: 15px;
+        right: 10px;
+        filter: sepia(100%) grayscale(20%) opacity(80%);
+        animation: wiggle 6s linear 2s infinite;
+    }
+
+
+    .top-item-card-media {
+        min-height: 80px;
+        max-height: 80px;
+        min-width: 80px;
+        max-width: 80px;
+        border-radius: 6px;
+    }
+
+    .top-item-card-content {
+        position: relative;
+        width: 100%;
+        height: 85%;
+        overflow: hidden;
+        padding: 0px 16px 0px 16px;
+    }
+
+    .top-item-card-content.skeleton {
+        width: unset;
+    }
+
+    .top-item-card-title {
+        font-size: 25px;
+        font-weight: 600;
+
+        &.title-only {
+            font-size: 26px;
+            padding-top: 14px;
+        }
+
+        a {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .top-item-card-subtitle {
+        padding-top: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #BABABA;
+    }
+
+    @media (max-width: 600px) {
+        .top-item-card-container {
+            margin-top: 5px;
+        }
+
+        .top-item-card {
+            padding: 10px 10px 10px 8px;
+        }
+
+        .top-item-card-media.skeleton {
+            margin-left: 100px;
+        }
+
+        .top-item-card-place {
+            font-size: 65px;
+            padding-right: 8px;
+        }
+
+        .top-item-card-container:nth-child(-n + 3) .top-item-card-place::after {
+            font-size: 20px;
+        }
+
+        .top-item-card-title {
+            font-size: 20px;
+            padding-top: 6px;
+        }
+
+        .top-item-card-title.title-only {
+            font-size: 20px;
+            padding-top: 20px;
+        }
+
+        .top-item-card-subtitle {
+            font-size: 14px;
+        }
+    }
+}

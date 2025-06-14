@@ -6,11 +6,14 @@ interface ChipGroupProps<T = string> {
     labels: Record<string, { label: string }> ,
     selected: T,
     setSelected: Dispatch<SetStateAction<T>>,
+    setLoading?: () => void,
 }
 
-const ChipGroup = <T extends string>({labels, selected, setSelected}: ChipGroupProps<T>) => {
+const ChipGroup = <T extends string>({labels, selected, setSelected, setLoading}: ChipGroupProps<T>) => {
     const handleClick = (label: T) => () => {
+        if (selected === label) { return; }
         setSelected(label);
+        if (setLoading) { setLoading(); }
     };
 
     return (<>

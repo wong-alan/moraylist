@@ -31,6 +31,7 @@ const AnalyzePlaylist = () => {
             } else {
                 setErrorMessage("Error loading playlists. Try again.");
                 setOpenError(true);
+                setLoading(false);
             }
         });
     }, [code, profile]);
