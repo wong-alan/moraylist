@@ -14,12 +14,13 @@ const TopItemSkeleton = () => {
                     ...BASE_SKELETON_SX,
                     height: "80px",
                     width: "80px",
-                    marginLeft: "107px"
+                    marginLeft: "112px"
                 }}
             />
             <CardContent className="top-item-card-content skeleton">
                 <Box>
                     <Skeleton variant="text" animation="wave"
+                        className="top-item-card-title skeleton"
                         sx={{
                             ...BASE_SKELETON_SX,
                             height: "2.3rem",
@@ -27,6 +28,7 @@ const TopItemSkeleton = () => {
                         }}
                     />
                     <Skeleton variant="text" animation="wave"
+                        className="top-item-card-subtitle skeleton"
                         sx={{
                             ...BASE_SKELETON_SX,
                             height: "1.9rem",
