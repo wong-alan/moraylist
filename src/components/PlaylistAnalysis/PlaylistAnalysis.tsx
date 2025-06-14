@@ -121,7 +121,7 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     dataKey: attribute,
                     label: trackFeatures.label,
                     highlightScope: { highlight: "item" },
-                    valueFormatter: trackFeatures.dataFormatter,
+                    valueFormatter: trackFeatures.tooltipFormatter,
                 }]}
                 xAxis={[{
                     data: trackData,
@@ -133,7 +133,8 @@ const PlaylistAnalysis = ({playlist, attribute}: PlaylistAnalysisProps) => {
                     label: trackFeatures.label,
                     valueFormatter: trackFeatures.axisY.formatter,
                     min: trackFeatures.axisY.min,
-                    max: trackFeatures.axisY.max
+                    max: trackFeatures.axisY.max,
+                    ...(!!trackFeatures.axisY.minStep && {tickMinStep: trackFeatures.axisY.minStep}),
                 }]}
                 dataset={chartData as {}[]}  // eslint-disable-line @typescript-eslint/no-empty-object-type
                 sx={(theme) => ({

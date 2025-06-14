@@ -3,14 +3,15 @@ interface AnalysisProps {
     axisY: {
         min?: number,
         max?: number,
-        formatter?: (value: number | null) => string
+        formatter?: (value: number | null) => string,
+        minStep?: number
     },
     dataFormatter: (value: number | null) => string,
     tooltipFormatter: (value: number | null) => string,
 }
 
 const formatNull = (value: number | null) => {
-    return value ? null : "-1";
+    return value ? null : "";
 };
 // PlaylistAnalysis only charts numerical data
 // Keys should only map to numerical fields
@@ -68,6 +69,7 @@ export const trackFeaturesMap: Record<string, AnalysisProps> = {
         label: "Release",
         axisY: {
             formatter: (value) => formatNull(value) ?? value!.toString(),
+            minStep: 1,
         },
         dataFormatter: (value) => formatNull(value) ?? value!.toString(),
         tooltipFormatter: (value) => formatNull(value) ?? value!.toString(),
