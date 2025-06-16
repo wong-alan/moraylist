@@ -1,4 +1,4 @@
-# Moraylist
+# ![Moraylist Eel Logo](/src/assets/moray.svg) Moraylist
 
 A web app with [Spotify Web API](https://developer.spotify.com/documentation/web-api) integration to manage your music.
 
@@ -20,8 +20,11 @@ ___
 
 Start up a local instance with `npm run dev` \
 You will need a `.env` file with:
-* Spotify API Client ID
+* Spotify API Client ID<sup>1</sup>
 * Deployment environment
+
+> <sup>1</sup> [27/11/2024] - Spotify has deprecated some endpoints on new API keys including retrieving audio features.
+> - [Spotify Dev Blog](https://developer.spotify.com/blog/2024-11-27-changes-to-the-web-api)
 
 Build the project with `npm run build`
 
