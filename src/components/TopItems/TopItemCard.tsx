@@ -27,7 +27,7 @@ const TopItemCard = ({place, title, subtitle, img, link, explicit}: TopItemCardP
                     component="img"
                     loading="lazy"
                     src={img}
-                    alt={`Image: ${name}`}
+                    alt={`Image: ${title}`}
                 />
             }
             <CardContent className="top-item-card-content">

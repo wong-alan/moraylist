@@ -11,9 +11,9 @@ interface ChipGroupProps<T = string> {
 
 const ChipGroup = <T extends string>({labels, selected, setSelected, setLoading}: ChipGroupProps<T>) => {
     const handleClick = (label: T) => () => {
-        if (selected === label) { return; }
+        if (selected === label) { return }
         setSelected(label);
-        if (setLoading) { setLoading(); }
+        if (setLoading) { setLoading() }
     };
 
     return (<>

@@ -104,4 +104,4 @@ export const fetchTopItems = async (
     });
     const response: TopItemsResponse = await result.json() as TopItemsResponse;
     return response.items;
-}
+};
