@@ -76,7 +76,7 @@ const TopItems = () => {
                         />
                     </Grid>
                     <Grid size={{ xs: 0.25 }} />
-                    <Grid container>
+                    <Grid container size={{ xs: 12 }}>
                         { !topItems.length || topItems[0] === undefined ?
                             (topItems as undefined[]).map((_, index) =>
                                 <Grid container
