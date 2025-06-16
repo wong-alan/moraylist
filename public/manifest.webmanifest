@@ -1,10 +1,10 @@
 {
     "name": "Moraylist",
     "short_name": "Moraylist",
-    "id": "/",
-    "start_url": ".",
+    "id": "https://moraylist.com",
+    "start_url": "/",
     "display": "standalone",
-    "orientation": "portrait",
+    "orientation": "any",
     "theme_color": "#121212",
     "background_color": "#000000",
     "description": "A toolbox for Spotify",
@@ -14,14 +14,12 @@
         "url": "/shuffle",
         "description": "Shuffle your Spotify playlists",
         "icons": [{ "src": "/icons/shuffle.svg", "sizes": "192x192" }]
-      },
-      {
+      }, {
         "name": "Recently played",
         "url": "/recent",
         "description": "View your recently played songs",
         "icons": [{ "src": "/icons/recent.svg", "sizes": "192x192" }]
-      },
-      {
+      }, {
         "name": "Analyze playlists",
         "url": "/analyze",
         "description": "Analyze your playlists",
