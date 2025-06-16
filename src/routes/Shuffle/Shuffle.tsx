@@ -176,7 +176,6 @@ const Shuffle = () => {
                                 id={playlist?.name}
                                 ref={(playlistRef): void => {playlistRefs.current[index] = playlistRef}}
                                 justifyContent={"center"}
-                                width={"auto"} // GSAP will record "width: 100%" and animate weird without this
                             >
                                 <ShufflePlaylistCard playlist={playlist}/>
                             </Grid>
