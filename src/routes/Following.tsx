@@ -194,7 +194,7 @@ const Following = () => {
                         />
                     </Grid>
                     <Grid size={{ xs: 0.25 }} />
-                    <Grid container spacing={1}>
+                    <Grid container size={{ xs: 12 }} spacing={1}>
                         { artists.map((artist, index) =>
                             <Grid
                                 size={{ xs:6, sm:6, smd:4, md:3, lg:12/5, xl:2 }}

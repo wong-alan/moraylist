@@ -166,7 +166,7 @@ const Shuffle = () => {
                         />
                     </Grid>
                     <Grid size={{ xs: 0.25 }} />
-                    <Grid container>
+                    <Grid container size={{ xs: 12 }}>
                         { playlists.map((playlist, index) => (
                             <Grid container
                                 spacing={1}
