@@ -38,51 +38,15 @@
     word-wrap: break-word;
 }
 
-/* Add :root to override MUI specificity */
-/* xs */
-@media (max-width: 600px) {
-    :root {
-        .playlist-card {
-            padding-bottom: 7px;
-        }
-
-        .playlist-card-content {
-            width: 85%;
-        }
-
-        .playlist-card-title {
-            font-size: 15px;
-        }
-    }
-}
-
-/* xs sm */
-@media (max-width: 975px) {
-    :root {
-        .playlist-card-content {
-            width: 75%;
-        }
-
-        .playlist-card-eyebrow {
-            margin-bottom: 0px;
-            line-height: unset;
-        }
-
-        .playlist-card-subtitle {
-            display: none;
-        }
-    }
-}
-
 /* md lg xl */
 @media (min-width: 975px) {
-    :root {
+    #shuffle {
         .playlist-card {
             flex-direction: row;
             padding-top: 16px;
             padding-right: 16px;
             padding-bottom: 16px;
-            margin: 10px 10px 10px 36px
+            margin: 10px 10px 10px 36px;
         }
 
         .playlist-card-media {
@@ -117,14 +81,54 @@
             display: block;
             height: calc(100% - (23px + 34px + 10px));
         }
-    }
-    .playlist-card-button-container {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-    }
 
-    .playlist-card-button-container button {
-        margin-bottom: 5px;
+        .playlist-card-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+
+        .playlist-card-button-container button {
+            margin-bottom: 5px;
+        }
+    }
+}
+
+/* xs sm */
+@media (max-width: 975px) {
+    #shuffle {
+        .playlist-card {
+            aspect-ratio: auto;
+        }
+
+        .playlist-card-content {
+            width: 75%;
+        }
+
+        .playlist-card-eyebrow {
+            margin-bottom: 0px;
+            line-height: unset;
+        }
+
+        .playlist-card-subtitle {
+            display: none;
+        }
+    }
+}
+
+/* xs */
+@media (max-width: 600px) {
+    #shuffle {
+        .playlist-card {
+            padding-bottom: 7px;
+        }
+
+        .playlist-card-content {
+            width: 85%;
+        }
+
+        .playlist-card-title {
+            font-size: 15px;
+        }
     }
 }
