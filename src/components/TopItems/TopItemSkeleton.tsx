@@ -14,7 +14,7 @@ const TopItemSkeleton = () => {
                     ...BASE_SKELETON_SX,
                     height: "80px",
                     width: "80px",
-                    marginLeft: "112px"
+                    marginLeft: "107px"
                 }}
             />
             <CardContent className="top-item-card-content skeleton">

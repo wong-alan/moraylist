@@ -46,6 +46,10 @@
         width: 100%;
     }
 
+    .history-card-title {
+        font-weight: 500;
+    }
+
     .history-card-artist {
         font-size: 0.9rem;
         color: #BABABA !important;
@@ -78,7 +82,7 @@
             padding: 6px 10px;
         }
 
-        .history-card-track {
+        .history-card-title {
             font-size: 0.9rem;
         }
 

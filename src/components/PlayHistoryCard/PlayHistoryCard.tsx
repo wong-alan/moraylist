@@ -36,8 +36,8 @@ const PlayHistoryCard = ({playHistory}: PlayHistoryCardProps) => {
                 alt={`Album: ${playHistory.track.album.name}`}
             />
             <CardContent className="history-card-content">
-                <Box>
-                    <Typography className="history-card-track">
+                <Box className="history-card-track">
+                    <Typography className="history-card-title">
                         { playHistory.track.name }
                     </Typography>
                     <Typography className="history-card-artist">
