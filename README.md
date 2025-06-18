@@ -72,6 +72,8 @@ This was developed with Vite on WSL2. Here are instructions to expose the server
     }
     ```
 
+To run without the `--host` option again. Remove the `netsh` rule.
+`netsh interface portproxy reset ipv4`
 ___
 
 Web manifest icons sized by [Maskable](https://maskable.app).
