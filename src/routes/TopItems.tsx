@@ -51,7 +51,7 @@ const TopItems = () => {
                             variant="body1"
                             className="subtitle"
                         >
-                            Write them down in a little black books or just reminisce about these torrid encounters.<br />
+                            Write them down in a little black book or just reminisce about these torrid encounters.<br />
                             These were your tops that you just couldn&apos;t stop going back to.<br />
                         </Typography>
                     </Grid>
