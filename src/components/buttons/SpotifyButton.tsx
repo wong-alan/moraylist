@@ -14,6 +14,7 @@ const SpotifyButton = ({text, sx}: SpotifyButtonProps) => {
             buttonIcon={<SpotifyIcon />}
             sx = {{
                 minWidth: "168px",
+                fontWeight: "600",
                 ...sx
             }}
         />
