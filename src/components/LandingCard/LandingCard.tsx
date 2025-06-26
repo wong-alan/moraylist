@@ -34,7 +34,7 @@ const LandingCard = forwardRef((
                 color: "white"
         }}>
             {link &&
-                <a href={link}>
+                <a href={link} aria-label={content}>
                     <span className="landing-card-link"></span>
                 </a>
             }
