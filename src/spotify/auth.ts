@@ -3,7 +3,7 @@ const accessTokenEndpoint = "https://accounts.spotify.com/api/token";
 const callbackEndpoint = import.meta.env.VITE_ENVIRONMENT === "online" ?
     "https://moraylist.com/callback" :
     // "https://X.X.X.X:5173/callback";  // Add your local
-    "http://localhost:5173/callback";
+    "http://127.0.0.1:5173/callback";
 
 const scopes = [
     // Users
