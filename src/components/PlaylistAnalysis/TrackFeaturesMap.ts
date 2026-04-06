@@ -11,7 +11,7 @@ interface AnalysisProps {
 }
 
 const formatNull = (value: number | null) => {
-    return value ? null : "";
+    return value || value === 0 ? null : "";
 };
 // PlaylistAnalysis only charts numerical data
 // Keys should only map to numerical fields
