@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAppContext } from "../contexts/AppContext";
 
 const Logout = () => {
-    const { setCode, setProfile } = useAppContext();
+    const [ firstRender, setFirstRender ] = useState<boolean>(true);
 
     useEffect(() => {
         localStorage.clear();
-        setCode(null);
-        setProfile(null);
+        setFirstRender(false);
     }, []);
+
+    if (firstRender) {
+        return;
+    }
 
     return (
         <Navigate to="/" replace />
