@@ -174,7 +174,10 @@ const Shuffle = () => {
                                 key={`playlist-${index}`}
                                 className="playlist-card-container"
                                 id={playlist?.name}
-                                ref={(playlistRef): void => {playlistRefs.current[index] = playlistRef}}
+                                // Refs only needed for animation. We don't need to animate the skeletons.
+                                ref={(playlistRef): void => {
+                                    if (playlist) playlistRefs.current[index] = playlistRef
+                                }}
                                 justifyContent={"center"}
                             >
                                 <ShufflePlaylistCard playlist={playlist}/>

@@ -16,6 +16,7 @@ import "./filter.css";
 const Following = () => {
     const { clientId, code } = useAppContext();
     const { openError, setOpenError, errorMessage, setErrorMessage } = useFollowPageContext();
+    // Default to 25 skeletons
     const [ artists, setArtists ] = useState<(Artist|undefined)[]>([...Array<undefined>(25)]);
     const [ filterText, setFilterText ] = useState<string>("");
 
@@ -201,7 +202,10 @@ const Following = () => {
                                 key={`artist-${index}`}
                                 className="artist-card-container"
                                 id={artist?.name}
-                                ref={(cardRef): void => {cardRefs.current[index] = cardRef}}
+                                // Refs only needed for animation. We don't need to animate the skeletons.
+                                ref={(cardRef): void => {
+                                    if (artist) cardRefs.current[index] = cardRef
+                                }}
                             >
                                 <ArtistCard
                                     artist={artist}
