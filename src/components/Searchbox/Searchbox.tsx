@@ -1,10 +1,12 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import Input from "@mui/material/Input";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import ClearRounded from "@mui/icons-material/ClearRounded";
 import SearchRounded from "@mui/icons-material/SearchRounded";
 import "./Searchbox.css";
+
+const DEBOUNCE_MS = 250;
 
 interface SearchboxProps {
     label: string,
@@ -19,11 +21,27 @@ const Searchbox = ({
     text,
     setText,
 }: SearchboxProps) => {
+    const [inputValue, setInputValue] = useState(text);
+    const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+    useEffect(() => {
+        setInputValue(text);
+    }, [text]);
+
+    useEffect(() => {
+        return () => clearTimeout(debounceRef.current);
+    }, []);
+
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setText(event.target.value);
+        const value = event.target.value;
+        setInputValue(value);
+        clearTimeout(debounceRef.current);
+        debounceRef.current = setTimeout(() => setText(value), DEBOUNCE_MS);
     };
 
     const clearTextbox = () => {
+        clearTimeout(debounceRef.current);
+        setInputValue("");
         setText("");
     };
 
@@ -54,14 +72,14 @@ const Searchbox = ({
                     <SearchRounded />
                 </InputAdornment>
             }
-            endAdornment={text && clearButton()}
+            endAdornment={inputValue && clearButton()}
             slotProps={{
                 input: {
                     className: "metro-font",
                     maxLength: 200
                 }
             }}
-            value={text}
+            value={inputValue}
             onChange={handleChange}
         />
     );
